@@ -1,0 +1,27 @@
+{
+    "output_folder": "destaques_exports",
+    "export_formats": {
+        "markdown": {
+            "enabled": true,
+            "include_metadata": true,
+            "folder": "markdown"
+        },
+        "html": {
+            "enabled": true,
+            "include_metadata": true,
+            "css_style": "default",
+            "folder": "html"
+        },
+        "txt": {
+            "enabled": true,
+            "include_metadata": true,
+            "plain_text": true,
+            "folder": "txt"
+        }
+    },
+    "remove_duplicates": true,
+    "similarity_threshold": 0.7,
+    "include_bookmarks": true,
+    "date_format": "portuguese",
+    "encoding": "utf-8"
+}

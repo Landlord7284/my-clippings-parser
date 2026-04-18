@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.streamlit/secrets.toml
+dist/
+build/
+*.zip
+temp_output/
+destaques_exports/
+.data/
+history/
+coverage.xml
+htmlcov/
+.DS_Store
+Thumbs.db
