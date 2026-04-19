@@ -1,29 +1,20 @@
 FROM python:3.11-slim
 
-# Metadados
-LABEL maintainer="Kindle Highlights Extractor"
-LABEL description="Interface Streamlit para extração de destaques do Kindle"
-
-# Variáveis de ambiente
+ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-ENV STREAMLIT_SERVER_PORT=8501
-ENV STREAMLIT_SERVER_ADDRESS=0.0.0.0
+ENV PIP_NO_CACHE_DIR=1
 
-# Define diretório de trabalho
 WORKDIR /app
 
-# Copia e instala dependências Python
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copia código da aplicação
-COPY . .
+COPY requirements.txt /app/requirements.txt
+RUN pip install --upgrade pip && pip install -r /app/requirements.txt
 
-# Cria diretórios necessários
-RUN mkdir -p /app/data /app/output /app/logs
+COPY . /app
 
-# Expõe porta
 EXPOSE 8501
 
-# Comando de inicialização
-CMD ["streamlit", "run", "app.py", "--server.address", "0.0.0.0", "--server.port", "8501", "--server.headless", "true"]
+CMD ["streamlit", "run", "app.py", "--server.address=0.0.0.0", "--server.port=8501"]

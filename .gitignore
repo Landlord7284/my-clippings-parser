@@ -2,6 +2,8 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+pytest-cache-files-*/
+.pytest_tmp/
 .streamlit/secrets.toml
 dist/
 build/
@@ -10,6 +12,8 @@ temp_output/
 destaques_exports/
 .data/
 history/
+.kindle_processing_store.json
+tests/.tmp/
 coverage.xml
 htmlcov/
 .DS_Store

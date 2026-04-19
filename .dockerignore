@@ -1,0 +1,15 @@
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.git
+.gitignore
+destaques_exports
+temp_output
+.data
+.old
+.sampes
+tests
+history
+htmlcov
+coverage.xml

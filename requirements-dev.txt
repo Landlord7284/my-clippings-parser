@@ -1,0 +1,4 @@
+﻿-r requirements.txt
+
+# Dependências de desenvolvimento/testes
+pytest==9.0.3
