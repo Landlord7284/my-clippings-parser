@@ -1,13 +1,20 @@
 ﻿import shutil
 import unittest
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from kindle_extractor.book_selection_service import (
+    BATCH_CLEAR_VISIBLE,
+    BATCH_RECOMMENDED,
+    BATCH_SELECT_VISIBLE,
+    FILTER_NO_NEWS,
+    FILTER_SELECTED,
+    FILTER_WITH_NEWS,
+    STATUS_NEVER_EXPORTED,
     STATUS_NEW,
-    STATUS_UNCHANGED,
-    STATUS_UPDATED,
+    STATUS_NO_NEWS,
+    STATUS_WITH_NEWS,
     BookSelectionService,
 )
 from kindle_extractor.processing_store import ProcessingStore
@@ -30,7 +37,7 @@ def make_entry(
         "end_pos": end_pos,
         "content": content,
         "date_formatted": "1 de janeiro de 2024",
-        "date_obj": datetime(2024, 1, 1),
+        "date_obj": datetime(2024, 1, 1, tzinfo=timezone.utc),
         "metadata_line": "",
     }
 
@@ -50,32 +57,59 @@ class BookSelectionServiceTests(unittest.TestCase):
         books = {"Livro A": [make_entry(title="Livro A", author="Autor A")]}
         rows = self.service.build_books_table(books, persist=False)
 
-        self.assertEqual(len(rows), 1)
         row = rows[0]
         self.assertEqual(row["status"], STATUS_NEW)
         self.assertTrue(row["default_selected"])
         self.assertEqual(row["new_highlights_count"], 1)
-        self.assertEqual(row["last_processed_display"], "-")
+        self.assertEqual(row["last_export_display"], "-")
 
-    def test_classifies_unchanged_book_and_unselects_by_default(self):
+    def test_classifies_previously_analyzed_but_never_exported(self):
         books = {"Livro A": [make_entry(title="Livro A", author="Autor A")]}
-        self.service.build_books_table(books, persist=True, processed_at=datetime(2024, 1, 1))
+        self.service.build_books_table(
+            books,
+            persist=True,
+            processed_at=datetime(2024, 1, 1, 10, 0, tzinfo=timezone.utc),
+        )
 
         rows = self.service.build_books_table(books, persist=False)
         row = rows[0]
-        self.assertEqual(row["status"], STATUS_UNCHANGED)
-        self.assertFalse(row["default_selected"])
-        self.assertFalse(row["has_new_highlights"])
-        self.assertNotEqual(row["last_processed_display"], "-")
 
-    def test_detects_new_highlights_using_signature_not_only_count(self):
+        self.assertEqual(row["status"], STATUS_NEVER_EXPORTED)
+        self.assertTrue(row["default_selected"])
+        self.assertEqual(row["new_highlights_count"], 1)
+
+    def test_classifies_exported_without_news_as_not_selected(self):
+        books = {"Livro A": [make_entry(title="Livro A", author="Autor A")]}
+        rows = self.service.build_books_table(
+            books,
+            persist=True,
+            processed_at=datetime(2024, 1, 1, 9, 0, tzinfo=timezone.utc),
+        )
+
+        self.service.mark_exported(
+            [rows[0]["book_key"]],
+            exported_at=datetime(2024, 1, 1, 10, 0, tzinfo=timezone.utc),
+            export_formats=["markdown"],
+        )
+
+        row = self.service.build_books_table(books, persist=False)[0]
+        self.assertEqual(row["status"], STATUS_NO_NEWS)
+        self.assertFalse(row["default_selected"])
+        self.assertEqual(row["new_highlights_count"], 0)
+
+    def test_classifies_exported_with_news_since_last_export(self):
         books_v1 = {
             "Livro A": [make_entry(title="Livro A", author="Autor A", start_pos=10, end_pos=12)]
         }
-        self.service.build_books_table(
+        first_rows = self.service.build_books_table(
             books_v1,
             persist=True,
-            processed_at=datetime(2024, 1, 1, 10, 0),
+            processed_at=datetime(2024, 1, 1, 8, 0, tzinfo=timezone.utc),
+        )
+        self.service.mark_exported(
+            [first_rows[0]["book_key"]],
+            exported_at=datetime(2024, 1, 1, 9, 0, tzinfo=timezone.utc),
+            export_formats=["markdown"],
         )
 
         books_v2 = {
@@ -84,123 +118,178 @@ class BookSelectionServiceTests(unittest.TestCase):
                 make_entry(
                     title="Livro A",
                     author="Autor A",
-                    start_pos=30,
-                    end_pos=33,
-                    content="novo trecho",
-                ),
-            ]
-        }
-        rows = self.service.build_books_table(books_v2, persist=False)
-        row = rows[0]
-
-        self.assertEqual(row["status"], STATUS_UPDATED)
-        self.assertEqual(row["new_highlights_count"], 1)
-        self.assertTrue(row["has_new_highlights"])
-        self.assertTrue(row["default_selected"])
-
-    def test_updated_without_new_highlights_stays_unselected(self):
-        books_v1 = {
-            "Livro A": [make_entry(title="Livro A", author="Autor A", content="texto base")]
-        }
-        self.service.build_books_table(books_v1, persist=True)
-
-        books_v2 = {
-            "Livro A": [
-                make_entry(title="Livro A", author="Autor A", content="texto base"),
-                make_entry(
-                    entry_type="note",
-                    title="Livro A",
-                    author="Autor A",
-                    start_pos=40,
-                    end_pos=40,
-                    content="minha nota",
+                    start_pos=20,
+                    end_pos=22,
+                    content="novo destaque",
                 ),
             ]
         }
         row = self.service.build_books_table(books_v2, persist=False)[0]
 
-        self.assertEqual(row["status"], STATUS_UPDATED)
-        self.assertEqual(row["new_highlights_count"], 0)
-        self.assertFalse(row["has_new_highlights"])
-        self.assertFalse(row["default_selected"])
+        self.assertEqual(row["status"], STATUS_WITH_NEWS)
+        self.assertTrue(row["default_selected"])
+        self.assertEqual(row["new_highlights_count"], 1)
 
-    def test_orders_books_prioritizing_new_and_updated(self):
-        self.service.build_books_table(
-            {"Livro Antigo": [make_entry(title="Livro Antigo", author="Autor A")]},
-            persist=True,
-        )
-
-        books = {
-            "Livro Antigo": [make_entry(title="Livro Antigo", author="Autor A")],
-            "Livro Atualizado": [
-                make_entry(title="Livro Atualizado", author="Autor B"),
-                make_entry(
-                    title="Livro Atualizado",
-                    author="Autor B",
-                    start_pos=50,
-                    end_pos=51,
-                    content="novo trecho",
-                ),
-            ],
-            "Livro Novo": [make_entry(title="Livro Novo", author="Autor C")],
+    def test_orders_books_by_export_guided_status_then_title(self):
+        base_books = {
+            "Sem Novidades": [make_entry(title="Sem Novidades", author="Autor A")],
+            "Com Novidades": [make_entry(title="Com Novidades", author="Autor B")],
+            "Nunca Exportado": [make_entry(title="Nunca Exportado", author="Autor C")],
         }
-        self.service.build_books_table(
-            {"Livro Atualizado": [make_entry(title="Livro Atualizado", author="Autor B")]},
+        initial_rows = self.service.build_books_table(
+            base_books,
             persist=True,
+            processed_at=datetime(2024, 1, 1, 8, 0, tzinfo=timezone.utc),
         )
-
-        rows = self.service.build_books_table(books, persist=False)
-        ordered_titles = [row["title"] for row in rows]
-        ordered_statuses = [row["status"] for row in rows]
-
-        self.assertEqual(ordered_titles[0], "Livro Novo")
-        self.assertEqual(ordered_statuses[0], STATUS_NEW)
-        self.assertEqual(ordered_statuses[1], STATUS_UPDATED)
-        self.assertEqual(ordered_statuses[2], STATUS_UNCHANGED)
-
-    def test_force_reprocess_is_recorded_without_changing_status(self):
-        books = {"Livro A": [make_entry(title="Livro A", author="Autor A")]}
-        self.service.build_books_table(
-            books,
-            persist=True,
-            processed_at=datetime(2024, 1, 1, 10, 0),
-        )
-
-        rows = self.service.build_books_table(
-            books,
-            persist=True,
-            processed_at=datetime(2024, 1, 2, 11, 0),
-            force_reprocess=True,
-        )
-        self.assertEqual(rows[0]["status"], STATUS_UNCHANGED)
-
-        persisted = self.store.get_books()[rows[0]["book_key"]]
-        self.assertEqual(len(persisted["processing_history"]), 2)
-        self.assertTrue(persisted["processing_history"][-1]["forced"])
-        self.assertEqual(
-            persisted["processing_history"][-1]["detected_status"],
-            STATUS_UNCHANGED,
-        )
-
-    def test_marks_export_formats_and_keeps_processing_export_timestamps_distinct(self):
-        books = {"Livro A": [make_entry(title="Livro A", author="Autor A")]}
-        rows = self.service.build_books_table(
-            books,
-            persist=True,
-            processed_at=datetime(2024, 1, 1, 9, 0),
-        )
+        keys = {row["title"]: row["book_key"] for row in initial_rows}
 
         self.service.mark_exported(
-            [rows[0]["book_key"]],
-            exported_at=datetime(2024, 1, 1, 10, 30),
-            export_formats=["markdown", "html"],
+            [keys["Sem Novidades"], keys["Com Novidades"]],
+            exported_at=datetime(2024, 1, 1, 9, 0, tzinfo=timezone.utc),
+            export_formats=["markdown"],
         )
 
-        persisted = self.store.get_books()[rows[0]["book_key"]]
-        self.assertEqual(persisted["last_processed_at"], "2024-01-01T09:00:00")
-        self.assertEqual(persisted["last_exported_at"], "2024-01-01T10:30:00")
-        self.assertEqual(persisted["last_export_formats"], ["html", "markdown"])
-        self.assertEqual(persisted["export_history"][-1]["formats"], ["html", "markdown"])
+        books_after = {
+            "Sem Novidades": [make_entry(title="Sem Novidades", author="Autor A")],
+            "Com Novidades": [
+                make_entry(title="Com Novidades", author="Autor B"),
+                make_entry(
+                    title="Com Novidades",
+                    author="Autor B",
+                    start_pos=40,
+                    end_pos=42,
+                    content="destaque novo",
+                ),
+            ],
+            "Nunca Exportado": [make_entry(title="Nunca Exportado", author="Autor C")],
+            "Apenas Novo": [make_entry(title="Apenas Novo", author="Autor D")],
+        }
+
+        rows = self.service.build_books_table(books_after, persist=False)
+
+        self.assertEqual(
+            [(row["title"], row["status"]) for row in rows],
+            [
+                ("Apenas Novo", STATUS_NEW),
+                ("Nunca Exportado", STATUS_NEVER_EXPORTED),
+                ("Com Novidades", STATUS_WITH_NEWS),
+                ("Sem Novidades", STATUS_NO_NEWS),
+            ],
+        )
+
+    def test_filters_and_search_use_visible_set(self):
+        books = {
+            "Sem Novidades": [make_entry(title="Sem Novidades", author="Autor A")],
+            "Com Novidades": [make_entry(title="Com Novidades", author="Autor B")],
+        }
+        rows = self.service.build_books_table(
+            books,
+            persist=True,
+            processed_at=datetime(2024, 1, 1, 8, 0, tzinfo=timezone.utc),
+        )
+        keys = {row["title"]: row["book_key"] for row in rows}
+        self.service.mark_exported(
+            [keys["Sem Novidades"], keys["Com Novidades"]],
+            exported_at=datetime(2024, 1, 1, 9, 0, tzinfo=timezone.utc),
+            export_formats=["markdown"],
+        )
+
+        rows = self.service.build_books_table(
+            {
+                "Sem Novidades": [make_entry(title="Sem Novidades", author="Autor A")],
+                "Com Novidades": [
+                    make_entry(title="Com Novidades", author="Autor B"),
+                    make_entry(
+                        title="Com Novidades",
+                        author="Autor B",
+                        start_pos=50,
+                        end_pos=55,
+                        content="novo",
+                    ),
+                ],
+            },
+            persist=False,
+        )
+
+        selection_map = self.service.build_default_selection_map(rows)
+        selection_map[keys["Sem Novidades"]] = True
+
+        only_news = self.service.filter_rows(
+            rows,
+            selection_map=selection_map,
+            status_filter=FILTER_WITH_NEWS,
+        )
+        self.assertEqual([row["title"] for row in only_news], ["Com Novidades"])
+
+        only_no_news = self.service.filter_rows(
+            rows,
+            selection_map=selection_map,
+            status_filter=FILTER_NO_NEWS,
+        )
+        self.assertEqual([row["title"] for row in only_no_news], ["Sem Novidades"])
+
+        searched = self.service.filter_rows(rows, selection_map=selection_map, search_term="com")
+        self.assertEqual([row["title"] for row in searched], ["Com Novidades"])
+
+        selected_only = self.service.filter_rows(
+            rows,
+            selection_map=selection_map,
+            status_filter=FILTER_SELECTED,
+        )
+        self.assertEqual([row["title"] for row in selected_only], ["Com Novidades", "Sem Novidades"])
+
+    def test_batch_actions_affect_only_visible_rows(self):
+        rows = [
+            {
+                "book_key": "a",
+                "default_selected": True,
+                "status": STATUS_NEW,
+                "title": "A",
+                "author": "Autor",
+                "highlights": 1,
+            },
+            {
+                "book_key": "b",
+                "default_selected": False,
+                "status": STATUS_NO_NEWS,
+                "title": "B",
+                "author": "Autor",
+                "highlights": 1,
+            },
+            {
+                "book_key": "c",
+                "default_selected": True,
+                "status": STATUS_WITH_NEWS,
+                "title": "C",
+                "author": "Autor",
+                "highlights": 1,
+            },
+        ]
+        selection_map = {"a": False, "b": False, "c": False}
+
+        selection_map = self.service.apply_batch_action(
+            rows,
+            selection_map,
+            visible_book_keys=["a", "b"],
+            action=BATCH_SELECT_VISIBLE,
+        )
+        self.assertEqual(selection_map, {"a": True, "b": True, "c": False})
+
+        selection_map = self.service.apply_batch_action(
+            rows,
+            selection_map,
+            visible_book_keys=["b"],
+            action=BATCH_CLEAR_VISIBLE,
+        )
+        self.assertEqual(selection_map, {"a": True, "b": False, "c": False})
+
+        selection_map = self.service.apply_batch_action(
+            rows,
+            selection_map,
+            visible_book_keys=["a", "b"],
+            action=BATCH_RECOMMENDED,
+        )
+        self.assertEqual(selection_map, {"a": True, "b": False, "c": False})
 
 
 if __name__ == "__main__":

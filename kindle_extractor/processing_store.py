@@ -1,20 +1,21 @@
-import hashlib
+﻿import hashlib
 import json
 from copy import deepcopy
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
 
+from .datetime_utils import to_utc_iso
 
 STORE_VERSION = 2
 MAX_HISTORY_ITEMS = 200
 STATUS_NEW = "novo"
 STATUS_UPDATED = "atualizado"
-STATUS_UNCHANGED = "sem mudanças"
+STATUS_UNCHANGED = "sem_mudancas"
 
 
 def _now_utc_iso() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return to_utc_iso(None)
 
 
 def _stable_hash(value: str) -> str:
@@ -128,10 +129,11 @@ class ProcessingStore:
             or (previous_book or {}).get("highlight_signatures")
             or []
         )
+        previous_analysis_at = (previous_book or {}).get("last_analysis_at") or (
+            previous_book or {}
+        ).get("last_processed_at")
 
-        if previous_book is None or (
-            not previous_entry_hashes and not previous_book.get("last_processed_at")
-        ):
+        if previous_book is None or (not previous_entry_hashes and not previous_analysis_at):
             new_highlights = len(current_highlight_hashes)
             return {
                 "status": STATUS_NEW,
@@ -161,7 +163,7 @@ class ProcessingStore:
     ):
         payload = self.load()
         books = payload.get("books", {})
-        processed_iso = (processed_at or datetime.now(timezone.utc)).isoformat()
+        processed_iso = to_utc_iso(processed_at)
         process_id = _stable_hash(f"{processed_iso}|{len(snapshots)}")
 
         for book_key, snapshot in snapshots.items():
@@ -187,7 +189,9 @@ class ProcessingStore:
             processing_history = _trim_history(previous["processing_history"] + [event])
             updated_book = deepcopy(previous)
             updated_book.update(normalized_snapshot)
+            updated_book["last_analysis_at"] = processed_iso
             updated_book["last_processed_at"] = processed_iso
+            updated_book["last_analysis_signature"] = content_signature_hash
             updated_book["last_detected_processing"] = deepcopy(event)
             updated_book["processing_history"] = processing_history
             books[book_key] = updated_book
@@ -202,7 +206,7 @@ class ProcessingStore:
     ):
         payload = self.load()
         books = payload.get("books", {})
-        exported_iso = (exported_at or datetime.now(timezone.utc)).isoformat()
+        exported_iso = to_utc_iso(exported_at)
 
         if isinstance(book_keys_or_exports, dict):
             exports_map = book_keys_or_exports
@@ -221,6 +225,8 @@ class ProcessingStore:
             )
             last_export = book.get("last_export") or {}
             current_content_hash = book.get("content_signature_hash")
+            current_highlight_hash = book.get("highlight_signature_hash")
+            current_highlight_hashes = list(book.get("highlight_signature_hashes") or [])
             reexport_without_changes = (
                 bool(last_export)
                 and current_content_hash
@@ -231,13 +237,19 @@ class ProcessingStore:
                 "exported_at": exported_iso,
                 "formats": normalized_formats,
                 "content_signature_hash": current_content_hash,
-                "processed_at": book.get("last_processed_at"),
+                "highlight_signature_hash": current_highlight_hash,
+                "highlight_signature_hashes": current_highlight_hashes,
+                "processed_at": book.get("last_analysis_at") or book.get("last_processed_at"),
                 "reexport_without_changes": reexport_without_changes,
             }
 
             export_history = _trim_history(book["export_history"] + [event])
+            book["last_export_at"] = exported_iso
             book["last_exported_at"] = exported_iso
             book["last_export_formats"] = normalized_formats
+            book["last_export_signature"] = current_content_hash
+            book["last_export_highlight_signature"] = current_highlight_hash
+            book["last_export_highlight_signature_hashes"] = current_highlight_hashes
             book["last_export"] = deepcopy(event)
             book["export_history"] = export_history
             books[book_key] = book
@@ -318,6 +330,19 @@ class ProcessingStore:
         if not isinstance(last_export, dict):
             last_export = export_history[-1] if export_history else None
 
+        last_analysis_at = raw_book.get("last_analysis_at") or raw_book.get("last_processed_at")
+        last_export_at = raw_book.get("last_export_at") or raw_book.get("last_exported_at")
+        last_export_signature = raw_book.get("last_export_signature") or (
+            (last_export or {}).get("content_signature_hash")
+        )
+        last_export_highlight_signature = raw_book.get("last_export_highlight_signature") or (
+            (last_export or {}).get("highlight_signature_hash")
+        )
+        last_export_highlight_signature_hashes = _normalize_signature_hashes(
+            raw_book.get("last_export_highlight_signature_hashes")
+            or (last_export or {}).get("highlight_signature_hashes")
+        )
+
         return {
             "book_key": book_key,
             "title": str(raw_book.get("title") or ""),
@@ -329,9 +354,16 @@ class ProcessingStore:
             "highlight_count": _normalize_int(raw_book.get("highlight_count"), 0),
             "note_count": _normalize_int(raw_book.get("note_count"), 0),
             "bookmark_count": _normalize_int(raw_book.get("bookmark_count"), 0),
-            "last_processed_at": raw_book.get("last_processed_at"),
-            "last_exported_at": raw_book.get("last_exported_at"),
+            "last_analysis_at": last_analysis_at,
+            "last_processed_at": last_analysis_at,
+            "last_analysis_signature": raw_book.get("last_analysis_signature")
+            or content_signature_hash,
+            "last_export_at": last_export_at,
+            "last_exported_at": last_export_at,
             "last_export_formats": last_export_formats,
+            "last_export_signature": last_export_signature,
+            "last_export_highlight_signature": last_export_highlight_signature,
+            "last_export_highlight_signature_hashes": last_export_highlight_signature_hashes,
             "last_detected_processing": last_detected,
             "last_export": last_export,
             "processing_history": processing_history,

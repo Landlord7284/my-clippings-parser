@@ -25,7 +25,9 @@ class KindleHighlightsExtractor:
             "files_generated": {"markdown": 0, "html": 0, "txt": 0},
             "dedup_metrics": {
                 "exact_duplicates_removed": 0,
-                "same_start_prefix_conflicts": 0,
+                "same_start_containment_conflicts": 0,
+                "same_start_expansion_conflicts": 0,
+                "same_range_containment_conflicts": 0,
                 "similarity_fallback_removed": 0,
                 "records_replaced": 0,
             },
@@ -57,8 +59,12 @@ class KindleHighlightsExtractor:
         dedup_metrics = self.stats["dedup_metrics"]
         if reason.startswith("exact_duplicate"):
             dedup_metrics["exact_duplicates_removed"] += 1
-        elif reason.startswith("same_start_prefix"):
-            dedup_metrics["same_start_prefix_conflicts"] += 1
+        elif reason.startswith("same_start_containment"):
+            dedup_metrics["same_start_containment_conflicts"] += 1
+        elif reason.startswith("same_start_expansion"):
+            dedup_metrics["same_start_expansion_conflicts"] += 1
+        elif reason.startswith("same_range_containment"):
+            dedup_metrics["same_range_containment_conflicts"] += 1
         elif reason.startswith("similarity_fallback"):
             dedup_metrics["similarity_fallback_removed"] += 1
 

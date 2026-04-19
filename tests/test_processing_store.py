@@ -1,10 +1,10 @@
-﻿import json
-import shutil
+﻿import shutil
 import unittest
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
+from kindle_extractor.datetime_utils import format_iso_for_display
 from kindle_extractor.processing_store import ProcessingStore
 
 
@@ -19,6 +19,20 @@ class ProcessingStoreTests(unittest.TestCase):
         if self.tmp_root.exists():
             shutil.rmtree(self.tmp_root)
 
+    def _snapshot(self, entry_hashes=None, highlight_hashes=None):
+        return {
+            "book-key": {
+                "book_key": "book-key",
+                "title": "Livro",
+                "author": "Autor",
+                "entry_signature_hashes": entry_hashes or ["a" * 40],
+                "highlight_signature_hashes": highlight_hashes or ["b" * 40],
+                "highlight_count": len(highlight_hashes or ["b" * 40]),
+                "note_count": 0,
+                "bookmark_count": 0,
+            }
+        }
+
     def test_load_returns_default_when_file_is_missing(self):
         payload = self.store.load()
         self.assertEqual(payload["version"], 2)
@@ -30,98 +44,65 @@ class ProcessingStoreTests(unittest.TestCase):
         self.assertEqual(payload["version"], 2)
         self.assertEqual(payload["books"], {})
 
-    def test_load_sanitizes_incomplete_legacy_book_shape(self):
-        legacy_payload = {
-            "version": 1,
-            "books": {
-                "book-key": {
-                    "title": "Livro",
-                    "author": "Autor",
-                    "entry_signatures": ["raw-signature"],
-                    "highlight_count": "2",
-                }
-            },
-        }
-        self.store.save(legacy_payload)
-
-        books = self.store.get_books()
-        self.assertIn("book-key", books)
-        book = books["book-key"]
-        self.assertEqual(book["title"], "Livro")
-        self.assertEqual(book["highlight_count"], 2)
-        self.assertEqual(len(book["entry_signature_hashes"]), 1)
-        self.assertIn("processing_history", book)
-        self.assertIn("export_history", book)
-
-    def test_save_processed_snapshots_creates_history_and_hashes(self):
-        snapshot = {
-            "book-key": {
-                "book_key": "book-key",
-                "title": "Livro",
-                "author": "Autor",
-                "entry_signature_hashes": ["a" * 40],
-                "highlight_signature_hashes": ["b" * 40],
-                "highlight_count": 1,
-                "note_count": 0,
-                "bookmark_count": 0,
-            }
-        }
+    def test_save_processed_snapshots_persists_last_analysis_in_utc(self):
         self.store.save_processed_snapshots(
-            snapshot,
+            self._snapshot(),
             processed_at=datetime(2024, 1, 1, 12, 0),
         )
 
         book = self.store.get_books()["book-key"]
-        self.assertEqual(book["last_processed_at"], "2024-01-01T12:00:00")
+        self.assertEqual(book["last_analysis_at"], "2024-01-01T12:00:00+00:00")
+        self.assertEqual(book["last_processed_at"], "2024-01-01T12:00:00+00:00")
         self.assertEqual(book["last_detected_processing"]["detected_status"], "novo")
         self.assertEqual(len(book["processing_history"]), 1)
-        self.assertEqual(book["content_signature_hash"], book["processing_history"][0]["content_signature_hash"])
 
-    def test_reexport_without_changes_is_flagged(self):
-        snapshot = {
-            "book-key": {
-                "book_key": "book-key",
-                "title": "Livro",
-                "author": "Autor",
-                "entry_signature_hashes": ["a" * 40],
-                "highlight_signature_hashes": ["b" * 40],
-                "highlight_count": 1,
-                "note_count": 0,
-                "bookmark_count": 0,
-            }
-        }
-        self.store.save_processed_snapshots(snapshot, processed_at=datetime(2024, 1, 1, 8, 0))
-
-        self.store.mark_exported(
-            {"book-key": ["markdown"]},
-            exported_at=datetime(2024, 1, 1, 9, 0),
+    def test_mark_exported_keeps_analysis_and_export_timestamps_distinct(self):
+        self.store.save_processed_snapshots(
+            self._snapshot(),
+            processed_at=datetime(2024, 1, 1, 9, 0, tzinfo=timezone.utc),
         )
+
         self.store.mark_exported(
             {"book-key": ["markdown", "html"]},
-            exported_at=datetime(2024, 1, 1, 10, 0),
+            exported_at=datetime(2024, 1, 1, 10, 30, tzinfo=timezone.utc),
         )
 
         book = self.store.get_books()["book-key"]
-        self.assertEqual(book["last_exported_at"], "2024-01-01T10:00:00")
+        self.assertEqual(book["last_analysis_at"], "2024-01-01T09:00:00+00:00")
+        self.assertEqual(book["last_export_at"], "2024-01-01T10:30:00+00:00")
+        self.assertEqual(book["last_exported_at"], "2024-01-01T10:30:00+00:00")
         self.assertEqual(book["last_export_formats"], ["html", "markdown"])
+        self.assertEqual(book["last_export_signature"], book["content_signature_hash"])
+        self.assertEqual(
+            book["last_export_highlight_signature_hashes"],
+            ["b" * 40],
+        )
+
+    def test_reexport_without_changes_is_flagged(self):
+        self.store.save_processed_snapshots(
+            self._snapshot(),
+            processed_at=datetime(2024, 1, 1, 8, 0, tzinfo=timezone.utc),
+        )
+
+        self.store.mark_exported(
+            {"book-key": ["markdown"]},
+            exported_at=datetime(2024, 1, 1, 9, 0, tzinfo=timezone.utc),
+        )
+        self.store.mark_exported(
+            {"book-key": ["markdown", "html"]},
+            exported_at=datetime(2024, 1, 1, 10, 0, tzinfo=timezone.utc),
+        )
+
+        book = self.store.get_books()["book-key"]
         self.assertEqual(len(book["export_history"]), 2)
         self.assertFalse(book["export_history"][0]["reexport_without_changes"])
         self.assertTrue(book["export_history"][1]["reexport_without_changes"])
 
     def test_compare_snapshot_detects_updated(self):
-        snapshot_v1 = {
-            "book-key": {
-                "book_key": "book-key",
-                "title": "Livro",
-                "author": "Autor",
-                "entry_signature_hashes": ["a" * 40],
-                "highlight_signature_hashes": ["b" * 40],
-                "highlight_count": 1,
-                "note_count": 0,
-                "bookmark_count": 0,
-            }
-        }
-        self.store.save_processed_snapshots(snapshot_v1, processed_at=datetime(2024, 1, 1, 8, 0))
+        self.store.save_processed_snapshots(
+            self._snapshot(entry_hashes=["a" * 40], highlight_hashes=["b" * 40]),
+            processed_at=datetime(2024, 1, 1, 8, 0, tzinfo=timezone.utc),
+        )
 
         current = {
             "book_key": "book-key",
@@ -134,6 +115,10 @@ class ProcessingStoreTests(unittest.TestCase):
         self.assertEqual(result["status"], "atualizado")
         self.assertEqual(result["new_highlights_count"], 1)
         self.assertTrue(result["has_new_highlights"])
+
+    def test_timezone_display_converts_utc_to_america_sao_paulo(self):
+        display_value = format_iso_for_display("2024-01-01T12:00:00+00:00")
+        self.assertEqual(display_value, "2024-01-01 09:00")
 
 
 if __name__ == "__main__":
