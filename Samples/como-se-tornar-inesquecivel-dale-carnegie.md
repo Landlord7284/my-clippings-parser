@@ -1,10 +1,10 @@
 # Como se tornar inesquecível - Dale Carnegie
 
 **Autor**: Dale Carnegie  
-**Total de destaques**: 154  
+**Total de destaques**: 149  
 **Total de notas**: 1  
 **Período**: 18 de November de 2024 - 31 de December de 2024  
-**Gerado em**: 11 de June de 2025  
+**Gerado em**: 18 de April de 2026  
 
 ---
 
@@ -83,9 +83,6 @@ O título do mais famoso best-seller de Dale Carnegie, Como fazer amigos e influ
 - Posição: 397-398 | 18 de novembro de 2024
 Primeiro, como parte do seu compromisso pessoal como uma pessoa inesquecível, não critique, não condene nem reclame.
 
-- Posição: 401-402 | 18 de novembro de 2024
-Em vez de criticar ou reclamar, crie em si mesmo sentimentos de apreciação e gratidão. Não faça isso porque deseja ser uma Poliana. Faça isso por interesse próprio positivo.
-
 - Posição: 401-403 | 18 de novembro de 2024
 Em vez de criticar ou reclamar, crie em si mesmo sentimentos de apreciação e gratidão. Não faça isso porque deseja ser uma Poliana. Faça isso por interesse próprio positivo. De novo, como você se sente quando está perto de pessoas positivas e apreciativas? Provavelmente esse é o tipo de pessoa que você quer ter como amiga.
 
@@ -133,9 +130,6 @@ O quarto e último é um princípio que está em uma única palavra: sorria.
 
 - Posição: 670-678 | 20 de novembro de 2024
 Para tirar o melhor proveito de uma discussão, evite-a. Demonstre respeito pela opinião da outra pessoa. Jamais diga que ela está errada. Se você estiver errado, admita rapidamente, enfaticamente. Comece de modo amigável. Consiga que a outra pessoa diga “sim” imediatamente. Deixe a outra pessoa falar. Deixe que a outra pessoa sinta que a ideia é dela. Fale baixo. Sorria de modo adequado. Se o confronto não puder ser evitado, não sinta que você precisa obter uma rendição incondicional. Sempre dê à outra pessoa uma abertura para uma retirada honrosa.
-
-- Posição: 708-709 | 20 de novembro de 2024
-Uma das piores coisas que alguém pode dizer sobre um líder é que ele “gosta de gritar”.
 
 - Posição: 708-711 | 20 de novembro de 2024
 Uma das piores coisas que alguém pode dizer sobre um líder é que ele “gosta de gritar”. Teddy Roosevelt disse: “Fale baixo e carregue um porrete grande.” E, se você não tiver um porrete grande, fale baixo mesmo assim.
@@ -200,9 +194,6 @@ O ser humano é um animal social, e a falta de habilidades sociais pode levar a 
 - Posição: 1260-1262 | 25 de novembro de 2024
 A primeira não é de fato alguma coisa que você faz, e sim como você se sente. É a capacidade de relaxar em situações sociais ou profissionais. A tensão e a ansiedade são contagiosas. Quando você fica pouco à vontade, esse sentimento é transmitido às pessoas em volta.
 
-- Posição: 1272-1273 | 25 de novembro de 2024
-Também tenha em mente que determinadas ações provocam ansiedade, ainda que você possa achar que elas estão acalmando-o. Tente não fazer nada depressa demais, seja andar, falar, comer ou mesmo sentar-se em uma cadeira.
-
 - Posição: 1272-1274 | 25 de novembro de 2024
 Também tenha em mente que determinadas ações provocam ansiedade, ainda que você possa achar que elas estão acalmando-o. Tente não fazer nada depressa demais, seja andar, falar, comer ou mesmo sentar-se em uma cadeira. Os movimentos rápidos e espasmódicos despertam uma primitiva síndrome de luta ou fuga.
 
@@ -239,9 +230,6 @@ As pessoas precisam receber. Elas precisam de um sentimento de importância, de 
 - Posição: 1334-1336 | 25 de novembro de 2024
 Resumindo, confiança não é realmente uma coisa que você tem. É algo que você dá e então lhe é devolvido. A confiança, como a classe, é um poder que você irradia, e no reflexo dela você brilha muito mais.
 
-- Posição: 1442-1443 | 25 de novembro de 2024
-Recusar-se a entrar no mundo de pessoas raivosas é provavelmente a melhor coisa que você pode fazer para ajudá-
-
 - Posição: 1442-1444 | 25 de novembro de 2024
 Recusar-se a entrar no mundo de pessoas raivosas é provavelmente a melhor coisa que você pode fazer para ajudá-las. Não é fácil uma pessoa ficar com raiva durante muito tempo na presença de alguém que se recusa a participar.
 
@@ -260,14 +248,14 @@ que caminho mais eficaz você imagina para lidar com pessoas que passam por depr
 - Posição: 1476-1478 | 25 de novembro de 2024
 acontece quando as condições mudam mas você não muda. Não é fácil ter empatia com uma pessoa que está em negação porque se recusa a ver que as condições mudaram.
 
-- Posição: 1529-1530 | 26 de novembro de 2024
-Deferência: Na sua casa ou no trabalho você é responsável por deixar todo mundo confortável e produtivo. No território de outra pessoa você deve recuar e permitir que ela determine o
+- Posição: 1476-1478 | 25 de novembro de 2024
+Não é fácil ter empatia com uma pessoa que está em negação porque se recusa a ver que as condições mudaram.
 
 - Posição: 1529-1531 | 26 de novembro de 2024
 Deferência: Na sua casa ou no trabalho você é responsável por deixar todo mundo confortável e produtivo. No território de outra pessoa você deve recuar e permitir que ela determine o tom.
 
 - Posição: 1770-1773 | 27 de novembro de 2024
-Um último ponto de reflexão: se você se sente muito estressado hoje, provavelmente não é a primeira vez. Mas consegue se lembrar do que o deixou estressado há dois anos? E há apenas um ano, ou mesmo no mês passado? Se você é como a maioria das pessoas, não faz a mínima ideia do que o estava incomodando. Só se lembra de que na ocasião aquilo pareceu de fato importante. O que isso lhe
+Um último ponto de reflexão: se você se sente muito estressado hoje, provavelmente não é a primeira vez. Mas consegue se lembrar do que o deixou estressado há dois anos? E há apenas um ano, ou mesmo no mês passado? Se você é como a maioria das pessoas, não faz a mínima ideia do que o estava incomodando. Só se lembra de que na ocasião aquilo pareceu de fato importante. O que isso lhe diz?
 
 - Posição: 1845-1846 | 22 de dezembro de 2024
 Paciência é a capacidade de se distanciar da necessidade de gratificação imediata.
@@ -348,7 +336,7 @@ criar um alicerce para a resiliência usando cinco elementos-chave: confiança, 
 Confiança significa acreditar nas outras pessoas e contar com elas.
 
 - Posição: 2298-2301 | 23 de dezembro de 2024
-em si mesmas para realizar e ter sucesso, podem tentar se proteger do fracasso inevitável. Podem se tornar dependentes. Podem querer que você faça as coisas por elas porque presumem que você é melhor do que elas e irá protegê-las. Ou podem ir na direção contrária e se tornar dominadoras e agressivas.
+se as pessoas acham que não conseguem confiar em si mesmas para realizar e ter sucesso, podem tentar se proteger do fracasso inevitável. Podem se tornar dependentes. Podem querer que você faça as coisas por elas porque presumem que você é melhor do que elas e irá protegê-las. Ou podem ir na direção contrária e se tornar dominadoras e agressivas.
 
 - Posição: 2301-2303 | 23 de dezembro de 2024
 É bastante provável que você já tenha lidado com alguém que possui personalidade controladora. Alguém que parece decidido a dizer a todo mundo o que fazer, como fazer, quando fazer e assim por diante. Esse tipo de personalidade é claramente baseado na falta de confiança. Ele resulta da premissa de que todo mundo é incompetente, hostil e talvez até perigoso.
@@ -361,9 +349,6 @@ O terceiro elemento-chave é a iniciativa
 
 - Posição: 2327-2329 | 25 de dezembro de 2024
 Você precisa parar de pensar em termos de resultado bem ou malsucedido. Se fizer uma tentativa honesta e se esforçar ao máximo, isso já é um sucesso.
-
-- Posição: 2405-2406 | 25 de dezembro de 2024
-Há mais de 200 anos o filósofo e economista Adam Smith fez uma declaração simples, mas que ainda está sendo discutida. Ele disse que a sociedade funciona melhor quando
 
 - Posição: 2405-2407 | 25 de dezembro de 2024
 Há mais de 200 anos o filósofo e economista Adam Smith fez uma declaração simples, mas que ainda está sendo discutida. Ele disse que a sociedade funciona melhor quando as pessoas agem concentradas nos próprios interesses.
@@ -396,7 +381,7 @@ o fracasso não existe; só existe a experiência. As pessoas de sucesso enxerga
 Dê os seguintes passos para superar o medo do fracasso e avançar no sentido de obter os resultados que deseja:
 
 - Posição: 2719-2720 | 26 de dezembro de 2024
-Aja de modo ousado e determinado. Faça algo amedrontador. O medo do fracasso imobiliza você.
+Aja. Aja de modo ousado e determinado. Faça algo amedrontador. O medo do fracasso imobiliza você.
 
 - Posição: 2723-2726 | 26 de dezembro de 2024
 Persista. As pessoas inesquecíveis não desistem. Continuam tentando abordagens diferentes para alcançar seus objetivos até que finalmente cheguem aos resultados desejados. As pessoas que não têm sucesso tentam apenas uma coisa que não funciona e logo desistem. Muitas vezes as pessoas desistem quando estão a um passo do sucesso.
@@ -408,7 +393,7 @@ Faça as coisas de modo diferente. Se o que você está fazendo não está dando
 “Se você sempre faz o que sempre fez, vai receber o que sempre recebeu.”
 
 - Posição: 2731-2732 | 26 de dezembro de 2024
-Se você não está obtendo os resultados que deseja, deve fazer algo diferente. A maioria das pessoas desiste totalmente de fazer qualquer
+Se você não está obtendo os resultados que deseja, deve fazer algo diferente. A maioria das pessoas desiste totalmente de fazer qualquer coisa e isso garante que elas não terão sucesso.
 
 - Posição: 2741 | 26 de dezembro de 2024
 Avance rapidamente em seus fracassos.
