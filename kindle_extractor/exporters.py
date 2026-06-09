@@ -1,11 +1,19 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List
+
+
+def _sortable_date(value):
+    if not isinstance(value, datetime):
+        return datetime.min
+    if value.tzinfo is not None:
+        return value.astimezone(timezone.utc).replace(tzinfo=None)
+    return value
 
 
 def sort_entries(entries: List[dict]) -> List[dict]:
     def sort_key(entry):
         pos = entry["start_pos"] if entry["start_pos"] is not None else float("inf")
-        return (pos, entry["date_obj"])
+        return (pos, _sortable_date(entry["date_obj"]))
 
     return sorted(entries, key=sort_key)
 
@@ -16,7 +24,7 @@ def _build_book_metadata(entries: List[dict]) -> Dict[str, object]:
     bookmarks = [e for e in entries if e["type"] == "bookmark"]
     author = entries[0]["author"] if entries else "Autor desconhecido"
 
-    dates = [e["date_obj"] for e in entries if e["date_obj"]]
+    dates = [_sortable_date(e["date_obj"]) for e in entries if e["date_obj"]]
     if dates:
         first_date = min(dates)
         last_date = max(dates)

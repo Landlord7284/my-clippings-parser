@@ -28,6 +28,7 @@ class KindleHighlightsExtractor:
                 "same_start_containment_conflicts": 0,
                 "same_start_expansion_conflicts": 0,
                 "same_range_containment_conflicts": 0,
+                "position_overlap_conflicts": 0,
                 "similarity_fallback_removed": 0,
                 "records_replaced": 0,
             },
@@ -65,10 +66,12 @@ class KindleHighlightsExtractor:
             dedup_metrics["same_start_expansion_conflicts"] += 1
         elif reason.startswith("same_range_containment"):
             dedup_metrics["same_range_containment_conflicts"] += 1
+        elif reason.startswith("position_overlap"):
+            dedup_metrics["position_overlap_conflicts"] += 1
         elif reason.startswith("similarity_fallback"):
             dedup_metrics["similarity_fallback_removed"] += 1
 
-        if "replaced_by_better_record" in reason:
+        if "replaced_by_" in reason:
             dedup_metrics["records_replaced"] += 1
 
         self.stats["dedup_report"].append(

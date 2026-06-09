@@ -84,7 +84,7 @@ def parse_page(location_str: str) -> Optional[int]:
     return int(match.group(1)) if match else None
 
 
-def parse_date(date_str: str) -> Tuple[str, datetime]:
+def parse_date(date_str: str) -> Tuple[str, Optional[datetime]]:
     date_str = _fix_mojibake(date_str or "")
     normalized = _fold_for_match(date_str)
 
@@ -129,4 +129,4 @@ def parse_date(date_str: str) -> Tuple[str, datetime]:
             formatted = f"{day} de {months_pt[month]} de {year}"
             return formatted, dt
 
-    return date_str, datetime.now()
+    return date_str, None

@@ -52,6 +52,15 @@ def test_parse_date_reads_portuguese_months_and_returns_datetime():
     assert parsed == datetime(2024, 3, 1)
 
 
+def test_parse_date_returns_none_when_date_is_not_parseable():
+    raw = "- Seu destaque | Adicionado: data desconhecida"
+
+    formatted, parsed = parse_date(raw)
+
+    assert formatted == raw
+    assert parsed is None
+
+
 def test_parse_content_groups_entries_by_book(real_clippings_excerpt):
     extractor = KindleHighlightsExtractor(
         {

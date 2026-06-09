@@ -43,6 +43,15 @@ class AppConfig(BaseModel):
     export_txt: Annotated[bool, Field(alias="exportTxt")] = False
     remove_duplicates: Annotated[bool, Field(alias="removeDuplicates")] = True
     similarity_threshold: Annotated[float, Field(alias="similarityThreshold")] = 0.8
+    dedup_position_overlap_ratio: Annotated[
+        float, Field(alias="dedupPositionOverlapRatio")
+    ] = 0.60
+    dedup_token_overlap_threshold: Annotated[
+        float, Field(alias="dedupTokenOverlapThreshold")
+    ] = 0.75
+    dedup_session_window_minutes: Annotated[
+        int, Field(alias="dedupSessionWindowMinutes")
+    ] = 15
     include_bookmarks: Annotated[bool, Field(alias="includeBookmarks")] = True
     include_metadata: Annotated[bool, Field(alias="includeMetadata")] = True
 
@@ -86,6 +95,9 @@ def build_extractor_config(config: AppConfig) -> dict:
         },
         "remove_duplicates": config.remove_duplicates,
         "similarity_threshold": config.similarity_threshold,
+        "dedup_position_overlap_ratio": config.dedup_position_overlap_ratio,
+        "dedup_token_overlap_threshold": config.dedup_token_overlap_threshold,
+        "dedup_session_window_minutes": config.dedup_session_window_minutes,
         "include_bookmarks": config.include_bookmarks,
         "date_format": "portuguese",
         "encoding": "utf-8",
