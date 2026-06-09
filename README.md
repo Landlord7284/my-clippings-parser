@@ -35,6 +35,8 @@ Backend:
 uvicorn kindle_extractor.api:app --reload
 ```
 
+O backend de desenvolvimento responde em `http://127.0.0.1:8000`.
+
 Frontend:
 
 ```powershell
@@ -42,6 +44,10 @@ cd frontend
 npm install
 npm run dev
 ```
+
+O frontend Vite de desenvolvimento responde em `http://127.0.0.1:5173` e encaminha chamadas `/api/...` para o backend em `http://127.0.0.1:8000`.
+
+Essa porta `5173` e o proxy do Vite são apenas para desenvolvimento local. Em um deploy futuro em Docker/NAS, o frontend buildado poderá continuar sendo servido pelo FastAPI ou por um reverse proxy na porta de produção, sem exigir Vite em execução.
 
 ## Como Executar Testes
 

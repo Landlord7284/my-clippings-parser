@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 $vite = Join-Path $root "node_modules/vite/bin/vite.js"
 $server = Start-Process -FilePath "node.exe" `
-  -ArgumentList @($vite, "--host", "127.0.0.1") `
+  -ArgumentList @($vite, "--host", "127.0.0.1", "--port", "5173", "--strictPort") `
   -WorkingDirectory $root `
   -WindowStyle Hidden `
   -PassThru
