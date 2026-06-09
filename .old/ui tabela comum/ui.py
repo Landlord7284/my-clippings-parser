@@ -1,13 +1,11 @@
 import hashlib
 import io
-import os
 import tempfile
 import zipfile
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List
 
-import pandas as pd
 import streamlit as st
 
 from .book_selection_service import (
@@ -27,13 +25,7 @@ STATE_SELECTED_KEYS = "selected_book_keys"
 STATE_SELECTION_MAP = "selected_book_map"
 STATE_EDITOR_VERSION = "selection_editor_version"
 STATE_LAST_UPLOADED_NAME = "last_uploaded_name"
-
-
-def get_processing_store() -> ProcessingStore:
-    history_dir_value = os.environ.get("HISTORY_DIR")
-    history_dir = Path(history_dir_value) if history_dir_value else Path(".")
-    history_dir.mkdir(parents=True, exist_ok=True)
-    return ProcessingStore(history_dir / ".kindle_processing_store.json")
+STORE_PATH = Path(".kindle_processing_store.json")
 
 STATUS_EMOJI = {
     "novo": "🟢 Novo",
@@ -378,7 +370,7 @@ def run_analysis(uploaded_file, config, analysis_id, force_reprocess=False):
         progress_bar.progress(48)
         extractor.parse_content(content)
 
-        store = get_processing_store()
+        store = ProcessingStore(STORE_PATH)
         service = BookSelectionService(store)
 
         status_text.text("Classificando livros e calculando status...")
@@ -415,7 +407,7 @@ def render_intermediate_step(analysis_result, config):
         st.warning("Nenhum livro foi detectado no arquivo.")
         return
 
-    store = get_processing_store()
+    store = ProcessingStore(STORE_PATH)
     service = BookSelectionService(store)
     selection_map = service.sync_selection_map(rows, st.session_state.get(STATE_SELECTION_MAP))
     st.session_state[STATE_SELECTION_MAP] = selection_map
@@ -473,7 +465,7 @@ def render_intermediate_step(analysis_result, config):
         )
 
         if filtered_rows:
-            selection_map = _render_books_data_editor(filtered_rows, selection_map)
+            selection_map = _render_books_checkbox_table(filtered_rows, selection_map)
         else:
             st.info("Nenhum livro encontrado com os filtros atuais.")
 
@@ -496,64 +488,60 @@ def render_intermediate_step(analysis_result, config):
                 st.text(f"- {row['title']}: {row['last_analysis_display']}")
 
 
-def _render_books_data_editor(filtered_rows, selection_map: Dict[str, bool]) -> Dict[str, bool]:
-    editor_df = pd.DataFrame(
-        [
-            {
-                "Selecionar": bool(selection_map.get(row["book_key"], False)),
-                "Status": STATUS_EMOJI.get(row["status"], row["status_label"]),
-                "Título": row["title"],
-                "Autor": row["author"],
-                "Highlights": row["highlights"],
-                "Notas": row["notes"],
-                "Bookmarks": row["bookmarks"],
-                "Novos": row["new_highlights_count"],
-                "Última exportação": row["last_export_display"],
-                "_book_key": row["book_key"],
-            }
-            for row in filtered_rows
-        ]
-    )
-
-    edited_df = st.data_editor(
-        editor_df,
-        hide_index=True,
-        use_container_width=True,
-        num_rows="fixed",
-        key=f"selection_editor_{st.session_state.get(STATE_EDITOR_VERSION, 0)}",
-        disabled=[
-            "Status",
-            "Título",
-            "Autor",
-            "Highlights",
-            "Notas",
-            "Bookmarks",
-            "Novos",
-            "Última exportação",
-            "_book_key",
-        ],
-        column_config={
-            "Selecionar": st.column_config.CheckboxColumn("Selecionar", width="small"),
-            "Status": st.column_config.TextColumn("Status", width="medium"),
-            "Título": st.column_config.TextColumn("Título", width="large"),
-            "Autor": st.column_config.TextColumn("Autor", width="medium"),
-            "Highlights": st.column_config.NumberColumn("Highlights", width="small"),
-            "Notas": st.column_config.NumberColumn("Notas", width="small"),
-            "Bookmarks": st.column_config.NumberColumn("Bookmarks", width="small"),
-            "Novos": st.column_config.NumberColumn("Novos", width="small"),
-            "Última exportação": st.column_config.TextColumn("Última exportação", width="medium"),
-            "_book_key": None,
-        },
-    )
-
+def _render_books_checkbox_table(
+    filtered_rows: List[dict],
+    selection_map: Dict[str, bool],
+) -> Dict[str, bool]:
     updated_selection = dict(selection_map)
-    for _, row in edited_df.iterrows():
-        updated_selection[str(row["_book_key"])] = bool(row["Selecionar"])
+
+    header_cols = st.columns([0.8, 1.5, 3.2, 2.2, 0.9, 0.8, 1.0, 1.0, 1.6])
+    headers = [
+        "Sel.",
+        "Status",
+        "Título",
+        "Autor",
+        "Hl",
+        "Nt",
+        "Bm",
+        "Novos",
+        "Últ. exp.",
+    ]
+    for col, label in zip(header_cols, headers):
+        col.markdown(f"**{label}**")
+
+    for row in filtered_rows:
+        cols = st.columns([0.8, 1.5, 3.2, 2.2, 0.9, 0.8, 1.0, 1.0, 1.6])
+
+        checkbox_key = f"book_select_{row['book_key']}"
+        current_value = bool(updated_selection.get(row["book_key"], False))
+
+        if checkbox_key not in st.session_state:
+            st.session_state[checkbox_key] = current_value
+
+        with cols[0]:
+            checked = st.checkbox(
+                f"Selecionar {row['title']}",
+                value=st.session_state[checkbox_key],
+                key=checkbox_key,
+                label_visibility="collapsed",
+            )
+
+        updated_selection[row["book_key"]] = checked
+
+        cols[1].write(STATUS_EMOJI.get(row["status"], row["status_label"]))
+        cols[2].write(row["title"])
+        cols[3].write(row["author"])
+        cols[4].write(row["highlights"])
+        cols[5].write(row["notes"])
+        cols[6].write(row["bookmarks"])
+        cols[7].write(row["new_highlights_count"])
+        cols[8].write(row["last_export_display"])
+
     return updated_selection
 
 
 def _render_selection_summary(rows, selection_map, config):
-    service = BookSelectionService(get_processing_store())
+    service = BookSelectionService(ProcessingStore(STORE_PATH))
     selected_book_keys = service.selected_book_keys(selection_map)
     selected_count = len(selected_book_keys)
     selected_highlights = service.selected_highlights_total(rows, selection_map)
@@ -655,7 +643,7 @@ def export_selected_books(analysis_result, config, selected_book_keys: List[str]
                 use_container_width=True,
             )
 
-        store = get_processing_store()
+        store = ProcessingStore(STORE_PATH)
         export_formats = [
             format_name
             for format_name, format_config in build_extractor_config(config)["export_formats"].items()

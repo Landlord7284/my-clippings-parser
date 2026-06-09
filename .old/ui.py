@@ -6,6 +6,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List
 
+import pandas as pd
 import streamlit as st
 
 from .book_selection_service import (
@@ -465,7 +466,7 @@ def render_intermediate_step(analysis_result, config):
         )
 
         if filtered_rows:
-            selection_map = _render_books_checkbox_table(filtered_rows, selection_map)
+            selection_map = _render_books_data_editor(filtered_rows, selection_map)
         else:
             st.info("Nenhum livro encontrado com os filtros atuais.")
 
@@ -488,55 +489,59 @@ def render_intermediate_step(analysis_result, config):
                 st.text(f"- {row['title']}: {row['last_analysis_display']}")
 
 
-def _render_books_checkbox_table(
-    filtered_rows: List[dict],
-    selection_map: Dict[str, bool],
-) -> Dict[str, bool]:
+def _render_books_data_editor(filtered_rows, selection_map: Dict[str, bool]) -> Dict[str, bool]:
+    editor_df = pd.DataFrame(
+        [
+            {
+                "Selecionar": bool(selection_map.get(row["book_key"], False)),
+                "Status": STATUS_EMOJI.get(row["status"], row["status_label"]),
+                "Título": row["title"],
+                "Autor": row["author"],
+                "Highlights": row["highlights"],
+                "Notas": row["notes"],
+                "Bookmarks": row["bookmarks"],
+                "Novos": row["new_highlights_count"],
+                "Última exportação": row["last_export_display"],
+                "_book_key": row["book_key"],
+            }
+            for row in filtered_rows
+        ]
+    )
+
+    edited_df = st.data_editor(
+        editor_df,
+        hide_index=True,
+        use_container_width=True,
+        num_rows="fixed",
+        key=f"selection_editor_{st.session_state.get(STATE_EDITOR_VERSION, 0)}",
+        disabled=[
+            "Status",
+            "Título",
+            "Autor",
+            "Highlights",
+            "Notas",
+            "Bookmarks",
+            "Novos",
+            "Última exportação",
+            "_book_key",
+        ],
+        column_config={
+            "Selecionar": st.column_config.CheckboxColumn("Selecionar", width="small"),
+            "Status": st.column_config.TextColumn("Status", width="medium"),
+            "Título": st.column_config.TextColumn("Título", width="large"),
+            "Autor": st.column_config.TextColumn("Autor", width="medium"),
+            "Highlights": st.column_config.NumberColumn("Highlights", width="small"),
+            "Notas": st.column_config.NumberColumn("Notas", width="small"),
+            "Bookmarks": st.column_config.NumberColumn("Bookmarks", width="small"),
+            "Novos": st.column_config.NumberColumn("Novos", width="small"),
+            "Última exportação": st.column_config.TextColumn("Última exportação", width="medium"),
+            "_book_key": None,
+        },
+    )
+
     updated_selection = dict(selection_map)
-
-    header_cols = st.columns([0.8, 1.5, 3.2, 2.2, 0.9, 0.8, 1.0, 1.0, 1.6])
-    headers = [
-        "Sel.",
-        "Status",
-        "Título",
-        "Autor",
-        "Hl",
-        "Nt",
-        "Bm",
-        "Novos",
-        "Últ. exp.",
-    ]
-    for col, label in zip(header_cols, headers):
-        col.markdown(f"**{label}**")
-
-    for row in filtered_rows:
-        cols = st.columns([0.8, 1.5, 3.2, 2.2, 0.9, 0.8, 1.0, 1.0, 1.6])
-
-        checkbox_key = f"book_select_{row['book_key']}"
-        current_value = bool(updated_selection.get(row["book_key"], False))
-
-        if checkbox_key not in st.session_state:
-            st.session_state[checkbox_key] = current_value
-
-        with cols[0]:
-            checked = st.checkbox(
-                f"Selecionar {row['title']}",
-                value=st.session_state[checkbox_key],
-                key=checkbox_key,
-                label_visibility="collapsed",
-            )
-
-        updated_selection[row["book_key"]] = checked
-
-        cols[1].write(STATUS_EMOJI.get(row["status"], row["status_label"]))
-        cols[2].write(row["title"])
-        cols[3].write(row["author"])
-        cols[4].write(row["highlights"])
-        cols[5].write(row["notes"])
-        cols[6].write(row["bookmarks"])
-        cols[7].write(row["new_highlights_count"])
-        cols[8].write(row["last_export_display"])
-
+    for _, row in edited_df.iterrows():
+        updated_selection[str(row["_book_key"])] = bool(row["Selecionar"])
     return updated_selection
 
 
