@@ -20,6 +20,7 @@ describe("App shell", () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     vi.restoreAllMocks();
   });
 
@@ -53,50 +54,83 @@ describe("App shell", () => {
     expect(window.localStorage.getItem("kindle-notes-theme")).toBe("dark");
   });
 
-  it("shows row download actions after analysis", async () => {
+  it("updates the row after individual download without reanalyzing", async () => {
     const user = userEvent.setup();
-    vi.spyOn(globalThis, "fetch").mockResolvedValue(
-      new Response(
-        JSON.stringify({
-          analysisId: "analysis-1",
-          uploadedName: "My Clippings.txt",
-          stats: {
-            total_entries: 1,
-            duplicates_removed: 0,
-            books_processed: 1,
-            errors: 0,
-            files_generated: {},
-          },
-          rows: [
-            {
-              book_key: "book-1",
-              title: "Livro A",
-              author: "Autor A",
-              highlights: 1,
-              notes: 0,
-              bookmarks: 0,
-              status: "novo",
-              status_label: "Novo",
-              new_highlights_count: 1,
-              default_selected: true,
-              last_analysis_display: "2026-06-08 21:40",
-              last_export_display: "-",
+    window.URL.createObjectURL = vi.fn();
+    window.URL.revokeObjectURL = vi.fn();
+    vi.spyOn(window.URL, "createObjectURL").mockReturnValue("blob:download");
+    vi.spyOn(window.URL, "revokeObjectURL").mockImplementation(() => {});
+    vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            analysisId: "analysis-1",
+            uploadedName: "My Clippings.txt",
+            stats: {
+              total_entries: 1,
+              duplicates_removed: 0,
+              books_processed: 1,
+              errors: 0,
+              files_generated: {},
             },
-          ],
-          selectionMap: { "book-1": true },
-          statusOptions: [{ value: "todos", label: "Todos" }, { value: "novo", label: "Novo" }],
-          authorOptions: ["Autor A"],
-        }),
-        { status: 200, headers: { "Content-Type": "application/json" } },
-      ),
-    );
+            rows: [
+              {
+                book_key: "book-1",
+                title: "Livro A",
+                author: "Autor A",
+                highlights: 4,
+                notes: 2,
+                bookmarks: 3,
+                status: "com_novidades",
+                status_label: "Alterados",
+                new_highlights_count: 1,
+                default_selected: true,
+                last_analysis_display: "2026-06-08 21:30",
+                last_export_display: "2026-06-08 20:30",
+              },
+            ],
+            selectionMap: { "book-1": true },
+            statusOptions: [
+              { value: "todos", label: "Todos" },
+              { value: "com_novidades", label: "Alterados" },
+              { value: "sem_novidades", label: "Exportado" },
+            ],
+            authorOptions: ["Autor A"],
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        ),
+      )
+      .mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            files: [
+              {
+                filename: "livro-a.md",
+                format: "markdown",
+                mimeType: "text/markdown; charset=utf-8",
+                contentBase64: window.btoa("# Livro A"),
+              },
+            ],
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        ),
+      );
     const { container } = render(<App />);
     const input = container.querySelector('input[type="file"]') as HTMLInputElement;
 
     await user.upload(input, new File(["content"], "My Clippings.txt", { type: "text/plain" }));
     await user.click(screen.getByRole("button", { name: /Analisar/i }));
+    expect(await screen.findByText("Alterados")).toBeInTheDocument();
 
-    expect(await screen.findByRole("button", { name: "Baixar Livro A" })).toBeInTheDocument();
+    await user.click(await screen.findByRole("button", { name: "Baixar Livro A" }));
+
+    expect(await screen.findByText("Exportado")).toBeInTheDocument();
+    expect(screen.queryByText("2026-06-08 20:30")).not.toBeInTheDocument();
+    expect(screen.getByRole("cell", { name: "0" })).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls[0][0]).toBe("/api/analyze");
+    expect(fetchMock.mock.calls[1][0]).toBe("/api/export/book");
   });
 
   it("shows compact status labels and friendly stale-server download errors", async () => {

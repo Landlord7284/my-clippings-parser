@@ -16,7 +16,7 @@
         "534d32b8e82c909de0c37972d201a09b891162da",
         "cf4e31d9014ad1adbe51eaac19dfef16085c7a58"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -27,8 +27,8 @@
         "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -37,7 +37,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -231,6 +231,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "O homem do castelo alto"
@@ -304,7 +328,83 @@
         "faeadc02e3909256b631ed532b6975be1003d8b4",
         "fdf1f596e725d3949589d540eb693ef26c2fb994"
       ],
-      "export_history": [],
+      "export_history": [
+        {
+          "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+          "export_id": "a226f03349681108d9a728e71a6679dfa6e1f256",
+          "exported_at": "2026-06-09T04:47:04.306487+00:00",
+          "formats": [
+            "markdown"
+          ],
+          "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+          "highlight_signature_hashes": [
+            "024ef6c7c337b8707f054163a39890f514c26a61",
+            "06ef9857cfba88992cd482838774a1e211ce562f",
+            "071ff81f4bc97f32058335d1d34da44177bcfed2",
+            "0932a39939dad0402684eb5150927fffaf366bf4",
+            "1010b3331d4cb4f57a32e01070b6bede297f4a33",
+            "1553545c8296442a4cbb2ec8c8ac4eb82fe85998",
+            "1e1b6468dbbf342d7f4b43745991a42590029ca5",
+            "22bcf834267480439edf6759f396e2912f758f75",
+            "26a9c500c0d64c616140178d75ccd9cc62f907d0",
+            "26dd58c6458cfd54ee6cb1bfcc7a0c601561566b",
+            "2714222d496ffe5a6ebf22232fe60cd1f028ca44",
+            "277b853b08d62bad94d49d8001b78df6abf986b1",
+            "29a88d95ee6caa09577808cc5dc51a5f07b98021",
+            "2bc88aa05a16ddb7c084449ea39827a3cdc5e739",
+            "2c010f1fbb069d34aad6d1d21f92f66f36c8b09f",
+            "2ceb53e4988fda0080e7e3745f1fa8a724c550df",
+            "333ebec200115807a2395f2df72a20a68e7aedff",
+            "3b7916d5478688858c46539a6ad943971c226f5e",
+            "452077c9ef601a82c30187f3344c5e01aeb7f014",
+            "493e801cd0d5b36717b30509ae92de76803e1b05",
+            "4b49ef571d40b5e933289a7908e5a5fc7ade2846",
+            "506dc0acce25d30544ffbbd9d34c8d6096c2b4f4",
+            "512d85a68f5c55965274846a02908ad3ce1c1c0f",
+            "52f41e45e0d4857c9090b661956788a0679fddc7",
+            "58028f3b708a231f211f8b81093cd7d6ed1e5f82",
+            "58179ce92dfe8e6927ea88d0391ac27f1495acf7",
+            "5a17fcacc8d4f430f29d72ac725f4d2f3fdcf23a",
+            "5d1dc48fcfaa6efdd02a712d86f2374be5792f47",
+            "5dfae6b4d634e01c4e46ae191e200d3ea0800d6d",
+            "5f25c2daddf2d64b60416a74a74ac90a31b38d7d",
+            "5f855b4177f4c62de6e48c50b2468781fce3be63",
+            "67efe0e0c873d7a0834f33fd0766271a9b539679",
+            "6efcd7c8a344fc1763daad35d86c25ad9b3eaf63",
+            "742b9bf0e760e13279f9ea5caa5da5b49d648370",
+            "745eb18be08699b40efb05c414d0a6b776172509",
+            "762fdc131ca885c21d0f63847aeed8fe0108ba86",
+            "7bae556e292273e5d23b2ce9b3e7ab81f4aefdd4",
+            "7c1722a2fb5a7590c9278250e07483b367967ac9",
+            "7ccc43aa8abcff84044847208baafdd4cba72f70",
+            "883b918b78c675e8a262301642a728f1536849e4",
+            "8a09166e1d33441d365ee616584a0cf3e777ccc6",
+            "8a0ccd5799f8fbff513dfe73a04bfc0f315b75d0",
+            "8bd8262bd1f95ef539ea5f18f751f94d41bc0005",
+            "9340c3e20c21037df882f6592a3a9a2e8f7e2329",
+            "97e179f6658207ae698ca826850ac908328252c2",
+            "a2349692e86a79946b5ca68561fce5e60c2a14bd",
+            "a64419ff833b84e691249a7cc2a26ee39f846667",
+            "ac816694be3bbdcbcf6078e9331ba70fe634c2b8",
+            "af73b4b2eedaae3243ff98554e57b6c6b9d4f3c7",
+            "afa9380ed0d27fcfe6c059af94f3e81cf4473700",
+            "bdf5a36f2976860c02719bdd6ba098dc3ed7a8a3",
+            "c74781a83cb3978d24bb44b811d17386216d6565",
+            "c87a9684153f769c8540cad517e5185733b20c99",
+            "c9654368bceda9ab521ab20a81a80cd88ae904a7",
+            "d0e19ac5e9b27076f0d73aa3c961d2811c36cf4d",
+            "dac4624b3699886e78e779e561e26ad0b8bbc9ed",
+            "e11ea880c8bb0bf7436e6bd62dbc98b254725410",
+            "e2ae53ae75fb665cb77522972089a8679faa8885",
+            "e43990238bc997839f9680f029dd6e165da07f4f",
+            "e5e020c94779667f3ace74aa22307ca64f038e19",
+            "f177889f72d8173f9232c2ede57d876fcf99f4d7",
+            "f7a8f13b19da11f1baa3088df77a4b3efbf6788d"
+          ],
+          "processed_at": "2026-06-09T04:46:56.120509+00:00",
+          "reexport_without_changes": false
+        }
+      ],
       "highlight_count": 62,
       "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
       "highlight_signature_hashes": [
@@ -371,7 +471,7 @@
         "f177889f72d8173f9232c2ede57d876fcf99f4d7",
         "f7a8f13b19da11f1baa3088df77a4b3efbf6788d"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "f9395da4ab40243fc5bc2df90365c0d80796299e",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -382,17 +482,156 @@
         "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
-      "last_export": null,
-      "last_export_at": null,
-      "last_export_formats": [],
-      "last_export_highlight_signature": null,
-      "last_export_highlight_signature_hashes": [],
-      "last_export_signature": null,
-      "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_export": {
+        "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+        "export_id": "a226f03349681108d9a728e71a6679dfa6e1f256",
+        "exported_at": "2026-06-09T04:47:04.306487+00:00",
+        "formats": [
+          "markdown"
+        ],
+        "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+        "highlight_signature_hashes": [
+          "024ef6c7c337b8707f054163a39890f514c26a61",
+          "06ef9857cfba88992cd482838774a1e211ce562f",
+          "071ff81f4bc97f32058335d1d34da44177bcfed2",
+          "0932a39939dad0402684eb5150927fffaf366bf4",
+          "1010b3331d4cb4f57a32e01070b6bede297f4a33",
+          "1553545c8296442a4cbb2ec8c8ac4eb82fe85998",
+          "1e1b6468dbbf342d7f4b43745991a42590029ca5",
+          "22bcf834267480439edf6759f396e2912f758f75",
+          "26a9c500c0d64c616140178d75ccd9cc62f907d0",
+          "26dd58c6458cfd54ee6cb1bfcc7a0c601561566b",
+          "2714222d496ffe5a6ebf22232fe60cd1f028ca44",
+          "277b853b08d62bad94d49d8001b78df6abf986b1",
+          "29a88d95ee6caa09577808cc5dc51a5f07b98021",
+          "2bc88aa05a16ddb7c084449ea39827a3cdc5e739",
+          "2c010f1fbb069d34aad6d1d21f92f66f36c8b09f",
+          "2ceb53e4988fda0080e7e3745f1fa8a724c550df",
+          "333ebec200115807a2395f2df72a20a68e7aedff",
+          "3b7916d5478688858c46539a6ad943971c226f5e",
+          "452077c9ef601a82c30187f3344c5e01aeb7f014",
+          "493e801cd0d5b36717b30509ae92de76803e1b05",
+          "4b49ef571d40b5e933289a7908e5a5fc7ade2846",
+          "506dc0acce25d30544ffbbd9d34c8d6096c2b4f4",
+          "512d85a68f5c55965274846a02908ad3ce1c1c0f",
+          "52f41e45e0d4857c9090b661956788a0679fddc7",
+          "58028f3b708a231f211f8b81093cd7d6ed1e5f82",
+          "58179ce92dfe8e6927ea88d0391ac27f1495acf7",
+          "5a17fcacc8d4f430f29d72ac725f4d2f3fdcf23a",
+          "5d1dc48fcfaa6efdd02a712d86f2374be5792f47",
+          "5dfae6b4d634e01c4e46ae191e200d3ea0800d6d",
+          "5f25c2daddf2d64b60416a74a74ac90a31b38d7d",
+          "5f855b4177f4c62de6e48c50b2468781fce3be63",
+          "67efe0e0c873d7a0834f33fd0766271a9b539679",
+          "6efcd7c8a344fc1763daad35d86c25ad9b3eaf63",
+          "742b9bf0e760e13279f9ea5caa5da5b49d648370",
+          "745eb18be08699b40efb05c414d0a6b776172509",
+          "762fdc131ca885c21d0f63847aeed8fe0108ba86",
+          "7bae556e292273e5d23b2ce9b3e7ab81f4aefdd4",
+          "7c1722a2fb5a7590c9278250e07483b367967ac9",
+          "7ccc43aa8abcff84044847208baafdd4cba72f70",
+          "883b918b78c675e8a262301642a728f1536849e4",
+          "8a09166e1d33441d365ee616584a0cf3e777ccc6",
+          "8a0ccd5799f8fbff513dfe73a04bfc0f315b75d0",
+          "8bd8262bd1f95ef539ea5f18f751f94d41bc0005",
+          "9340c3e20c21037df882f6592a3a9a2e8f7e2329",
+          "97e179f6658207ae698ca826850ac908328252c2",
+          "a2349692e86a79946b5ca68561fce5e60c2a14bd",
+          "a64419ff833b84e691249a7cc2a26ee39f846667",
+          "ac816694be3bbdcbcf6078e9331ba70fe634c2b8",
+          "af73b4b2eedaae3243ff98554e57b6c6b9d4f3c7",
+          "afa9380ed0d27fcfe6c059af94f3e81cf4473700",
+          "bdf5a36f2976860c02719bdd6ba098dc3ed7a8a3",
+          "c74781a83cb3978d24bb44b811d17386216d6565",
+          "c87a9684153f769c8540cad517e5185733b20c99",
+          "c9654368bceda9ab521ab20a81a80cd88ae904a7",
+          "d0e19ac5e9b27076f0d73aa3c961d2811c36cf4d",
+          "dac4624b3699886e78e779e561e26ad0b8bbc9ed",
+          "e11ea880c8bb0bf7436e6bd62dbc98b254725410",
+          "e2ae53ae75fb665cb77522972089a8679faa8885",
+          "e43990238bc997839f9680f029dd6e165da07f4f",
+          "e5e020c94779667f3ace74aa22307ca64f038e19",
+          "f177889f72d8173f9232c2ede57d876fcf99f4d7",
+          "f7a8f13b19da11f1baa3088df77a4b3efbf6788d"
+        ],
+        "processed_at": "2026-06-09T04:46:56.120509+00:00",
+        "reexport_without_changes": false
+      },
+      "last_export_at": "2026-06-09T04:47:04.306487+00:00",
+      "last_export_formats": [
+        "markdown"
+      ],
+      "last_export_highlight_signature": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+      "last_export_highlight_signature_hashes": [
+        "024ef6c7c337b8707f054163a39890f514c26a61",
+        "06ef9857cfba88992cd482838774a1e211ce562f",
+        "071ff81f4bc97f32058335d1d34da44177bcfed2",
+        "0932a39939dad0402684eb5150927fffaf366bf4",
+        "1010b3331d4cb4f57a32e01070b6bede297f4a33",
+        "1553545c8296442a4cbb2ec8c8ac4eb82fe85998",
+        "1e1b6468dbbf342d7f4b43745991a42590029ca5",
+        "22bcf834267480439edf6759f396e2912f758f75",
+        "26a9c500c0d64c616140178d75ccd9cc62f907d0",
+        "26dd58c6458cfd54ee6cb1bfcc7a0c601561566b",
+        "2714222d496ffe5a6ebf22232fe60cd1f028ca44",
+        "277b853b08d62bad94d49d8001b78df6abf986b1",
+        "29a88d95ee6caa09577808cc5dc51a5f07b98021",
+        "2bc88aa05a16ddb7c084449ea39827a3cdc5e739",
+        "2c010f1fbb069d34aad6d1d21f92f66f36c8b09f",
+        "2ceb53e4988fda0080e7e3745f1fa8a724c550df",
+        "333ebec200115807a2395f2df72a20a68e7aedff",
+        "3b7916d5478688858c46539a6ad943971c226f5e",
+        "452077c9ef601a82c30187f3344c5e01aeb7f014",
+        "493e801cd0d5b36717b30509ae92de76803e1b05",
+        "4b49ef571d40b5e933289a7908e5a5fc7ade2846",
+        "506dc0acce25d30544ffbbd9d34c8d6096c2b4f4",
+        "512d85a68f5c55965274846a02908ad3ce1c1c0f",
+        "52f41e45e0d4857c9090b661956788a0679fddc7",
+        "58028f3b708a231f211f8b81093cd7d6ed1e5f82",
+        "58179ce92dfe8e6927ea88d0391ac27f1495acf7",
+        "5a17fcacc8d4f430f29d72ac725f4d2f3fdcf23a",
+        "5d1dc48fcfaa6efdd02a712d86f2374be5792f47",
+        "5dfae6b4d634e01c4e46ae191e200d3ea0800d6d",
+        "5f25c2daddf2d64b60416a74a74ac90a31b38d7d",
+        "5f855b4177f4c62de6e48c50b2468781fce3be63",
+        "67efe0e0c873d7a0834f33fd0766271a9b539679",
+        "6efcd7c8a344fc1763daad35d86c25ad9b3eaf63",
+        "742b9bf0e760e13279f9ea5caa5da5b49d648370",
+        "745eb18be08699b40efb05c414d0a6b776172509",
+        "762fdc131ca885c21d0f63847aeed8fe0108ba86",
+        "7bae556e292273e5d23b2ce9b3e7ab81f4aefdd4",
+        "7c1722a2fb5a7590c9278250e07483b367967ac9",
+        "7ccc43aa8abcff84044847208baafdd4cba72f70",
+        "883b918b78c675e8a262301642a728f1536849e4",
+        "8a09166e1d33441d365ee616584a0cf3e777ccc6",
+        "8a0ccd5799f8fbff513dfe73a04bfc0f315b75d0",
+        "8bd8262bd1f95ef539ea5f18f751f94d41bc0005",
+        "9340c3e20c21037df882f6592a3a9a2e8f7e2329",
+        "97e179f6658207ae698ca826850ac908328252c2",
+        "a2349692e86a79946b5ca68561fce5e60c2a14bd",
+        "a64419ff833b84e691249a7cc2a26ee39f846667",
+        "ac816694be3bbdcbcf6078e9331ba70fe634c2b8",
+        "af73b4b2eedaae3243ff98554e57b6c6b9d4f3c7",
+        "afa9380ed0d27fcfe6c059af94f3e81cf4473700",
+        "bdf5a36f2976860c02719bdd6ba098dc3ed7a8a3",
+        "c74781a83cb3978d24bb44b811d17386216d6565",
+        "c87a9684153f769c8540cad517e5185733b20c99",
+        "c9654368bceda9ab521ab20a81a80cd88ae904a7",
+        "d0e19ac5e9b27076f0d73aa3c961d2811c36cf4d",
+        "dac4624b3699886e78e779e561e26ad0b8bbc9ed",
+        "e11ea880c8bb0bf7436e6bd62dbc98b254725410",
+        "e2ae53ae75fb665cb77522972089a8679faa8885",
+        "e43990238bc997839f9680f029dd6e165da07f4f",
+        "e5e020c94779667f3ace74aa22307ca64f038e19",
+        "f177889f72d8173f9232c2ede57d876fcf99f4d7",
+        "f7a8f13b19da11f1baa3088df77a4b3efbf6788d"
+      ],
+      "last_export_signature": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+      "last_exported_at": "2026-06-09T04:47:04.306487+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -586,6 +825,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 62,
+          "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 62,
+          "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "A LINGUAGEM CORPORAL NÃO MENTE: A Arte De Interpretar e Dominar a Linguagem Não (linguagem corporal, comportamento, microexpressões, linguagem não verbal, ... leitura dos sinais)"
@@ -668,7 +931,7 @@
         "fb56a52b40d66404e52e8f1bb73c5d96e99e6ab8",
         "fea74f0f561391e6bd8aabdbfa11ec2d69861021"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "5c520410238728941c0e4dd61699d01a0c98b275",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -679,8 +942,8 @@
         "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -689,7 +952,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -883,6 +1146,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "5c520410238728941c0e4dd61699d01a0c98b275",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 33,
+          "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "5c520410238728941c0e4dd61699d01a0c98b275",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 33,
+          "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "Jaron Lanier - Ten Arguments For Deleting Your Social Media Accounts Right Now"
@@ -945,7 +1232,7 @@
         "e888f8173dd420f62a7656a9c2cfc4b3ca4d0296",
         "e9bc54330f53fda082fa36dd705ebcbfb4c3207a"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -956,8 +1243,8 @@
         "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -966,7 +1253,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -1160,6 +1447,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 23,
+          "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 23,
+          "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "O andarilho - A busca do Graal"
@@ -1182,7 +1493,7 @@
         "06bf9295432c70aa6970401330c82dfa87f093db",
         "22771e9d70588defe2de27fd3ea738674cc123f2"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -1193,8 +1504,8 @@
         "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -1203,7 +1514,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -1397,6 +1708,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 3,
+          "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 3,
+          "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "O Mito da Caverna"
@@ -1455,7 +1790,7 @@
         "f1caa9d71d8063ee0ec8a1823aad3ba1fd502da9",
         "f6682034524cf67d032a947f1f8925a04d167788"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -1466,8 +1801,8 @@
         "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -1476,7 +1811,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -1670,6 +2005,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 21,
+          "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 21,
+          "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "Box Grandes Obras de Dostoiévski"
@@ -1962,7 +2321,7 @@
         "fc23ae9bb69b797d0de587383e9a13355db441d5",
         "fffce6ae208f4086eb5bfb1b205c72534a4c8815"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "6df989252026ebf1e3746017d4869f5225c2fed6",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -1973,8 +2332,8 @@
         "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": {
         "content_signature_hash": "626ddc49d58fdcf618d46729129ce41053429218",
@@ -2174,7 +2533,7 @@
       ],
       "last_export_signature": "626ddc49d58fdcf618d46729129ce41053429218",
       "last_exported_at": "2026-04-19T13:32:14.025791+00:00",
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -2368,6 +2727,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6df989252026ebf1e3746017d4869f5225c2fed6",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 87,
+          "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6df989252026ebf1e3746017d4869f5225c2fed6",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 87,
+          "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "A Arte de ter Razão - 38 Estratagemas para Vencer um Debate Sem Precisar Ter Razão"
@@ -2679,7 +3062,7 @@
         "fa9b6ec2b9a577fc79ffac1fe6cf60fe5e5a13fa",
         "fb765a8852a69a32579bc1ccec33c2d4a3a02e6b"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -2690,8 +3073,8 @@
         "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
         "new_highlights_count": 0,
         "note_count": 1,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -2700,7 +3083,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 1,
       "processing_history": [
         {
@@ -2894,6 +3277,30 @@
           "note_count": 1,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 147,
+          "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 147,
+          "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "Como se tornar inesquecível"
@@ -2967,7 +3374,7 @@
         "fa499103ff1d3e925e00dcf09805fd6df4e9e0ba",
         "fe3e9166a5871bd315f9f1b38c48e7c5df3550de"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "e8f23959f4961f52fb2dd6632480994a9064121c",
       "last_detected_processing": {
         "bookmark_count": 3,
@@ -2978,8 +3385,8 @@
         "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -2988,7 +3395,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -3182,6 +3589,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 3,
+          "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 27,
+          "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 3,
+          "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 27,
+          "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "Memórias Póstumas de Brás Cubas (Literatura Brasileira Livro 2)"
@@ -3206,7 +3637,7 @@
         "d3662a235deac9268efb4df3b0ae2f2f1014d403",
         "e50270b583a8ba13686e72616387c98f4c742a90"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "0a2562c705a324f1cee6f930a2d97c4d38528993",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -3217,8 +3648,8 @@
         "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -3227,7 +3658,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -3421,6 +3852,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0a2562c705a324f1cee6f930a2d97c4d38528993",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 4,
+          "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0a2562c705a324f1cee6f930a2d97c4d38528993",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 4,
+          "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "O fim da eternidade"
@@ -3557,7 +4012,7 @@
         "f164e1a875a155cb9c2e6b59ff38506b5dfa9550",
         "f5fb6669677f5707a9789980409a4dbc0e214819"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
       "last_detected_processing": {
         "bookmark_count": 1,
@@ -3568,8 +4023,8 @@
         "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": {
         "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
@@ -3663,7 +4118,7 @@
       ],
       "last_export_signature": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
       "last_exported_at": "2026-06-09T04:34:28.405677+00:00",
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -3857,6 +4312,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 1,
+          "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 35,
+          "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 1,
+          "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 35,
+          "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "A Fórmula Mágica de Joel Greenblatt para Bater o Mercado de Ações"
@@ -3891,7 +4370,7 @@
         "dfc92697b70889e2842c32ff62604361eb3fab1c",
         "f42bcccbed3ad80e20a7f46035c233201b788253"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -3902,8 +4381,8 @@
         "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -3912,7 +4391,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -4106,6 +4585,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 9,
+          "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 9,
+          "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "Blade Runner"
@@ -4201,7 +4704,7 @@
         "f7ee1cead44cf23671da6a3ebac4c474772e75e3",
         "fe976421d3132e614fd74b94ad09a000368c38b9"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
       "last_detected_processing": {
         "bookmark_count": 6,
@@ -4212,8 +4715,8 @@
         "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
         "new_highlights_count": 0,
         "note_count": 1,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -4222,7 +4725,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 1,
       "processing_history": [
         {
@@ -4416,6 +4919,30 @@
           "note_count": 1,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 6,
+          "content_signature_hash": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 36,
+          "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 6,
+          "content_signature_hash": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 36,
+          "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "Como evitar preocupações e começar a viver"
@@ -4966,7 +5493,7 @@
         "f63d3726bc0d4b708726a7786ae56ced9861f435",
         "fdb2b98aae05da779b5d88ae366cb47e4b7ccb7a"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -4977,8 +5504,8 @@
         "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": {
         "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
@@ -5194,7 +5721,7 @@
       ],
       "last_export_signature": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
       "last_exported_at": "2026-06-09T04:36:50.065798+00:00",
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -5388,6 +5915,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 96,
+          "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 96,
+          "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "1984"
@@ -5414,7 +5965,7 @@
         "decdffb7be75332e1549adb4d804363f5260fa9b",
         "eaa509f61e2a06fc2c38dec126befb4a9adacbcf"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "3d00e1601f464ef399b9b0095765eb64557c0664",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -5425,8 +5976,8 @@
         "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -5435,7 +5986,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -5629,6 +6180,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3d00e1601f464ef399b9b0095765eb64557c0664",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 5,
+          "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3d00e1601f464ef399b9b0095765eb64557c0664",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 5,
+          "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "Crime e castigo (Clássicos da literatura mundial)"
@@ -5657,7 +6232,7 @@
         "c8eeb51656250e0e6aac63adaa98b9213c2d2437",
         "e1235777c6da870f31c6bb26577a8495d3512940"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "0079febbccab2af6b7ac032456760736cd7802aa",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -5668,8 +6243,8 @@
         "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -5678,7 +6253,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -5872,6 +6447,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0079febbccab2af6b7ac032456760736cd7802aa",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 6,
+          "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0079febbccab2af6b7ac032456760736cd7802aa",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 6,
+          "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "Common Sense (Coterie Classics)"
@@ -5892,7 +6491,7 @@
         "8c7fee295076de8e35dd1c88f3442892f8c9c6db",
         "a25fe9ebef9a2ac74b83ad6be255c1bc3e0921ce"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "bd0c3aa9aa51f04269c429012930453c1f355e18",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -5903,8 +6502,8 @@
         "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -5913,7 +6512,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -6107,6 +6706,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "bd0c3aa9aa51f04269c429012930453c1f355e18",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "bd0c3aa9aa51f04269c429012930453c1f355e18",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "A Metamorfose"
@@ -6190,7 +6813,7 @@
         "bcdeb562819b23cdf675f60de5ad81ac758f731e",
         "fc7af53e9c487de7f6c9f06d0fcc094bc7129033"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "69934cd5b4c58de633202cd23dd352e48befe4c9",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -6201,8 +6824,8 @@
         "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -6211,7 +6834,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -6405,6 +7028,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "69934cd5b4c58de633202cd23dd352e48befe4c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 8,
+          "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "69934cd5b4c58de633202cd23dd352e48befe4c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 8,
+          "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "O Declínio de um Homem"
@@ -6453,7 +7100,7 @@
         "d92746f9cd29f6480e335af96d3605c030d7356d",
         "d9f152fa1b888f84b2ba6d389642bde82e2645fd"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "3916c214a63db795ec7e79bebc21df67cf2413a2",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -6464,8 +7111,8 @@
         "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -6474,7 +7121,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -6668,6 +7315,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3916c214a63db795ec7e79bebc21df67cf2413a2",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 16,
+          "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3916c214a63db795ec7e79bebc21df67cf2413a2",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 16,
+          "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "Ruído"
@@ -6742,7 +7413,7 @@
         "e47b590857e7668a847c882e4a651aca79ecc2f0",
         "f81f70c012393728dd031e405bf78c596c54248c"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -6753,8 +7424,8 @@
         "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -6763,7 +7434,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -6957,6 +7628,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 29,
+          "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 29,
+          "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "O arqueiro - A busca do Graal - vol. 1"
@@ -6975,7 +7670,7 @@
       "highlight_signature_hashes": [
         "a8a59c5e68a30c1ab398583aa2bfb2c7a5d219cf"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "f13c610960df8dd0e2512c61925da64c4e7f8325",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -6986,8 +7681,8 @@
         "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -6996,7 +7691,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -7190,6 +7885,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f13c610960df8dd0e2512c61925da64c4e7f8325",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f13c610960df8dd0e2512c61925da64c4e7f8325",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "A Morte de Ivan Ilitch"
@@ -7430,7 +8149,7 @@
         "fab6f9415e98a2b7c50f142bc863d68f66be39b7",
         "fdb0de2785589a336ec48c6c1f3eacfbc5addeeb"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -7441,8 +8160,8 @@
         "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
         "new_highlights_count": 0,
         "note_count": 2,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -7451,7 +8170,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 2,
       "processing_history": [
         {
@@ -7645,6 +8364,30 @@
           "note_count": 2,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 111,
+          "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
+          "new_highlights_count": 0,
+          "note_count": 2,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 111,
+          "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
+          "new_highlights_count": 0,
+          "note_count": 2,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "Respire - uma vida em movimento"
@@ -7699,7 +8442,7 @@
         "e4a0a4f28944155230c67fd28fb886ffcf79da87",
         "f87de4f1f35b5108804823405268e4c95cf98779"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -7710,8 +8453,8 @@
         "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -7720,7 +8463,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -7914,6 +8657,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 19,
+          "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 19,
+          "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "Flores Para Algernon"
@@ -8252,7 +9019,7 @@
         "f9837854e8001b3846b3fe40d64e5a93e8dfa220",
         "fb18512159302f16e499c0afb77a1c6347b9f9b5"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
       "last_detected_processing": {
         "bookmark_count": 2,
@@ -8263,8 +9030,8 @@
         "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -8273,7 +9040,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -8467,6 +9234,30 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 2,
+          "content_signature_hash": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 160,
+          "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 2,
+          "content_signature_hash": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 160,
+          "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "A lógica do Cisne Negro (Edição revista e ampliada)"
@@ -8507,7 +9298,7 @@
         "c4184d895146b9937692644784cde20ad9cfd983",
         "d453f9de32412fabe81321cb9dcb4739639441da"
       ],
-      "last_analysis_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
       "last_analysis_signature": "79f00636df99811b1f46dc3134601b2e0715f9dd",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -8518,8 +9309,8 @@
         "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
-        "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+        "processed_at": "2026-06-09T04:47:57.458774+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -8528,7 +9319,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:35:11.349131+00:00",
+      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -8722,13 +9513,37 @@
           "note_count": 0,
           "process_id": "c1398ce389f8bbd9011efff16b3351fc72591a39",
           "processed_at": "2026-06-09T04:35:11.349131+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "79f00636df99811b1f46dc3134601b2e0715f9dd",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 12,
+          "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9f15b7478ee1ba1312ca64dca8ad1cdf0ca8fb5b",
+          "processed_at": "2026-06-09T04:46:56.120509+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "79f00636df99811b1f46dc3134601b2e0715f9dd",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 12,
+          "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
+          "processed_at": "2026-06-09T04:47:57.458774+00:00"
         }
       ],
       "title": "O herege - A busca do Graal"
     }
   },
   "meta": {
-    "updated_at": "2026-06-09T04:36:50.086304+00:00"
+    "updated_at": "2026-06-09T04:47:57.477875+00:00"
   },
   "version": 2
 }

@@ -19,6 +19,7 @@ import {
   DEFAULT_CONFIG,
   DEFAULT_FILTERS,
   activeFormatLabels,
+  activeFormatValues,
   applyBatchSelection,
   buildSelectionSummary,
   filterRows,
@@ -349,6 +350,15 @@ function blobFromBase64(contentBase64: string, mimeType: string) {
   return new Blob([bytes], { type: mimeType });
 }
 
+function formatLocalDateTime(date: Date) {
+  const pad = (value: number) => String(value).padStart(2, "0");
+  return [
+    date.getFullYear(),
+    pad(date.getMonth() + 1),
+    pad(date.getDate()),
+  ].join("-") + ` ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+}
+
 export default function App() {
   const [config, setConfig] = useState<AppConfig>(DEFAULT_CONFIG);
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
@@ -367,6 +377,7 @@ export default function App() {
   }, [theme]);
 
   const activeFormats = activeFormatLabels(config);
+  const activeFormatKeys = activeFormatValues(config);
   const visibleRows = useMemo(
     () => filterRows(analysis?.rows ?? [], selectionMap, filters),
     [analysis?.rows, filters, selectionMap],
@@ -428,7 +439,25 @@ export default function App() {
           filePayload.filename,
         );
       }
-      toast.success("Arquivos baixados.");
+      const lastExportDisplay = formatLocalDateTime(new Date());
+      setAnalysis((currentAnalysis) => {
+        if (!currentAnalysis) return currentAnalysis;
+        return {
+          ...currentAnalysis,
+          rows: currentAnalysis.rows.map((currentRow) =>
+            currentRow.book_key === row.book_key
+              ? {
+                  ...currentRow,
+                  status: "sem_novidades",
+                  status_label: "Exportado",
+                  new_highlights_count: 0,
+                  last_export_display: lastExportDisplay,
+                  last_export_formats: activeFormatKeys,
+                }
+              : currentRow,
+          ),
+        };
+      });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Falha no download.");
     } finally {

@@ -21,6 +21,7 @@ export type BookRow = {
   default_selected: boolean;
   last_analysis_display: string;
   last_export_display: string;
+  last_export_formats?: string[];
 };
 
 export type StatusOption = {

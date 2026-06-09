@@ -25,6 +25,14 @@ export function activeFormatLabels(config: AppConfig) {
   return labels;
 }
 
+export function activeFormatValues(config: AppConfig) {
+  const values = [];
+  if (config.exportMarkdown) values.push("markdown");
+  if (config.exportHtml) values.push("html");
+  if (config.exportTxt) values.push("txt");
+  return values;
+}
+
 export function filterRows(
   rows: BookRow[],
   selectionMap: Record<string, boolean>,
