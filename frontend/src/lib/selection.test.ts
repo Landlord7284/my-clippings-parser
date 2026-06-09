@@ -31,7 +31,7 @@ const rows: BookRow[] = [
     notes: 0,
     bookmarks: 0,
     status: "sem_novidades",
-    status_label: "Sem novidades",
+    status_label: "Exportado",
     new_highlights_count: 0,
     default_selected: false,
     last_analysis_display: "-",

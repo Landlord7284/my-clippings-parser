@@ -14,7 +14,7 @@ STATUS_NO_NEWS = "sem_novidades"
 STATUS_LABELS = {
     STATUS_NEW: "Novo",
     STATUS_NEVER_EXPORTED: "Pendente",
-    STATUS_WITH_NEWS: "Alterados",
+    STATUS_WITH_NEWS: "Alterado",
     STATUS_NO_NEWS: "Exportado",
 }
 
@@ -29,9 +29,9 @@ STATUS_FILTER_LABELS = {
     FILTER_ALL: "Todos",
     FILTER_NEW: "Novo",
     FILTER_NEVER_EXPORTED: "Pendente",
-    FILTER_WITH_NEWS: "Alterados",
+    FILTER_WITH_NEWS: "Alterado",
     FILTER_NO_NEWS: "Exportado",
-    FILTER_SELECTED: "Selecionados",
+    FILTER_SELECTED: "Selecionado",
 }
 
 BATCH_RECOMMENDED = "recommended"

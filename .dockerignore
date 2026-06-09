@@ -5,18 +5,9 @@ __pycache__
 .pytest_tmp
 .git
 .gitignore
-destaques_exports
-temp_output
-.data
-.old
-.samples
-.tmp
-tmp
 tests
-history
 htmlcov
 coverage.xml
-.kindle_processing_store.json
 frontend/node_modules
 frontend/dist
 frontend/test-results
@@ -26,3 +17,4 @@ frontend/vite.config.d.ts
 *.zip
 .DS_Store
 Thumbs.db
+.kindle_processing_store.json

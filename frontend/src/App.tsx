@@ -42,11 +42,23 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 const FALLBACK_STATUS_OPTIONS = [
   { value: "todos", label: "Todos" },
   { value: "novo", label: "Novo" },
-  { value: "nunca_exportado", label: "Nunca exportado" },
-  { value: "com_novidades", label: "Com novidades" },
-  { value: "sem_novidades", label: "Sem novidades" },
-  { value: "selecionados", label: "Selecionados" },
+  { value: "nunca_exportado", label: "Pendente" },
+  { value: "com_novidades", label: "Alterado" },
+  { value: "sem_novidades", label: "Exportado" },
+  { value: "selecionados", label: "Selecionado" },
 ];
+
+const STATUS_DISPLAY_LABELS: Record<string, string> = {
+  novo: "Novo",
+  nunca_exportado: "Pendente",
+  com_novidades: "Alterado",
+  sem_novidades: "Exportado",
+  selecionados: "Selecionado",
+};
+
+function getStatusDisplayLabel(value: string, label?: string) {
+  return STATUS_DISPLAY_LABELS[value] ?? label ?? value;
+}
 
 const statusVariant: Record<string, "green" | "amber" | "blue" | "gray"> = {
   novo: "green",
@@ -185,7 +197,7 @@ function MetricsStrip({
   const metrics = [
     ["Entradas", analysis?.stats.total_entries ?? "-"],
     ["Livros", analysis?.stats.books_processed ?? "-"],
-    ["Selecionados", summary.selectedBooks],
+    ["Selecionado", summary.selectedBooks],
     ["Highlights", summary.selectedHighlights],
     ["Formatos", activeFormats.length ? activeFormats.join(" / ") : "Nenhum"],
   ];
@@ -289,7 +301,9 @@ function BookTable({
                 </div>
               </TableCell>
               <TableCell>
-                <Badge variant={statusVariant[row.status] ?? "gray"}>{row.status_label}</Badge>
+                <Badge variant={statusVariant[row.status] ?? "gray"}>
+                  {getStatusDisplayLabel(row.status, row.status_label)}
+                </Badge>
               </TableCell>
               <TableCell className="text-right tabular-nums">{row.highlights}</TableCell>
               <TableCell className="text-right tabular-nums">{row.notes}</TableCell>
@@ -603,7 +617,7 @@ export default function App() {
                   <SelectContent>
                     {statusOptions.map((option) => (
                       <SelectItem key={option.value} value={option.value}>
-                        {option.value === "todos" ? "Status" : option.label}
+                        {option.value === "todos" ? "Status" : getStatusDisplayLabel(option.value, option.label)}
                       </SelectItem>
                     ))}
                   </SelectContent>

@@ -27,7 +27,7 @@ describe("App shell", () => {
   it("renders controls and keeps export disabled before analysis", () => {
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: /Extrator de Destaques Kindle/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Kindle Highlights/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Analisar/i })).toBeDisabled();
     expect(screen.getByRole("button", { name: /Exportar ZIP/i })).toBeDisabled();
     expect(screen.getByLabelText("Busca")).toBeInTheDocument();
@@ -83,7 +83,7 @@ describe("App shell", () => {
                 notes: 2,
                 bookmarks: 3,
                 status: "com_novidades",
-                status_label: "Alterados",
+                status_label: "Alterado",
                 new_highlights_count: 1,
                 default_selected: true,
                 last_analysis_display: "2026-06-08 21:30",
@@ -93,7 +93,7 @@ describe("App shell", () => {
             selectionMap: { "book-1": true },
             statusOptions: [
               { value: "todos", label: "Todos" },
-              { value: "com_novidades", label: "Alterados" },
+              { value: "com_novidades", label: "Alterado" },
               { value: "sem_novidades", label: "Exportado" },
             ],
             authorOptions: ["Autor A"],
@@ -121,7 +121,7 @@ describe("App shell", () => {
 
     await user.upload(input, new File(["content"], "My Clippings.txt", { type: "text/plain" }));
     await user.click(screen.getByRole("button", { name: /Analisar/i }));
-    expect(await screen.findByText("Alterados")).toBeInTheDocument();
+    expect(await screen.findByText("Alterado")).toBeInTheDocument();
 
     await user.click(await screen.findByRole("button", { name: "Baixar Livro A" }));
 
@@ -157,7 +157,7 @@ describe("App shell", () => {
                 notes: 0,
                 bookmarks: 0,
                 status: "com_novidades",
-                status_label: "Alterados",
+                status_label: "Alterado",
                 new_highlights_count: 1,
                 default_selected: true,
                 last_analysis_display: "2026-06-08 21:40",
@@ -196,7 +196,7 @@ describe("App shell", () => {
             statusOptions: [
               { value: "todos", label: "Todos" },
               { value: "novo", label: "Novo" },
-              { value: "com_novidades", label: "Alterados" },
+              { value: "com_novidades", label: "Alterado" },
               { value: "nunca_exportado", label: "Pendente" },
               { value: "sem_novidades", label: "Exportado" },
             ],
@@ -212,7 +212,7 @@ describe("App shell", () => {
     await user.upload(input, new File(["content"], "My Clippings.txt", { type: "text/plain" }));
     await user.click(screen.getByRole("button", { name: /Analisar/i }));
 
-    expect(await screen.findByText("Alterados")).toBeInTheDocument();
+    expect(await screen.findByText("Alterado")).toBeInTheDocument();
     expect(screen.getByText("Pendente")).toBeInTheDocument();
     expect(screen.getByText("Exportado")).toBeInTheDocument();
 

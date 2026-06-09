@@ -1,26 +1,32 @@
-﻿# Kindle Notes Extractor
+# Kindle Notes Extractor
 
-App local com FastAPI + Vite React para analisar `My Clippings.txt` do Kindle, agrupar entradas por livro, permitir seleção intermediária e exportar apenas os livros escolhidos.
+Local FastAPI + Vite React app for parsing Kindle `My Clippings.txt` files, grouping entries by book, reviewing the selection, and exporting only the books you choose.
 
-## Objetivo
+## Features
 
-- Ler highlights, notas e bookmarks do Kindle.
-- Aplicar deduplicação para reduzir ruído.
-- Persistir histórico de análise/exportação por livro.
-- Guiar a seleção antes da exportação final.
+- Parses Kindle highlights, notes, and bookmarks.
+- Deduplicates repeated or overlapping entries.
+- Tracks analysis and export history per book.
+- Lets you search, filter, and select books before exporting.
+- Exports selected books as Markdown, HTML, and/or TXT.
 
-## Fluxo Geral do App
+## App Flow
 
-1. Upload do arquivo `My Clippings.txt`.
-2. Parser + deduplicação + agrupamento por livro.
-3. Classificação por status (`novo`, `nunca exportado`, `com novidades`, `sem novidades`).
-4. Seleção de livros (filtros, busca e ações em lote).
-5. Exportação dos livros selecionados em `markdown`, `html` e/ou `txt`.
-6. Atualização do histórico local em `.kindle_processing_store.json`.
+1. Upload a Kindle `My Clippings.txt` file.
+2. Parse, deduplicate, and group entries by book.
+3. Classify each book with one of the internal statuses: `novo`, `nunca_exportado`, `com_novidades`, or `sem_novidades`.
+4. Review books with filters, search, and batch selection actions.
+5. Export selected books as `markdown`, `html`, and/or `txt`.
+6. Update local history in `.kindle_processing_store.json`.
 
-## Como Rodar Localmente
+## Requirements
 
-Pré-requisitos: Python 3.11+ e Node.js 20+.
+- Python 3.11+
+- Node.js 20+
+
+## Local Setup
+
+Install Python dependencies:
 
 ```powershell
 python -m venv .venv
@@ -29,15 +35,15 @@ pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
 
-Backend:
+Start the backend:
 
 ```powershell
 uvicorn kindle_extractor.api:app --reload
 ```
 
-O backend de desenvolvimento responde em `http://127.0.0.1:8000`.
+The backend runs at `http://127.0.0.1:8000`.
 
-Frontend:
+Start the frontend:
 
 ```powershell
 cd frontend
@@ -45,28 +51,31 @@ npm install
 npm run dev
 ```
 
-O frontend Vite de desenvolvimento responde em `http://127.0.0.1:5173` e encaminha chamadas `/api/...` para o backend em `http://127.0.0.1:8000`.
+The Vite frontend runs at `http://127.0.0.1:5173` and proxies `/api/...` requests to `http://127.0.0.1:8000`.
 
-Essa porta `5173` e o proxy do Vite são apenas para desenvolvimento local. Em um deploy futuro em Docker/NAS, o frontend buildado poderá continuar sendo servido pelo FastAPI ou por um reverse proxy na porta de produção, sem exigir Vite em execução.
+## Testing
 
-## Como Executar Testes
-
-Rodar suíte completa:
+Run the Python test suite:
 
 ```powershell
 pytest
+```
+
+Run frontend tests and build checks:
+
+```powershell
 cd frontend
 npm run test
 npm run build
 ```
 
-Rodar um módulo específico:
+Run a specific Python test module:
 
 ```powershell
 pytest tests/test_parser.py -q
 ```
 
-## Estrutura Principal
+## Project Structure
 
 ```text
 kindle_extractor/
@@ -99,27 +108,25 @@ docs/
   processing_store_format.md
 ```
 
-## Visão Geral dos Módulos
+## Module Overview
 
-- `parser.py`: parsing de título/autor, localização, página e data.
-- `dedup.py`: estratégia em camadas para deduplicação.
-- `processing_store.py`: persistência e histórico de processamento/exportação.
-- `book_selection_service.py`: classificação de status, ordenação e seleção.
-- `exporters.py`: geração de conteúdo em Markdown/HTML/TXT.
-- `datetime_utils.py`: utilitários UTC e exibição em `America/Sao_Paulo`.
-- `api.py`: endpoints FastAPI para análise e exportação.
-- `frontend/`: interface Vite React com componentes shadcn/ui.
-- `extractor.py`: orquestra parser + dedup + export.
+- `parser.py`: parses title, author, location, page, date, and entry type.
+- `dedup.py`: layered deduplication strategy for Kindle entries.
+- `processing_store.py`: local processing and export history.
+- `book_selection_service.py`: book status classification, sorting, filtering, and selection logic.
+- `exporters.py`: Markdown, HTML, and TXT output generation.
+- `datetime_utils.py`: UTC utilities and `America/Sao_Paulo` display formatting.
+- `api.py`: FastAPI endpoints for analysis and export.
+- `frontend/`: Vite React interface built with shadcn/ui components.
+- `extractor.py`: parser, deduplication, and export orchestration.
 
-## Limitações Conhecidas
+## Known Limitations
 
-- Parser focado em padrões comuns do `My Clippings.txt` em português; variações muito fora do padrão podem cair em fallback.
-- Deduplicação usa heurísticas conservadoras; ainda pode haver casos limítrofes.
-- Store local é arquivo JSON único, com lock local por processo e escrita atômica; não há banco nem lock distribuído.
-- O cache de análise é local e em memória; após reiniciar o backend, é necessário analisar novamente antes de exportar.
+- The parser focuses on common Portuguese `My Clippings.txt` patterns; unusual formats may fall back to best-effort parsing.
+- Deduplication is conservative and may not catch every edge case.
+- Analysis results are cached in memory. After restarting the backend, upload and analyze the file again before exporting.
 
-## Persistência Local
+## Local History
 
-- O arquivo `.kindle_processing_store.json` segue sendo o store v2 e deve ficar em diretório persistente.
-- As mutações do store serializam `load -> merge -> save` dentro do processo backend para evitar perda de atualização em requisições concorrentes locais.
-- Em uma implantação futura em NAS, manter um único backend/container escritor sobre o volume de histórico. Docker, compose e scripts de deploy serão definidos apenas quando o projeto estiver completo.
+- `.kindle_processing_store.json` is the local history store.
+- Store updates serialize the `load -> merge -> save` flow inside the backend process to reduce lost updates during local concurrent requests.
