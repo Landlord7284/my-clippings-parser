@@ -1,9 +1,11 @@
 ﻿import hashlib
 import json
+import threading
+import uuid
 from copy import deepcopy
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Callable, Dict, List, Optional
 
 from .datetime_utils import to_utc_iso
 
@@ -12,6 +14,9 @@ MAX_HISTORY_ITEMS = 200
 STATUS_NEW = "novo"
 STATUS_UPDATED = "atualizado"
 STATUS_UNCHANGED = "sem_mudancas"
+
+_LOCKS_GUARD = threading.Lock()
+_PATH_LOCKS: Dict[Path, threading.RLock] = {}
 
 
 def _now_utc_iso() -> str:
@@ -79,6 +84,15 @@ def _sanitize_event_list(events) -> List[dict]:
 class ProcessingStore:
     def __init__(self, path: Path):
         self.path = path
+        self._lock = self._lock_for_path(path)
+
+    @staticmethod
+    def _lock_for_path(path: Path) -> threading.RLock:
+        lock_key = path.expanduser().resolve(strict=False)
+        with _LOCKS_GUARD:
+            if lock_key not in _PATH_LOCKS:
+                _PATH_LOCKS[lock_key] = threading.RLock()
+            return _PATH_LOCKS[lock_key]
 
     def load(self) -> Dict[str, object]:
         if not self.path.exists():
@@ -94,14 +108,29 @@ class ProcessingStore:
         return payload
 
     def save(self, data: Dict[str, object]):
+        with self._lock:
+            self._write_payload(data)
+
+    def update(self, mutator: Callable[[Dict[str, object]], None]) -> Dict[str, object]:
+        with self._lock:
+            payload = self.load()
+            mutator(payload)
+            return self._write_payload(payload)
+
+    def _write_payload(self, data: Dict[str, object]) -> Dict[str, object]:
         payload = self._sanitize_payload(data)
         payload["meta"]["updated_at"] = _now_utc_iso()
 
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        tmp_path = self.path.with_suffix(f"{self.path.suffix}.tmp")
-        with open(tmp_path, "w", encoding="utf-8") as file:
-            json.dump(payload, file, ensure_ascii=False, indent=2, sort_keys=True)
-        tmp_path.replace(self.path)
+        tmp_path = self.path.with_name(f"{self.path.name}.{uuid.uuid4().hex}.tmp")
+        try:
+            with open(tmp_path, "w", encoding="utf-8") as file:
+                json.dump(payload, file, ensure_ascii=False, indent=2, sort_keys=True)
+            tmp_path.replace(self.path)
+        finally:
+            if tmp_path.exists():
+                tmp_path.unlink()
+        return deepcopy(payload)
 
     def get_books(self) -> Dict[str, dict]:
         return deepcopy(self.load().get("books", {}))
@@ -161,51 +190,51 @@ class ProcessingStore:
         processed_at: Optional[datetime] = None,
         forced: bool = False,
     ):
-        payload = self.load()
-        books = payload.get("books", {})
         processed_iso = to_utc_iso(processed_at)
         process_id = _stable_hash(f"{processed_iso}|{len(snapshots)}")
 
-        for book_key, snapshot in snapshots.items():
-            previous = self._sanitize_book(book_key, books.get(book_key, {}))
-            normalized_snapshot = self._normalize_snapshot(book_key, snapshot)
-            comparison = self.compare_snapshot(normalized_snapshot, previous=previous)
-            content_signature_hash = normalized_snapshot["content_signature_hash"]
-            highlight_signature_hash = normalized_snapshot["highlight_signature_hash"]
+        def mutate(payload: Dict[str, object]):
+            books = payload.get("books", {})
 
-            event = {
-                "process_id": process_id,
-                "processed_at": processed_iso,
-                "forced": bool(forced),
-                "detected_status": comparison["status"],
-                "new_highlights_count": comparison["new_highlights_count"],
-                "content_signature_hash": content_signature_hash,
-                "highlight_signature_hash": highlight_signature_hash,
-                "highlight_count": normalized_snapshot["highlight_count"],
-                "note_count": normalized_snapshot["note_count"],
-                "bookmark_count": normalized_snapshot["bookmark_count"],
-            }
+            for book_key, snapshot in snapshots.items():
+                previous = self._sanitize_book(book_key, books.get(book_key, {}))
+                normalized_snapshot = self._normalize_snapshot(book_key, snapshot)
+                comparison = self.compare_snapshot(normalized_snapshot, previous=previous)
+                content_signature_hash = normalized_snapshot["content_signature_hash"]
+                highlight_signature_hash = normalized_snapshot["highlight_signature_hash"]
 
-            processing_history = _trim_history(previous["processing_history"] + [event])
-            updated_book = deepcopy(previous)
-            updated_book.update(normalized_snapshot)
-            updated_book["last_analysis_at"] = processed_iso
-            updated_book["last_processed_at"] = processed_iso
-            updated_book["last_analysis_signature"] = content_signature_hash
-            updated_book["last_detected_processing"] = deepcopy(event)
-            updated_book["processing_history"] = processing_history
-            books[book_key] = updated_book
+                event = {
+                    "process_id": process_id,
+                    "processed_at": processed_iso,
+                    "forced": bool(forced),
+                    "detected_status": comparison["status"],
+                    "new_highlights_count": comparison["new_highlights_count"],
+                    "content_signature_hash": content_signature_hash,
+                    "highlight_signature_hash": highlight_signature_hash,
+                    "highlight_count": normalized_snapshot["highlight_count"],
+                    "note_count": normalized_snapshot["note_count"],
+                    "bookmark_count": normalized_snapshot["bookmark_count"],
+                }
 
-        payload["books"] = books
-        self.save(payload)
+                processing_history = _trim_history(previous["processing_history"] + [event])
+                updated_book = deepcopy(previous)
+                updated_book.update(normalized_snapshot)
+                updated_book["last_analysis_at"] = processed_iso
+                updated_book["last_processed_at"] = processed_iso
+                updated_book["last_analysis_signature"] = content_signature_hash
+                updated_book["last_detected_processing"] = deepcopy(event)
+                updated_book["processing_history"] = processing_history
+                books[book_key] = updated_book
+
+            payload["books"] = books
+
+        self.update(mutate)
 
     def mark_exported(
         self,
         book_keys_or_exports,
         exported_at: Optional[datetime] = None,
     ):
-        payload = self.load()
-        books = payload.get("books", {})
         exported_iso = to_utc_iso(exported_at)
 
         if isinstance(book_keys_or_exports, dict):
@@ -213,49 +242,53 @@ class ProcessingStore:
         else:
             exports_map = {book_key: [] for book_key in book_keys_or_exports}
 
-        for book_key, formats in exports_map.items():
-            if book_key not in books:
-                continue
+        def mutate(payload: Dict[str, object]):
+            books = payload.get("books", {})
 
-            book = self._sanitize_book(book_key, books.get(book_key, {}))
-            normalized_formats = _normalize_string_list(formats)
-            export_id = _stable_hash(
-                f"{book_key}|{exported_iso}|{','.join(normalized_formats)}|"
-                f"{book.get('content_signature_hash')}"
-            )
-            last_export = book.get("last_export") or {}
-            current_content_hash = book.get("content_signature_hash")
-            current_highlight_hash = book.get("highlight_signature_hash")
-            current_highlight_hashes = list(book.get("highlight_signature_hashes") or [])
-            reexport_without_changes = (
-                bool(last_export)
-                and current_content_hash
-                and last_export.get("content_signature_hash") == current_content_hash
-            )
-            event = {
-                "export_id": export_id,
-                "exported_at": exported_iso,
-                "formats": normalized_formats,
-                "content_signature_hash": current_content_hash,
-                "highlight_signature_hash": current_highlight_hash,
-                "highlight_signature_hashes": current_highlight_hashes,
-                "processed_at": book.get("last_analysis_at") or book.get("last_processed_at"),
-                "reexport_without_changes": reexport_without_changes,
-            }
+            for book_key, formats in exports_map.items():
+                if book_key not in books:
+                    continue
 
-            export_history = _trim_history(book["export_history"] + [event])
-            book["last_export_at"] = exported_iso
-            book["last_exported_at"] = exported_iso
-            book["last_export_formats"] = normalized_formats
-            book["last_export_signature"] = current_content_hash
-            book["last_export_highlight_signature"] = current_highlight_hash
-            book["last_export_highlight_signature_hashes"] = current_highlight_hashes
-            book["last_export"] = deepcopy(event)
-            book["export_history"] = export_history
-            books[book_key] = book
+                book = self._sanitize_book(book_key, books.get(book_key, {}))
+                normalized_formats = _normalize_string_list(formats)
+                export_id = _stable_hash(
+                    f"{book_key}|{exported_iso}|{','.join(normalized_formats)}|"
+                    f"{book.get('content_signature_hash')}"
+                )
+                last_export = book.get("last_export") or {}
+                current_content_hash = book.get("content_signature_hash")
+                current_highlight_hash = book.get("highlight_signature_hash")
+                current_highlight_hashes = list(book.get("highlight_signature_hashes") or [])
+                reexport_without_changes = (
+                    bool(last_export)
+                    and current_content_hash
+                    and last_export.get("content_signature_hash") == current_content_hash
+                )
+                event = {
+                    "export_id": export_id,
+                    "exported_at": exported_iso,
+                    "formats": normalized_formats,
+                    "content_signature_hash": current_content_hash,
+                    "highlight_signature_hash": current_highlight_hash,
+                    "highlight_signature_hashes": current_highlight_hashes,
+                    "processed_at": book.get("last_analysis_at") or book.get("last_processed_at"),
+                    "reexport_without_changes": reexport_without_changes,
+                }
 
-        payload["books"] = books
-        self.save(payload)
+                export_history = _trim_history(book["export_history"] + [event])
+                book["last_export_at"] = exported_iso
+                book["last_exported_at"] = exported_iso
+                book["last_export_formats"] = normalized_formats
+                book["last_export_signature"] = current_content_hash
+                book["last_export_highlight_signature"] = current_highlight_hash
+                book["last_export_highlight_signature_hashes"] = current_highlight_hashes
+                book["last_export"] = deepcopy(event)
+                book["export_history"] = export_history
+                books[book_key] = book
+
+            payload["books"] = books
+
+        self.update(mutate)
 
     def _sanitize_payload(self, raw_data: dict) -> Dict[str, object]:
         payload = _default_payload()

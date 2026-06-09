@@ -146,3 +146,35 @@ def test_format_iso_for_display_uses_america_sao_paulo_timezone():
     display_value = format_iso_for_display("2024-01-01T12:00:00+00:00")
 
     assert display_value == "2024-01-01 09:00"
+
+
+def test_concurrent_store_instances_preserve_all_snapshot_updates(workspace_tmp_path):
+    from concurrent.futures import ThreadPoolExecutor
+
+    store_path = workspace_tmp_path / "state.json"
+    book_count = 20
+
+    def save_book(index: int):
+        book_key = f"book-{index}"
+        ProcessingStore(store_path).save_processed_snapshots(
+            {
+                book_key: {
+                    "book_key": book_key,
+                    "title": f"Livro {index}",
+                    "author": "Autor",
+                    "entry_signature_hashes": [f"{index:040x}"],
+                    "highlight_signature_hashes": [f"{index + 100:040x}"],
+                    "highlight_count": 1,
+                    "note_count": 0,
+                    "bookmark_count": 0,
+                }
+            },
+            processed_at=datetime(2024, 1, 1, 12, index, tzinfo=timezone.utc),
+        )
+
+    with ThreadPoolExecutor(max_workers=book_count) as executor:
+        list(executor.map(save_book, range(book_count)))
+
+    books = ProcessingStore(store_path).get_books()
+    assert set(books) == {f"book-{index}" for index in range(book_count)}
+    assert not list(workspace_tmp_path.glob("state.json.*.tmp"))

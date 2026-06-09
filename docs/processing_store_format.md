@@ -57,3 +57,6 @@ Arquivo local padrão: `.kindle_processing_store.json`
 - `last_analysis_at` e `last_export_at` permanecem separados por responsabilidade.
 - Datas são serializadas em UTC; a exibição em UI é convertida para `America/Sao_Paulo`.
 - Histórico limitado aos últimos 200 eventos por tipo.
+- Mutações do store usam lock local por caminho de arquivo, cobrindo o ciclo `load -> merge -> save` dentro de um mesmo processo backend.
+- Escritas usam arquivo temporário único por operação e substituição atômica do JSON final.
+- Escopo suportado: app local/single-user com um processo escritor. Em implantação futura em NAS, manter apenas um backend/container escrevendo no volume de histórico.

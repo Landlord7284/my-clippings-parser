@@ -109,5 +109,11 @@ docs/
 
 - Parser focado em padrões comuns do `My Clippings.txt` em português; variações muito fora do padrão podem cair em fallback.
 - Deduplicação usa heurísticas conservadoras; ainda pode haver casos limítrofes.
-- Store local é arquivo JSON único (sem banco e sem lock distribuído).
+- Store local é arquivo JSON único, com lock local por processo e escrita atômica; não há banco nem lock distribuído.
 - O cache de análise é local e em memória; após reiniciar o backend, é necessário analisar novamente antes de exportar.
+
+## Persistência Local
+
+- O arquivo `.kindle_processing_store.json` segue sendo o store v2 e deve ficar em diretório persistente.
+- As mutações do store serializam `load -> merge -> save` dentro do processo backend para evitar perda de atualização em requisições concorrentes locais.
+- Em uma implantação futura em NAS, manter um único backend/container escritor sobre o volume de histórico. Docker, compose e scripts de deploy serão definidos apenas quando o projeto estiver completo.
