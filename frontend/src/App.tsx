@@ -458,13 +458,13 @@ export default function App() {
           rows: currentAnalysis.rows.map((currentRow) =>
             currentRow.book_key === row.book_key
               ? {
-                  ...currentRow,
-                  status: "sem_novidades",
-                  status_label: "Exportado",
-                  new_highlights_count: 0,
-                  last_export_display: lastExportDisplay,
-                  last_export_formats: activeFormatKeys,
-                }
+                ...currentRow,
+                status: "sem_novidades",
+                status_label: "Exportado",
+                new_highlights_count: 0,
+                last_export_display: lastExportDisplay,
+                last_export_formats: activeFormatKeys,
+              }
               : currentRow,
           ),
         };
@@ -492,7 +492,7 @@ export default function App() {
           <main className="min-w-0 space-y-4">
             <header className="flex flex-wrap items-center justify-between gap-3 border-b pb-3">
               <div>
-                <h1 className="text-xl font-semibold">Extrator de Destaques Kindle</h1>
+                <h1 className="text-xl font-semibold">Kindle Highlights</h1>
                 <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                   <FileArchive className="h-4 w-4" />
                   <span className="max-w-[34rem] truncate">{file?.name ?? "Nenhum arquivo"}</span>
@@ -583,9 +583,9 @@ export default function App() {
                     style={
                       theme === "dark"
                         ? {
-                            backgroundColor: "oklch(0.2603 0 0)",
-                            color: "oklch(0.9288 0.0126 255.5078)",
-                          }
+                          backgroundColor: "oklch(0.2603 0 0)",
+                          color: "oklch(0.9288 0.0126 255.5078)",
+                        }
                         : undefined
                     }
                     placeholder="Título ou autor"
