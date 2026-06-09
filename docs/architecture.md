@@ -4,10 +4,11 @@
 
 O projeto é organizado em camadas simples, com foco em regra de negócio e baixo acoplamento com a UI.
 
-1. Entrada: `ui.py` (Streamlit).
-2. Núcleo de processamento: `extractor.py`.
-3. Serviços de domínio: parser, deduplicação, seleção, persistência e exportadores.
-4. Saída: arquivos exportados e store local JSON.
+1. Entrada visual: `frontend/` (Vite React + shadcn/ui).
+2. API local: `kindle_extractor/api.py` (FastAPI).
+3. Núcleo de processamento: `extractor.py`.
+4. Serviços de domínio: parser, deduplicação, seleção, persistência e exportadores.
+5. Saída: ZIP exportado e store local JSON.
 
 ## Módulos Principais
 
@@ -60,17 +61,27 @@ Responsabilidades:
 - Respeitar flags de metadados e bookmarks.
 - Ordenar entradas antes da serialização.
 
-### UI Streamlit (`kindle_extractor/ui.py`)
+### API FastAPI (`kindle_extractor/api.py`)
 
 Responsabilidades:
-- Orquestrar upload, análise, seleção e exportação.
-- Persistir estado de sessão para seleção intermediária.
-- Delegar regra de negócio aos serviços, sem lógica pesada na camada visual.
+- Receber upload e configuração de processamento.
+- Manter cache local em memória por `analysisId`.
+- Chamar os serviços existentes para análise, seleção e exportação.
+- Retornar ZIP e erros de reanálise obrigatória quando o cache não existir.
+
+### Frontend React (`frontend/`)
+
+Responsabilidades:
+- Renderizar upload, configurações, métricas, filtros, tabela e exportação.
+- Manter estado local de seleção e filtros.
+- Usar componentes shadcn/ui e ícones lucide para controles.
+- Delegar regra de negócio e persistência para a API.
 
 ## Responsabilidades por Camada
 
-- UI: interação e estado de sessão.
+- Frontend: interação e estado visual.
+- API: contrato HTTP, cache transitório e adaptação de requests.
 - Serviços: regra de negócio e classificação.
 - Infra local: persistência em arquivo JSON.
 
-Esse desenho facilita evolução incremental e testes focados em domínio, sem depender da renderização visual do Streamlit.
+Esse desenho facilita evolução incremental e testes focados em domínio, API e comportamento visual essencial.

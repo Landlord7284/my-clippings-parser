@@ -7,6 +7,12 @@ pytest-cache-files-*/
 .streamlit/secrets.toml
 dist/
 build/
+frontend/dist/
+frontend/node_modules/
+frontend/test-results/
+frontend/*tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
 *.zip
 temp_output/
 destaques_exports/

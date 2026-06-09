@@ -1,11 +1,11 @@
 ﻿from __future__ import annotations
 
-import sys
 import shutil
+import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
-import uuid
 
 import pytest
 
@@ -22,9 +22,9 @@ def fixture_dir() -> Path:
 
 @pytest.fixture
 def workspace_tmp_path() -> Path:
-    root = Path(__file__).resolve().parent / ".tmp"
-    path = root / uuid.uuid4().hex
-    path.mkdir(parents=True, exist_ok=True)
+    root = ROOT_DIR / ".pytest_tmp"
+    root.mkdir(parents=True, exist_ok=True)
+    path = Path(tempfile.mkdtemp(dir=root))
     try:
         yield path
     finally:

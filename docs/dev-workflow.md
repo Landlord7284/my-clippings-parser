@@ -9,7 +9,7 @@ Evoluir o projeto em etapas pequenas, com baixo risco de regressão e alta legib
 1. Fazer mudanças pequenas e isoladas por tema (parser, dedup, store, seleção, export).
 2. Adicionar/ajustar testes no mesmo PR/commit da mudança.
 3. Evitar refatorações amplas sem necessidade funcional clara.
-4. Manter compatibilidade do fluxo atual da UI.
+4. Manter compatibilidade do fluxo atual da UI React.
 
 ## Convenção de Prompt Sugerida
 
@@ -49,13 +49,14 @@ O que não fazer:
 ## Checklist Antes de Fechar uma Etapa
 
 1. Rodar `pytest`.
-2. Validar fluxo principal: upload -> análise -> seleção -> exportação.
-3. Revisar se a mudança preservou simplicidade de código.
-4. Atualizar documentação técnica quando houver mudança de comportamento.
+2. Rodar `npm run test` e `npm run build` em `frontend/`.
+3. Validar fluxo principal: upload -> análise -> seleção -> exportação.
+4. Revisar se a mudança preservou simplicidade de código.
+5. Atualizar documentação técnica quando houver mudança de comportamento.
 
 ## Recomendações para Evitar Regressões
 
 - Sempre adicionar ao menos um teste de regressão para bugs corrigidos.
-- Não acoplar testes à estrutura visual/HTML do Streamlit.
+- Não acoplar testes a detalhes cosméticos da interface.
 - Priorizar testes de funções e serviços puros.
 - Em mudanças no parser/dedup, usar também casos inspirados em `My Clippings.txt` real.

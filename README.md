@@ -1,6 +1,6 @@
 ﻿# Kindle Notes Extractor
 
-App Python + Streamlit para analisar `My Clippings.txt` do Kindle, agrupar entradas por livro, permitir seleção intermediária e exportar apenas os livros escolhidos.
+App local com FastAPI + Vite React para analisar `My Clippings.txt` do Kindle, agrupar entradas por livro, permitir seleção intermediária e exportar apenas os livros escolhidos.
 
 ## Objetivo
 
@@ -20,7 +20,7 @@ App Python + Streamlit para analisar `My Clippings.txt` do Kindle, agrupar entra
 
 ## Como Rodar Localmente
 
-Pré-requisito: Python 3.11+.
+Pré-requisitos: Python 3.11+ e Node.js 20+.
 
 ```powershell
 python -m venv .venv
@@ -29,10 +29,18 @@ pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
 
-Executar app:
+Backend:
 
 ```powershell
-streamlit run app.py
+uvicorn kindle_extractor.api:app --reload
+```
+
+Frontend:
+
+```powershell
+cd frontend
+npm install
+npm run dev
 ```
 
 ## Como Executar Testes
@@ -41,6 +49,9 @@ Rodar suíte completa:
 
 ```powershell
 pytest
+cd frontend
+npm run test
+npm run build
 ```
 
 Rodar um módulo específico:
@@ -53,14 +64,18 @@ pytest tests/test_parser.py -q
 
 ```text
 kindle_extractor/
+  api.py
   parser.py
   dedup.py
   processing_store.py
   book_selection_service.py
   exporters.py
   datetime_utils.py
-  ui.py
   extractor.py
+
+frontend/
+  src/
+  tests/
 
 tests/
   conftest.py
@@ -86,7 +101,8 @@ docs/
 - `book_selection_service.py`: classificação de status, ordenação e seleção.
 - `exporters.py`: geração de conteúdo em Markdown/HTML/TXT.
 - `datetime_utils.py`: utilitários UTC e exibição em `America/Sao_Paulo`.
-- `ui.py`: fluxo Streamlit (upload, análise, seleção, exportação).
+- `api.py`: endpoints FastAPI para análise e exportação.
+- `frontend/`: interface Vite React com componentes shadcn/ui.
 - `extractor.py`: orquestra parser + dedup + export.
 
 ## Limitações Conhecidas
@@ -94,4 +110,4 @@ docs/
 - Parser focado em padrões comuns do `My Clippings.txt` em português; variações muito fora do padrão podem cair em fallback.
 - Deduplicação usa heurísticas conservadoras; ainda pode haver casos limítrofes.
 - Store local é arquivo JSON único (sem banco e sem lock distribuído).
-- Testes evitam acoplamento visual com Streamlit e priorizam regra de negócio.
+- O cache de análise é local e em memória; após reiniciar o backend, é necessário analisar novamente antes de exportar.
