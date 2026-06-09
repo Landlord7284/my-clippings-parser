@@ -20,7 +20,11 @@ destaques_exports/
 history/
 .kindle_processing_store.json
 tests/.tmp/
+tmp/
+.tmp/
 coverage.xml
 htmlcov/
 .DS_Store
 Thumbs.db
+.samples/
+.old/
