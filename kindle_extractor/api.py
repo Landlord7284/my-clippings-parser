@@ -1,10 +1,11 @@
+import base64
 import hashlib
 import io
 import json
 import os
 import tempfile
 import zipfile
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List
 from typing_extensions import Annotated
@@ -62,6 +63,19 @@ class ExportRequest(BaseModel):
     analysisId: str
     selectedBookKeys: List[str]
     config: AppConfig
+
+
+class ExportBookRequest(BaseModel):
+    analysisId: str
+    bookKey: str
+    config: AppConfig
+
+
+MIME_TYPES = {
+    ".md": "text/markdown; charset=utf-8",
+    ".html": "text/html; charset=utf-8",
+    ".txt": "text/plain; charset=utf-8",
+}
 
 
 def get_processing_store() -> ProcessingStore:
@@ -138,6 +152,39 @@ def _build_author_options(rows: List[dict]) -> List[str]:
     return sorted({str(row["author"]) for row in rows})
 
 
+def _current_export_datetime() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def _cached_analysis_or_409(analysis_id: str) -> dict:
+    cached_analysis = ANALYSIS_CACHE.get(analysis_id)
+    if cached_analysis is None:
+        raise HTTPException(
+            status_code=409,
+            detail="Analysis not found. Reanalyze the uploaded file before exporting.",
+        )
+    return cached_analysis
+
+
+def _selected_titles_from_keys(cached_analysis: dict, selected_book_keys: List[str]) -> List[str]:
+    rows = cached_analysis["rows"]
+    key_to_title = {row["book_key"]: row["title"] for row in rows}
+    return [key_to_title[key] for key in selected_book_keys if key in key_to_title]
+
+
+def _build_export_extractor(
+    cached_analysis: dict,
+    config: AppConfig,
+    selected_titles: List[str],
+) -> KindleHighlightsExtractor:
+    extractor = KindleHighlightsExtractor(build_extractor_config(config))
+    extractor.books = cached_analysis["books"]
+    selected_entries = sum(len(extractor.books.get(title, [])) for title in selected_titles)
+    extractor.stats["books_processed"] = len(selected_titles)
+    extractor.stats["total_entries"] = selected_entries
+    return extractor
+
+
 @app.get("/api/health")
 def health_check():
     return {"status": "ok"}
@@ -197,51 +244,81 @@ async def analyze_file(
 
 @app.post("/api/export")
 def export_books(request: ExportRequest):
-    cached_analysis = ANALYSIS_CACHE.get(request.analysisId)
-    if cached_analysis is None:
-        raise HTTPException(
-            status_code=409,
-            detail="Analysis not found. Reanalyze the uploaded file before exporting.",
-        )
-
+    cached_analysis = _cached_analysis_or_409(request.analysisId)
     if not request.selectedBookKeys:
         raise HTTPException(status_code=400, detail="Select at least one book before exporting.")
 
-    rows = cached_analysis["rows"]
-    key_to_title = {row["book_key"]: row["title"] for row in rows}
-    selected_titles = [
-        key_to_title[key] for key in request.selectedBookKeys if key in key_to_title
-    ]
+    selected_titles = _selected_titles_from_keys(cached_analysis, request.selectedBookKeys)
     if not selected_titles:
         raise HTTPException(
             status_code=400,
             detail="No valid selected books were found for this analysis.",
         )
 
-    extractor = KindleHighlightsExtractor(build_extractor_config(request.config))
-    extractor.books = cached_analysis["books"]
-    selected_entries = sum(len(extractor.books.get(title, [])) for title in selected_titles)
-    extractor.stats["books_processed"] = len(selected_titles)
-    extractor.stats["total_entries"] = selected_entries
+    extractor = _build_export_extractor(cached_analysis, request.config, selected_titles)
 
     with tempfile.TemporaryDirectory() as temp_dir:
         output_dir = Path(temp_dir) / "temp_output"
         extractor.generate_files(output_dir, selected_titles=selected_titles)
         zip_buffer = _create_zip_file(output_dir)
 
+    exported_at = _current_export_datetime()
     service = BookSelectionService(get_processing_store())
     service.mark_exported(
         request.selectedBookKeys,
-        exported_at=datetime.now(),
+        exported_at=exported_at,
         export_formats=_selected_format_labels(request.config),
     )
 
-    filename = f"kindle_destaques_{datetime.now().strftime('%Y%m%d_%H%M%S')}.zip"
+    filename = f"kindle_destaques_{exported_at.strftime('%Y%m%d_%H%M%S')}.zip"
     return Response(
         content=zip_buffer.getvalue(),
         media_type="application/zip",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
+
+
+@app.post("/api/export/book")
+def export_book_files(request: ExportBookRequest):
+    cached_analysis = _cached_analysis_or_409(request.analysisId)
+    selected_titles = _selected_titles_from_keys(cached_analysis, [request.bookKey])
+    if not selected_titles:
+        raise HTTPException(
+            status_code=400,
+            detail="No valid selected book was found for this analysis.",
+        )
+
+    extractor = _build_export_extractor(cached_analysis, request.config, selected_titles)
+    files = []
+    with tempfile.TemporaryDirectory() as temp_dir:
+        output_dir = Path(temp_dir) / "temp_output"
+        extractor.generate_files(output_dir, selected_titles=selected_titles)
+        for file_path in sorted(output_dir.rglob("*")):
+            if not file_path.is_file():
+                continue
+            files.append(
+                {
+                    "filename": file_path.name,
+                    "format": file_path.parent.name,
+                    "mimeType": MIME_TYPES.get(file_path.suffix, "application/octet-stream"),
+                    "contentBase64": base64.b64encode(file_path.read_bytes()).decode("ascii"),
+                }
+            )
+
+    if not files:
+        raise HTTPException(
+            status_code=400,
+            detail="No files were generated. Enable at least one export format.",
+        )
+
+    service = BookSelectionService(get_processing_store())
+    service.mark_exported(
+        [request.bookKey],
+        exported_at=_current_export_datetime(),
+        export_formats=_selected_format_labels(request.config),
+    )
+
+    return {"files": files}
 
 
 frontend_dist = Path(__file__).resolve().parents[1] / "frontend" / "dist"

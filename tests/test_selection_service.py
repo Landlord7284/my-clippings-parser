@@ -35,6 +35,9 @@ def test_priority_sorting_by_status_then_title(workspace_tmp_path, entry_factory
         "Sem Novidades": [entry_factory(title="Sem Novidades", author="Autor A")],
         "Com Novidades": [entry_factory(title="Com Novidades", author="Autor B")],
         "Nunca Exportado": [entry_factory(title="Nunca Exportado", author="Autor C")],
+        "Ainda Nunca Exportado": [
+            entry_factory(title="Ainda Nunca Exportado", author="Autor D")
+        ],
     }
 
     initial_rows = service.build_books_table(
@@ -63,6 +66,9 @@ def test_priority_sorting_by_status_then_title(workspace_tmp_path, entry_factory
             ),
         ],
         "Nunca Exportado": [entry_factory(title="Nunca Exportado", author="Autor C")],
+        "Ainda Nunca Exportado": [
+            entry_factory(title="Ainda Nunca Exportado", author="Autor D")
+        ],
         "Apenas Novo": [entry_factory(title="Apenas Novo", author="Autor D")],
     }
 
@@ -70,10 +76,23 @@ def test_priority_sorting_by_status_then_title(workspace_tmp_path, entry_factory
 
     assert [(row["title"], row["status"]) for row in rows] == [
         ("Apenas Novo", STATUS_NEW),
-        ("Nunca Exportado", STATUS_NEVER_EXPORTED),
         ("Com Novidades", STATUS_WITH_NEWS),
+        ("Ainda Nunca Exportado", STATUS_NEVER_EXPORTED),
+        ("Nunca Exportado", STATUS_NEVER_EXPORTED),
         ("Sem Novidades", STATUS_NO_NEWS),
     ]
+
+
+def test_status_labels_are_compact(workspace_tmp_path, entry_factory):
+    store = ProcessingStore(workspace_tmp_path / "state.json")
+    service = BookSelectionService(store)
+
+    rows = service.build_books_table(
+        {"Livro A": [entry_factory(title="Livro A", author="Autor A")]},
+        persist=False,
+    )
+
+    assert rows[0]["status_label"] == "Novo"
 
 
 def test_filters_by_status_search_and_selected_only(workspace_tmp_path, entry_factory):

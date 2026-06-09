@@ -1,8 +1,12 @@
-import type { AnalysisResponse, AppConfig } from "@/types";
+import type { AnalysisResponse, AppConfig, ExportBookFilesResponse } from "@/types";
 
 const API_BASE = "";
 
 async function parseError(response: Response) {
+  if (response.status === 405) {
+    return "Servidor desatualizado. Reinicie a API e tente novamente.";
+  }
+
   try {
     const payload = await response.json();
     return payload.detail || "Falha na requisicao.";
@@ -49,4 +53,24 @@ export async function exportBooks(
     throw new Error(await parseError(response));
   }
   return response.blob();
+}
+
+export async function exportBookFiles(
+  analysisId: string,
+  bookKey: string,
+  config: AppConfig,
+): Promise<ExportBookFilesResponse> {
+  const response = await fetch(`${API_BASE}/api/export/book`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      analysisId,
+      bookKey,
+      config,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(await parseError(response));
+  }
+  return response.json();
 }

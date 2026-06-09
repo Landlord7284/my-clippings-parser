@@ -13,9 +13,9 @@ STATUS_NO_NEWS = "sem_novidades"
 
 STATUS_LABELS = {
     STATUS_NEW: "Novo",
-    STATUS_NEVER_EXPORTED: "Nunca exportado",
-    STATUS_WITH_NEWS: "Com novidades desde a ultima exportacao",
-    STATUS_NO_NEWS: "Ja exportado sem novidades",
+    STATUS_NEVER_EXPORTED: "Pendente",
+    STATUS_WITH_NEWS: "Alterados",
+    STATUS_NO_NEWS: "Exportado",
 }
 
 FILTER_ALL = "todos"
@@ -28,9 +28,9 @@ FILTER_NO_NEWS = "sem_novidades"
 STATUS_FILTER_LABELS = {
     FILTER_ALL: "Todos",
     FILTER_NEW: "Novo",
-    FILTER_NEVER_EXPORTED: "Nunca exportado",
-    FILTER_WITH_NEWS: "Com novidades",
-    FILTER_NO_NEWS: "Sem novidades",
+    FILTER_NEVER_EXPORTED: "Pendente",
+    FILTER_WITH_NEWS: "Alterados",
+    FILTER_NO_NEWS: "Exportado",
     FILTER_SELECTED: "Selecionados",
 }
 
@@ -164,8 +164,8 @@ class BookSelectionService:
     def _sort_rows(self, rows: List[dict]) -> List[dict]:
         status_priority = {
             STATUS_NEW: 0,
-            STATUS_NEVER_EXPORTED: 1,
-            STATUS_WITH_NEWS: 2,
+            STATUS_WITH_NEWS: 1,
+            STATUS_NEVER_EXPORTED: 2,
             STATUS_NO_NEWS: 3,
         }
 

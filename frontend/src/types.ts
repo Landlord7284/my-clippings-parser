@@ -46,6 +46,17 @@ export type AnalysisResponse = {
   authorOptions: string[];
 };
 
+export type ExportedBookFile = {
+  filename: string;
+  format: string;
+  mimeType: string;
+  contentBase64: string;
+};
+
+export type ExportBookFilesResponse = {
+  files: ExportedBookFile[];
+};
+
 export type FilterState = {
   search: string;
   status: string;

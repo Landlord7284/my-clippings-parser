@@ -1,18 +1,20 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CheckCheck,
   Download,
   FileArchive,
   Filter,
+  Moon,
   RefreshCw,
   Search,
   Settings2,
+  Sun,
   Upload,
   XCircle,
 } from "lucide-react";
 import { toast } from "sonner";
 
-import { analyzeFile, exportBooks } from "@/lib/api";
+import { analyzeFile, exportBookFiles, exportBooks } from "@/lib/api";
 import {
   DEFAULT_CONFIG,
   DEFAULT_FILTERS,
@@ -51,6 +53,15 @@ const statusVariant: Record<string, "green" | "amber" | "blue" | "gray"> = {
   com_novidades: "blue",
   sem_novidades: "gray",
 };
+
+const THEME_STORAGE_KEY = "kindle-notes-theme";
+
+type Theme = "light" | "dark";
+
+function getInitialTheme(): Theme {
+  if (typeof window === "undefined") return "light";
+  return window.localStorage.getItem(THEME_STORAGE_KEY) === "dark" ? "dark" : "light";
+}
 
 function SettingsPanel({
   config,
@@ -195,11 +206,17 @@ function BookTable({
   visibleRows,
   selectionMap,
   onSelectionChange,
+  onBookDownload,
+  downloadingBookKey,
+  canDownload,
 }: {
   rows: BookRow[];
   visibleRows: BookRow[];
   selectionMap: Record<string, boolean>;
   onSelectionChange: (selectionMap: Record<string, boolean>) => void;
+  onBookDownload: (row: BookRow) => void;
+  downloadingBookKey: string | null;
+  canDownload: boolean;
 }) {
   const visibleSelected = visibleRows.filter((row) => selectionMap[row.book_key]).length;
   const allVisibleSelected = visibleRows.length > 0 && visibleSelected === visibleRows.length;
@@ -238,6 +255,7 @@ function BookTable({
             <TableHead className="text-right">Marcadores</TableHead>
             <TableHead className="text-right">Novos</TableHead>
             <TableHead>Última exportação</TableHead>
+            <TableHead className="w-12 text-right">Baixar</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -268,6 +286,22 @@ function BookTable({
               <TableCell className="min-w-36 text-muted-foreground">
                 {row.last_export_display}
               </TableCell>
+              <TableCell className="text-right">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      aria-label={`Baixar ${row.title}`}
+                      disabled={!canDownload || downloadingBookKey === row.book_key}
+                      onClick={() => onBookDownload(row)}
+                    >
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Baixar arquivos</TooltipContent>
+                </Tooltip>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -295,6 +329,26 @@ function downloadBlob(blob: Blob) {
   window.URL.revokeObjectURL(url);
 }
 
+function downloadNamedBlob(blob: Blob, filename: string) {
+  const url = window.URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  document.body.append(anchor);
+  anchor.click();
+  anchor.remove();
+  window.URL.revokeObjectURL(url);
+}
+
+function blobFromBase64(contentBase64: string, mimeType: string) {
+  const binary = window.atob(contentBase64);
+  const bytes = new Uint8Array(binary.length);
+  for (let index = 0; index < binary.length; index += 1) {
+    bytes[index] = binary.charCodeAt(index);
+  }
+  return new Blob([bytes], { type: mimeType });
+}
+
 export default function App() {
   const [config, setConfig] = useState<AppConfig>(DEFAULT_CONFIG);
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
@@ -303,7 +357,14 @@ export default function App() {
   const [file, setFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
+  const [downloadingBookKey, setDownloadingBookKey] = useState<string | null>(null);
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
 
   const activeFormats = activeFormatLabels(config);
   const visibleRows = useMemo(
@@ -353,6 +414,25 @@ export default function App() {
       toast.error(error instanceof Error ? error.message : "Falha na exportação.");
     } finally {
       setIsExporting(false);
+    }
+  };
+
+  const runBookDownload = async (row: BookRow) => {
+    if (!analysis || !activeFormats.length) return;
+    setDownloadingBookKey(row.book_key);
+    try {
+      const payload = await exportBookFiles(analysis.analysisId, row.book_key, config);
+      for (const filePayload of payload.files) {
+        downloadNamedBlob(
+          blobFromBase64(filePayload.contentBase64, filePayload.mimeType),
+          filePayload.filename,
+        );
+      }
+      toast.success("Arquivos baixados.");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Falha no download.");
+    } finally {
+      setDownloadingBookKey(null);
     }
   };
 
@@ -427,10 +507,29 @@ export default function App() {
                   </TooltipTrigger>
                   <TooltipContent>Reanalisar</TooltipContent>
                 </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      aria-label="Alternar tema"
+                      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                    >
+                      {theme === "dark" ? (
+                        <Sun className="h-4 w-4" />
+                      ) : (
+                        <Moon className="h-4 w-4" />
+                      )}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>{theme === "dark" ? "Tema claro" : "Tema escuro"}</TooltipContent>
+                </Tooltip>
               </div>
             </header>
 
-            {(isAnalyzing || isExporting) && <Progress value={isAnalyzing ? 62 : 86} />}
+            {(isAnalyzing || isExporting || downloadingBookKey) && (
+              <Progress value={isAnalyzing ? 62 : 86} />
+            )}
 
             <MetricsStrip analysis={analysis} summary={summary} activeFormats={activeFormats} />
 
@@ -441,6 +540,14 @@ export default function App() {
                   <Input
                     aria-label="Busca"
                     className="pl-9"
+                    style={
+                      theme === "dark"
+                        ? {
+                            backgroundColor: "oklch(0.2603 0 0)",
+                            color: "oklch(0.9288 0.0126 255.5078)",
+                          }
+                        : undefined
+                    }
                     placeholder="Título ou autor"
                     value={filters.search}
                     onChange={(event) => setFilters({ ...filters, search: event.target.value })}
@@ -456,7 +563,7 @@ export default function App() {
                   <SelectContent>
                     {statusOptions.map((option) => (
                       <SelectItem key={option.value} value={option.value}>
-                        {option.label}
+                        {option.value === "todos" ? "Status" : option.label}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -471,7 +578,7 @@ export default function App() {
                   <SelectContent>
                     {authorOptions.map((author) => (
                       <SelectItem key={author} value={author}>
-                        {author}
+                        {author === "Todos" ? "Autor" : author}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -539,6 +646,9 @@ export default function App() {
               visibleRows={visibleRows}
               selectionMap={selectionMap}
               onSelectionChange={setSelectionMap}
+              onBookDownload={runBookDownload}
+              downloadingBookKey={downloadingBookKey}
+              canDownload={Boolean(analysis && activeFormats.length && !isExporting)}
             />
           </main>
         </div>
