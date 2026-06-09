@@ -239,24 +239,35 @@ function BookTable({
 
   return (
     <div className="max-w-full overflow-hidden rounded-md border bg-card">
-      <Table>
+      <Table className="table-fixed">
+        <colgroup>
+          <col className="w-[40px]" />
+          <col />
+          <col className="w-[104px]" />
+          <col className="w-[86px]" />
+          <col className="w-[58px]" />
+          <col className="w-[92px]" />
+          <col className="w-[58px]" />
+          <col className="w-[112px]" />
+          <col className="w-[48px]" />
+        </colgroup>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-10">
+            <TableHead>
               <Checkbox
                 checked={headerChecked}
                 aria-label="Selecionar visíveis"
                 onCheckedChange={(checked) => toggleVisible(Boolean(checked))}
               />
             </TableHead>
-            <TableHead className="min-w-[16rem]">Livro</TableHead>
+            <TableHead>Livro</TableHead>
             <TableHead>Status</TableHead>
             <TableHead className="text-right">Destaques</TableHead>
             <TableHead className="text-right">Notas</TableHead>
             <TableHead className="text-right">Marcadores</TableHead>
             <TableHead className="text-right">Novos</TableHead>
-            <TableHead>Última exportação</TableHead>
-            <TableHead className="w-12 text-right">Baixar</TableHead>
+            <TableHead>Data Export</TableHead>
+            <TableHead className="px-1" />
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -271,8 +282,8 @@ function BookTable({
                   }
                 />
               </TableCell>
-              <TableCell>
-                <div className="max-w-[32rem]">
+              <TableCell className="max-w-0">
+                <div className="min-w-0">
                   <div className="truncate font-medium">{row.title}</div>
                   <div className="truncate text-xs text-muted-foreground">{row.author}</div>
                 </div>
@@ -284,10 +295,10 @@ function BookTable({
               <TableCell className="text-right tabular-nums">{row.notes}</TableCell>
               <TableCell className="text-right tabular-nums">{row.bookmarks}</TableCell>
               <TableCell className="text-right tabular-nums">{row.new_highlights_count}</TableCell>
-              <TableCell className="min-w-36 text-muted-foreground">
+              <TableCell className="text-muted-foreground">
                 {row.last_export_display}
               </TableCell>
-              <TableCell className="text-right">
+              <TableCell className="px-1 text-right">
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
@@ -473,7 +484,7 @@ export default function App() {
   return (
     <TooltipProvider>
       <div className="min-h-screen bg-background">
-        <div className="mx-auto grid w-full max-w-[1480px] gap-4 px-4 py-4 lg:grid-cols-[280px_minmax(0,1fr)]">
+        <div className="mx-auto grid w-full max-w-[1480px] gap-4 px-4 py-4 lg:grid-cols-[240px_minmax(0,1fr)]">
           <div className="hidden lg:block">
             <SettingsPanel config={config} onChange={setConfig} />
           </div>

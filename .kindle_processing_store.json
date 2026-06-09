@@ -16,7 +16,7 @@
         "534d32b8e82c909de0c37972d201a09b891162da",
         "cf4e31d9014ad1adbe51eaac19dfef16085c7a58"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -27,8 +27,8 @@
         "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -37,7 +37,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -255,6 +255,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 2,
+          "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "05aee3d7ea74dda2c25d1583637d5a48f21a11b0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "9be1328e9a2ca59eec182783b5f9e32a891c2194",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "O homem do castelo alto"
@@ -471,7 +567,7 @@
         "f177889f72d8173f9232c2ede57d876fcf99f4d7",
         "f7a8f13b19da11f1baa3088df77a4b3efbf6788d"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "f9395da4ab40243fc5bc2df90365c0d80796299e",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -482,8 +578,8 @@
         "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": {
         "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
@@ -631,7 +727,7 @@
       ],
       "last_export_signature": "f9395da4ab40243fc5bc2df90365c0d80796299e",
       "last_exported_at": "2026-06-09T04:47:04.306487+00:00",
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -849,6 +945,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 62,
+          "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 62,
+          "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 62,
+          "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 62,
+          "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 62,
+          "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 62,
+          "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 62,
+          "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f9395da4ab40243fc5bc2df90365c0d80796299e",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 62,
+          "highlight_signature_hash": "0b44e4556e54ec0ec50746e2af8eb4e356b17c69",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "A LINGUAGEM CORPORAL NÃO MENTE: A Arte De Interpretar e Dominar a Linguagem Não (linguagem corporal, comportamento, microexpressões, linguagem não verbal, ... leitura dos sinais)"
@@ -931,7 +1123,7 @@
         "fb56a52b40d66404e52e8f1bb73c5d96e99e6ab8",
         "fea74f0f561391e6bd8aabdbfa11ec2d69861021"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "5c520410238728941c0e4dd61699d01a0c98b275",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -942,8 +1134,8 @@
         "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -952,7 +1144,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -1170,6 +1362,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "5c520410238728941c0e4dd61699d01a0c98b275",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 33,
+          "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "5c520410238728941c0e4dd61699d01a0c98b275",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 33,
+          "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "5c520410238728941c0e4dd61699d01a0c98b275",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 33,
+          "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "5c520410238728941c0e4dd61699d01a0c98b275",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 33,
+          "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "5c520410238728941c0e4dd61699d01a0c98b275",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 33,
+          "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "5c520410238728941c0e4dd61699d01a0c98b275",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 33,
+          "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "5c520410238728941c0e4dd61699d01a0c98b275",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 33,
+          "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "5c520410238728941c0e4dd61699d01a0c98b275",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 33,
+          "highlight_signature_hash": "a144f5c45049af485c01c8d9c32b6e2da48cbb03",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "Jaron Lanier - Ten Arguments For Deleting Your Social Media Accounts Right Now"
@@ -1204,7 +1492,44 @@
         "f3016236bbbac05569e55fe71d8e795354b39f2f",
         "f833d89f15f13a703bb6474d28021019addf139c"
       ],
-      "export_history": [],
+      "export_history": [
+        {
+          "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+          "export_id": "90087d19a8d8918c2b84c4bf5b11c4862a41b7ab",
+          "exported_at": "2026-06-09T04:59:38.689234+00:00",
+          "formats": [
+            "markdown"
+          ],
+          "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+          "highlight_signature_hashes": [
+            "064c573b09bb58388031060571f1d7c1e5250113",
+            "0d661721561565302aac25b4290f93020979c8e4",
+            "1fb9aee33ed18e6e367dee44e3e3c17c4d8e79b1",
+            "204c35165039478d28b3b4159533149dc9f2f679",
+            "2d066b2a9388a4a5d9f3cb8c5cfe349314e806e9",
+            "3fb830e13b463bbe0c92c08a6c0242ee69759c47",
+            "52bd24b5bced7ff11ff9582f453b1b7c658cbbc5",
+            "74acea6cc1de8c069f65e43eb4554359a35c0933",
+            "78a74be8e13f55bed62c9a35aa3e858690940da4",
+            "80f87fa31d11f43d3431285cfebdde0fcb072989",
+            "9beb5efbc4f204380b1887f68c705b6ffb453447",
+            "ad661183fe81f85d3031f1b291c014cd52f15f7a",
+            "b25fa73c173a490ecf48d7d4b0a63cf0d69a8228",
+            "b4c9a078f0dcc764c1532556c99a5d10eed72595",
+            "b7847b94943cd92ef8ce0f8e58d574eee1d18d1f",
+            "bd0d59f015cbbbc5e545ac66bb6260587b0638ef",
+            "c0d4d821310c17311a3a2e670a3c99b435d51ea2",
+            "c1e36662b55e8caa326e1e4db377fe0978f4949c",
+            "cd91f42147fbce88e417b643abead05ac65da616",
+            "d4e631977be51a70e8fb4edb3a9b2c3032995b82",
+            "e531a807856f6707c5b9d21fee548c4abed7e22c",
+            "e888f8173dd420f62a7656a9c2cfc4b3ca4d0296",
+            "e9bc54330f53fda082fa36dd705ebcbfb4c3207a"
+          ],
+          "processed_at": "2026-06-09T04:59:11.153610+00:00",
+          "reexport_without_changes": false
+        }
+      ],
       "highlight_count": 23,
       "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
       "highlight_signature_hashes": [
@@ -1232,7 +1557,7 @@
         "e888f8173dd420f62a7656a9c2cfc4b3ca4d0296",
         "e9bc54330f53fda082fa36dd705ebcbfb4c3207a"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -1243,17 +1568,78 @@
         "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
-      "last_export": null,
-      "last_export_at": null,
-      "last_export_formats": [],
-      "last_export_highlight_signature": null,
-      "last_export_highlight_signature_hashes": [],
-      "last_export_signature": null,
-      "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_export": {
+        "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+        "export_id": "90087d19a8d8918c2b84c4bf5b11c4862a41b7ab",
+        "exported_at": "2026-06-09T04:59:38.689234+00:00",
+        "formats": [
+          "markdown"
+        ],
+        "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+        "highlight_signature_hashes": [
+          "064c573b09bb58388031060571f1d7c1e5250113",
+          "0d661721561565302aac25b4290f93020979c8e4",
+          "1fb9aee33ed18e6e367dee44e3e3c17c4d8e79b1",
+          "204c35165039478d28b3b4159533149dc9f2f679",
+          "2d066b2a9388a4a5d9f3cb8c5cfe349314e806e9",
+          "3fb830e13b463bbe0c92c08a6c0242ee69759c47",
+          "52bd24b5bced7ff11ff9582f453b1b7c658cbbc5",
+          "74acea6cc1de8c069f65e43eb4554359a35c0933",
+          "78a74be8e13f55bed62c9a35aa3e858690940da4",
+          "80f87fa31d11f43d3431285cfebdde0fcb072989",
+          "9beb5efbc4f204380b1887f68c705b6ffb453447",
+          "ad661183fe81f85d3031f1b291c014cd52f15f7a",
+          "b25fa73c173a490ecf48d7d4b0a63cf0d69a8228",
+          "b4c9a078f0dcc764c1532556c99a5d10eed72595",
+          "b7847b94943cd92ef8ce0f8e58d574eee1d18d1f",
+          "bd0d59f015cbbbc5e545ac66bb6260587b0638ef",
+          "c0d4d821310c17311a3a2e670a3c99b435d51ea2",
+          "c1e36662b55e8caa326e1e4db377fe0978f4949c",
+          "cd91f42147fbce88e417b643abead05ac65da616",
+          "d4e631977be51a70e8fb4edb3a9b2c3032995b82",
+          "e531a807856f6707c5b9d21fee548c4abed7e22c",
+          "e888f8173dd420f62a7656a9c2cfc4b3ca4d0296",
+          "e9bc54330f53fda082fa36dd705ebcbfb4c3207a"
+        ],
+        "processed_at": "2026-06-09T04:59:11.153610+00:00",
+        "reexport_without_changes": false
+      },
+      "last_export_at": "2026-06-09T04:59:38.689234+00:00",
+      "last_export_formats": [
+        "markdown"
+      ],
+      "last_export_highlight_signature": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+      "last_export_highlight_signature_hashes": [
+        "064c573b09bb58388031060571f1d7c1e5250113",
+        "0d661721561565302aac25b4290f93020979c8e4",
+        "1fb9aee33ed18e6e367dee44e3e3c17c4d8e79b1",
+        "204c35165039478d28b3b4159533149dc9f2f679",
+        "2d066b2a9388a4a5d9f3cb8c5cfe349314e806e9",
+        "3fb830e13b463bbe0c92c08a6c0242ee69759c47",
+        "52bd24b5bced7ff11ff9582f453b1b7c658cbbc5",
+        "74acea6cc1de8c069f65e43eb4554359a35c0933",
+        "78a74be8e13f55bed62c9a35aa3e858690940da4",
+        "80f87fa31d11f43d3431285cfebdde0fcb072989",
+        "9beb5efbc4f204380b1887f68c705b6ffb453447",
+        "ad661183fe81f85d3031f1b291c014cd52f15f7a",
+        "b25fa73c173a490ecf48d7d4b0a63cf0d69a8228",
+        "b4c9a078f0dcc764c1532556c99a5d10eed72595",
+        "b7847b94943cd92ef8ce0f8e58d574eee1d18d1f",
+        "bd0d59f015cbbbc5e545ac66bb6260587b0638ef",
+        "c0d4d821310c17311a3a2e670a3c99b435d51ea2",
+        "c1e36662b55e8caa326e1e4db377fe0978f4949c",
+        "cd91f42147fbce88e417b643abead05ac65da616",
+        "d4e631977be51a70e8fb4edb3a9b2c3032995b82",
+        "e531a807856f6707c5b9d21fee548c4abed7e22c",
+        "e888f8173dd420f62a7656a9c2cfc4b3ca4d0296",
+        "e9bc54330f53fda082fa36dd705ebcbfb4c3207a"
+      ],
+      "last_export_signature": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+      "last_exported_at": "2026-06-09T04:59:38.689234+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -1471,6 +1857,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 23,
+          "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 23,
+          "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 23,
+          "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 23,
+          "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 23,
+          "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 23,
+          "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 23,
+          "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "802d6715feda251007e3ebf62e5bf6ab8d66987a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 23,
+          "highlight_signature_hash": "8314401457c8f01923e9b5205d0d3833c8e388ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "O andarilho - A busca do Graal"
@@ -1493,7 +1975,7 @@
         "06bf9295432c70aa6970401330c82dfa87f093db",
         "22771e9d70588defe2de27fd3ea738674cc123f2"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -1504,8 +1986,8 @@
         "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -1514,7 +1996,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -1732,6 +2214,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 3,
+          "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 3,
+          "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 3,
+          "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 3,
+          "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 3,
+          "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 3,
+          "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 3,
+          "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6f30fe66104bfcc5fb15c4a83f7a9ddf57de333f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 3,
+          "highlight_signature_hash": "b92120e60e266ab71d4c97e6f3064fc00619d36a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "O Mito da Caverna"
@@ -1790,7 +2368,7 @@
         "f1caa9d71d8063ee0ec8a1823aad3ba1fd502da9",
         "f6682034524cf67d032a947f1f8925a04d167788"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -1801,8 +2379,8 @@
         "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -1811,7 +2389,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -2029,6 +2607,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 21,
+          "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 21,
+          "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 21,
+          "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 21,
+          "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 21,
+          "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 21,
+          "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 21,
+          "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f8c9e36937d1b581e961c88d7a3faa4bf966ac93",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 21,
+          "highlight_signature_hash": "7d78ce3cd12f182fa9f44ff00fe759867ce7811f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "Box Grandes Obras de Dostoiévski"
@@ -2321,7 +2995,7 @@
         "fc23ae9bb69b797d0de587383e9a13355db441d5",
         "fffce6ae208f4086eb5bfb1b205c72534a4c8815"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "6df989252026ebf1e3746017d4869f5225c2fed6",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -2332,8 +3006,8 @@
         "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": {
         "content_signature_hash": "626ddc49d58fdcf618d46729129ce41053429218",
@@ -2533,7 +3207,7 @@
       ],
       "last_export_signature": "626ddc49d58fdcf618d46729129ce41053429218",
       "last_exported_at": "2026-04-19T13:32:14.025791+00:00",
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -2751,6 +3425,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6df989252026ebf1e3746017d4869f5225c2fed6",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 87,
+          "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6df989252026ebf1e3746017d4869f5225c2fed6",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 87,
+          "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6df989252026ebf1e3746017d4869f5225c2fed6",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 87,
+          "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6df989252026ebf1e3746017d4869f5225c2fed6",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 87,
+          "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6df989252026ebf1e3746017d4869f5225c2fed6",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 87,
+          "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6df989252026ebf1e3746017d4869f5225c2fed6",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 87,
+          "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6df989252026ebf1e3746017d4869f5225c2fed6",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 87,
+          "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6df989252026ebf1e3746017d4869f5225c2fed6",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 87,
+          "highlight_signature_hash": "ab19c9932cadbaa6a20f001696057c9029e0fa1b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "A Arte de ter Razão - 38 Estratagemas para Vencer um Debate Sem Precisar Ter Razão"
@@ -3062,7 +3832,7 @@
         "fa9b6ec2b9a577fc79ffac1fe6cf60fe5e5a13fa",
         "fb765a8852a69a32579bc1ccec33c2d4a3a02e6b"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -3073,8 +3843,8 @@
         "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
         "new_highlights_count": 0,
         "note_count": 1,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -3083,7 +3853,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 1,
       "processing_history": [
         {
@@ -3301,6 +4071,102 @@
           "note_count": 1,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 147,
+          "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 147,
+          "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 147,
+          "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 147,
+          "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 147,
+          "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 147,
+          "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 147,
+          "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "4cc13550d80119ea2cb074e1fefca0c80b3000c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 147,
+          "highlight_signature_hash": "6882c538269347574e0941489fa68ca7726279ef",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "Como se tornar inesquecível"
@@ -3342,7 +4208,48 @@
         "d882c9613b7694f68c68f5c4983b8392a20de95c",
         "dff9b7ba1fa3f9db8d6235bdf2886710db2b0456"
       ],
-      "export_history": [],
+      "export_history": [
+        {
+          "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+          "export_id": "5a10ec8815b3b7567248b6ba5a6e2ef59b564ab3",
+          "exported_at": "2026-06-09T04:59:38.689234+00:00",
+          "formats": [
+            "markdown"
+          ],
+          "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+          "highlight_signature_hashes": [
+            "0705f128f1a364cc9e10cfaa8b3bc6f2e4513727",
+            "0caee5831f51c5a6952b89d17834e3bd731eaf8d",
+            "15dad24b7033576fa1a48e614b86c12afb09f674",
+            "179071b7190e0d4a1725997b78e17796528fbeca",
+            "26b9ece3438e2bc7c6fecc82e83c07ccd4052699",
+            "2a366cb17b142673ee5de7201020745dcb862721",
+            "3525741e8f1658d68364d62a6f864067ccdb47b6",
+            "3a3a1dd75011cc8e90666e3ec11dcad3a4558ace",
+            "4c89146a247542d9fb5e42d8ebdd0bdcb233cf67",
+            "4e3192b05411eac96ce54f42c73cbba846dd93f6",
+            "50cb04a012bee3c3f5e3b3e8e291d1a947163f5a",
+            "6aaca13097ac813ad2901e5ef8b9d83cbd9ff764",
+            "7398222a588069fc1ad5e39a7c5b38c2f8a11a78",
+            "74b5025b6ac28ffd6785e15ea5254343071a5cca",
+            "7e2ec57361f716c665c097b618c977b336893d78",
+            "955c407bc41787532b98b85b68d4013d5e4fe6b5",
+            "9ef094895149e5c063c38717ac39e0d4c76d7386",
+            "b7db3c7919bf98f6f0e2f73f282bf021164dbf3c",
+            "d752f0f03b3f2cc38ec882e398d0447812ceea0a",
+            "d7eecec229590c76c5e50131f90f5a5c7174cb61",
+            "d9fa1884feed9afe4b29217e583428962fbe81ad",
+            "dc193de5d44c5431f235b2b16e2971400769c284",
+            "dd65f27079f62c314062382fb22ea4f93a93019f",
+            "e3f49963f25ca4650cc481a03cdb049618be5b09",
+            "f11023fa584a1f011788b8b2de4b721570aa1097",
+            "fa499103ff1d3e925e00dcf09805fd6df4e9e0ba",
+            "fe3e9166a5871bd315f9f1b38c48e7c5df3550de"
+          ],
+          "processed_at": "2026-06-09T04:59:11.153610+00:00",
+          "reexport_without_changes": false
+        }
+      ],
       "highlight_count": 27,
       "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
       "highlight_signature_hashes": [
@@ -3374,7 +4281,7 @@
         "fa499103ff1d3e925e00dcf09805fd6df4e9e0ba",
         "fe3e9166a5871bd315f9f1b38c48e7c5df3550de"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "e8f23959f4961f52fb2dd6632480994a9064121c",
       "last_detected_processing": {
         "bookmark_count": 3,
@@ -3385,17 +4292,86 @@
         "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
-      "last_export": null,
-      "last_export_at": null,
-      "last_export_formats": [],
-      "last_export_highlight_signature": null,
-      "last_export_highlight_signature_hashes": [],
-      "last_export_signature": null,
-      "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_export": {
+        "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+        "export_id": "5a10ec8815b3b7567248b6ba5a6e2ef59b564ab3",
+        "exported_at": "2026-06-09T04:59:38.689234+00:00",
+        "formats": [
+          "markdown"
+        ],
+        "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+        "highlight_signature_hashes": [
+          "0705f128f1a364cc9e10cfaa8b3bc6f2e4513727",
+          "0caee5831f51c5a6952b89d17834e3bd731eaf8d",
+          "15dad24b7033576fa1a48e614b86c12afb09f674",
+          "179071b7190e0d4a1725997b78e17796528fbeca",
+          "26b9ece3438e2bc7c6fecc82e83c07ccd4052699",
+          "2a366cb17b142673ee5de7201020745dcb862721",
+          "3525741e8f1658d68364d62a6f864067ccdb47b6",
+          "3a3a1dd75011cc8e90666e3ec11dcad3a4558ace",
+          "4c89146a247542d9fb5e42d8ebdd0bdcb233cf67",
+          "4e3192b05411eac96ce54f42c73cbba846dd93f6",
+          "50cb04a012bee3c3f5e3b3e8e291d1a947163f5a",
+          "6aaca13097ac813ad2901e5ef8b9d83cbd9ff764",
+          "7398222a588069fc1ad5e39a7c5b38c2f8a11a78",
+          "74b5025b6ac28ffd6785e15ea5254343071a5cca",
+          "7e2ec57361f716c665c097b618c977b336893d78",
+          "955c407bc41787532b98b85b68d4013d5e4fe6b5",
+          "9ef094895149e5c063c38717ac39e0d4c76d7386",
+          "b7db3c7919bf98f6f0e2f73f282bf021164dbf3c",
+          "d752f0f03b3f2cc38ec882e398d0447812ceea0a",
+          "d7eecec229590c76c5e50131f90f5a5c7174cb61",
+          "d9fa1884feed9afe4b29217e583428962fbe81ad",
+          "dc193de5d44c5431f235b2b16e2971400769c284",
+          "dd65f27079f62c314062382fb22ea4f93a93019f",
+          "e3f49963f25ca4650cc481a03cdb049618be5b09",
+          "f11023fa584a1f011788b8b2de4b721570aa1097",
+          "fa499103ff1d3e925e00dcf09805fd6df4e9e0ba",
+          "fe3e9166a5871bd315f9f1b38c48e7c5df3550de"
+        ],
+        "processed_at": "2026-06-09T04:59:11.153610+00:00",
+        "reexport_without_changes": false
+      },
+      "last_export_at": "2026-06-09T04:59:38.689234+00:00",
+      "last_export_formats": [
+        "markdown"
+      ],
+      "last_export_highlight_signature": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+      "last_export_highlight_signature_hashes": [
+        "0705f128f1a364cc9e10cfaa8b3bc6f2e4513727",
+        "0caee5831f51c5a6952b89d17834e3bd731eaf8d",
+        "15dad24b7033576fa1a48e614b86c12afb09f674",
+        "179071b7190e0d4a1725997b78e17796528fbeca",
+        "26b9ece3438e2bc7c6fecc82e83c07ccd4052699",
+        "2a366cb17b142673ee5de7201020745dcb862721",
+        "3525741e8f1658d68364d62a6f864067ccdb47b6",
+        "3a3a1dd75011cc8e90666e3ec11dcad3a4558ace",
+        "4c89146a247542d9fb5e42d8ebdd0bdcb233cf67",
+        "4e3192b05411eac96ce54f42c73cbba846dd93f6",
+        "50cb04a012bee3c3f5e3b3e8e291d1a947163f5a",
+        "6aaca13097ac813ad2901e5ef8b9d83cbd9ff764",
+        "7398222a588069fc1ad5e39a7c5b38c2f8a11a78",
+        "74b5025b6ac28ffd6785e15ea5254343071a5cca",
+        "7e2ec57361f716c665c097b618c977b336893d78",
+        "955c407bc41787532b98b85b68d4013d5e4fe6b5",
+        "9ef094895149e5c063c38717ac39e0d4c76d7386",
+        "b7db3c7919bf98f6f0e2f73f282bf021164dbf3c",
+        "d752f0f03b3f2cc38ec882e398d0447812ceea0a",
+        "d7eecec229590c76c5e50131f90f5a5c7174cb61",
+        "d9fa1884feed9afe4b29217e583428962fbe81ad",
+        "dc193de5d44c5431f235b2b16e2971400769c284",
+        "dd65f27079f62c314062382fb22ea4f93a93019f",
+        "e3f49963f25ca4650cc481a03cdb049618be5b09",
+        "f11023fa584a1f011788b8b2de4b721570aa1097",
+        "fa499103ff1d3e925e00dcf09805fd6df4e9e0ba",
+        "fe3e9166a5871bd315f9f1b38c48e7c5df3550de"
+      ],
+      "last_export_signature": "e8f23959f4961f52fb2dd6632480994a9064121c",
+      "last_exported_at": "2026-06-09T04:59:38.689234+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -3613,6 +4589,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 3,
+          "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 27,
+          "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 3,
+          "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 27,
+          "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 3,
+          "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 27,
+          "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 3,
+          "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 27,
+          "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 3,
+          "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 27,
+          "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 3,
+          "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 27,
+          "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 3,
+          "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 27,
+          "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 3,
+          "content_signature_hash": "e8f23959f4961f52fb2dd6632480994a9064121c",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 27,
+          "highlight_signature_hash": "8468d8c888d260bede3b9c1e1008d46ec3e790ad",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "Memórias Póstumas de Brás Cubas (Literatura Brasileira Livro 2)"
@@ -3637,7 +4709,7 @@
         "d3662a235deac9268efb4df3b0ae2f2f1014d403",
         "e50270b583a8ba13686e72616387c98f4c742a90"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "0a2562c705a324f1cee6f930a2d97c4d38528993",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -3648,8 +4720,8 @@
         "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -3658,7 +4730,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -3876,6 +4948,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0a2562c705a324f1cee6f930a2d97c4d38528993",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 4,
+          "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0a2562c705a324f1cee6f930a2d97c4d38528993",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 4,
+          "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0a2562c705a324f1cee6f930a2d97c4d38528993",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 4,
+          "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0a2562c705a324f1cee6f930a2d97c4d38528993",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 4,
+          "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0a2562c705a324f1cee6f930a2d97c4d38528993",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 4,
+          "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0a2562c705a324f1cee6f930a2d97c4d38528993",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 4,
+          "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0a2562c705a324f1cee6f930a2d97c4d38528993",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 4,
+          "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0a2562c705a324f1cee6f930a2d97c4d38528993",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 4,
+          "highlight_signature_hash": "755c9ce147b4faacc0c8b1c89df7eb85b99cf06b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "O fim da eternidade"
@@ -4012,7 +5180,7 @@
         "f164e1a875a155cb9c2e6b59ff38506b5dfa9550",
         "f5fb6669677f5707a9789980409a4dbc0e214819"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
       "last_detected_processing": {
         "bookmark_count": 1,
@@ -4023,8 +5191,8 @@
         "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": {
         "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
@@ -4118,7 +5286,7 @@
       ],
       "last_export_signature": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
       "last_exported_at": "2026-06-09T04:34:28.405677+00:00",
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -4336,6 +5504,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 1,
+          "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 35,
+          "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 1,
+          "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 35,
+          "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 1,
+          "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 35,
+          "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 1,
+          "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 35,
+          "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 1,
+          "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 35,
+          "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 1,
+          "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 35,
+          "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 1,
+          "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 35,
+          "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 1,
+          "content_signature_hash": "b5d42a4f717cf1f5c714d3bb611c5c3c2093b009",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 35,
+          "highlight_signature_hash": "e6ed258a6d57ec2065aa1636dc02651da06704c6",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "A Fórmula Mágica de Joel Greenblatt para Bater o Mercado de Ações"
@@ -4356,7 +5620,22 @@
         "e472a3dae079baf65bb9e9f82f2933ac905b85b3",
         "f4a48b66f56e8e11c8c3269ce5eef47a8d800341"
       ],
-      "export_history": [],
+      "export_history": [
+        {
+          "content_signature_hash": "e49fd6df19b9f2a3d8ba9022d56776ece15e8cf0",
+          "export_id": "0b1c761e6d82a2a6212ece08db2875222dbc4005",
+          "exported_at": "2026-06-09T05:06:33.805380+00:00",
+          "formats": [
+            "markdown"
+          ],
+          "highlight_signature_hash": "e4cf9a5e7c5fc4144a1b2df35d90852daa3df088",
+          "highlight_signature_hashes": [
+            "e6279827fe9be78b66386e9f47aaebbf58b3b498"
+          ],
+          "processed_at": "2026-06-09T05:06:33.331788+00:00",
+          "reexport_without_changes": false
+        }
+      ],
       "highlight_count": 9,
       "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
       "highlight_signature_hashes": [
@@ -4370,7 +5649,7 @@
         "dfc92697b70889e2842c32ff62604361eb3fab1c",
         "f42bcccbed3ad80e20a7f46035c233201b788253"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -4381,17 +5660,34 @@
         "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
-      "last_export": null,
-      "last_export_at": null,
-      "last_export_formats": [],
-      "last_export_highlight_signature": null,
-      "last_export_highlight_signature_hashes": [],
-      "last_export_signature": null,
-      "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_export": {
+        "content_signature_hash": "e49fd6df19b9f2a3d8ba9022d56776ece15e8cf0",
+        "export_id": "0b1c761e6d82a2a6212ece08db2875222dbc4005",
+        "exported_at": "2026-06-09T05:06:33.805380+00:00",
+        "formats": [
+          "markdown"
+        ],
+        "highlight_signature_hash": "e4cf9a5e7c5fc4144a1b2df35d90852daa3df088",
+        "highlight_signature_hashes": [
+          "e6279827fe9be78b66386e9f47aaebbf58b3b498"
+        ],
+        "processed_at": "2026-06-09T05:06:33.331788+00:00",
+        "reexport_without_changes": false
+      },
+      "last_export_at": "2026-06-09T05:06:33.805380+00:00",
+      "last_export_formats": [
+        "markdown"
+      ],
+      "last_export_highlight_signature": "e4cf9a5e7c5fc4144a1b2df35d90852daa3df088",
+      "last_export_highlight_signature_hashes": [
+        "e6279827fe9be78b66386e9f47aaebbf58b3b498"
+      ],
+      "last_export_signature": "e49fd6df19b9f2a3d8ba9022d56776ece15e8cf0",
+      "last_exported_at": "2026-06-09T05:06:33.805380+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -4609,6 +5905,162 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 9,
+          "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 9,
+          "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "e49fd6df19b9f2a3d8ba9022d56776ece15e8cf0",
+          "detected_status": "atualizado",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "e4cf9a5e7c5fc4144a1b2df35d90852daa3df088",
+          "new_highlights_count": 1,
+          "note_count": 1,
+          "process_id": "c63c57e17646af61ab626bd8b2f3c51127c55ca6",
+          "processed_at": "2026-06-09T05:04:34.579284+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "e49fd6df19b9f2a3d8ba9022d56776ece15e8cf0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "e4cf9a5e7c5fc4144a1b2df35d90852daa3df088",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "cc2fe807ecc612043aa5c8f6e9c019121ee36c44",
+          "processed_at": "2026-06-09T05:04:59.952276+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "e49fd6df19b9f2a3d8ba9022d56776ece15e8cf0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "e4cf9a5e7c5fc4144a1b2df35d90852daa3df088",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "56fac8870d398fbf2631f55f9cadd624149e5edd",
+          "processed_at": "2026-06-09T05:05:27.555994+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "e49fd6df19b9f2a3d8ba9022d56776ece15e8cf0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "e4cf9a5e7c5fc4144a1b2df35d90852daa3df088",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "1be0f96ed793db7cc36ec4ab11c1efbbf74a349d",
+          "processed_at": "2026-06-09T05:06:13.782826+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "e49fd6df19b9f2a3d8ba9022d56776ece15e8cf0",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "e4cf9a5e7c5fc4144a1b2df35d90852daa3df088",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "d672c22e516bdda6440b969775e3f128d6ded607",
+          "processed_at": "2026-06-09T05:06:33.331788+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
+          "detected_status": "atualizado",
+          "forced": false,
+          "highlight_count": 9,
+          "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
+          "new_highlights_count": 9,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 9,
+          "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 9,
+          "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 9,
+          "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 9,
+          "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "2ebe5dd893ca85b9944c60fe1e962b12c91948cc",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 9,
+          "highlight_signature_hash": "78e89320caac6dfb5120582e2bd9e01a102cb2d1",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "Blade Runner"
@@ -4704,7 +6156,7 @@
         "f7ee1cead44cf23671da6a3ebac4c474772e75e3",
         "fe976421d3132e614fd74b94ad09a000368c38b9"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
       "last_detected_processing": {
         "bookmark_count": 6,
@@ -4715,8 +6167,8 @@
         "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
         "new_highlights_count": 0,
         "note_count": 1,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -4725,7 +6177,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 1,
       "processing_history": [
         {
@@ -4943,6 +6395,102 @@
           "note_count": 1,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 6,
+          "content_signature_hash": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 36,
+          "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 6,
+          "content_signature_hash": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 36,
+          "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 6,
+          "content_signature_hash": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 36,
+          "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 6,
+          "content_signature_hash": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 36,
+          "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 6,
+          "content_signature_hash": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 36,
+          "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 6,
+          "content_signature_hash": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 36,
+          "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 6,
+          "content_signature_hash": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 36,
+          "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 6,
+          "content_signature_hash": "8173e9f5f875a349f7b08c6d81c3613c68526b78",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 36,
+          "highlight_signature_hash": "35ceb308ad733dcef30f5d0a90040ae3ccbaff82",
+          "new_highlights_count": 0,
+          "note_count": 1,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "Como evitar preocupações e começar a viver"
@@ -5493,7 +7041,7 @@
         "f63d3726bc0d4b708726a7786ae56ced9861f435",
         "fdb2b98aae05da779b5d88ae366cb47e4b7ccb7a"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -5504,8 +7052,8 @@
         "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": {
         "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
@@ -5721,7 +7269,7 @@
       ],
       "last_export_signature": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
       "last_exported_at": "2026-06-09T04:36:50.065798+00:00",
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -5939,9 +7487,238 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 96,
+          "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 96,
+          "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 96,
+          "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 96,
+          "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 96,
+          "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 96,
+          "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 96,
+          "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6cd310b07d2518a45afbc4c400b6078c5e82319f",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 96,
+          "highlight_signature_hash": "3292ed3dae601f6ced6cb557890ae10001b4e27f",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "1984"
+    },
+    "8fefaba0eea3d315e3704f82b4ffe4d221421950": {
+      "author": "Autor desconhecido",
+      "book_key": "8fefaba0eea3d315e3704f82b4ffe4d221421950",
+      "bookmark_count": 0,
+      "content_signature_hash": "60921f411517274fedfcdb9552e8147f86a7fbde",
+      "entry_signature_hashes": [
+        "3ed6e2e35d198681abd141d8e276aee4b886416b"
+      ],
+      "export_history": [
+        {
+          "content_signature_hash": "60921f411517274fedfcdb9552e8147f86a7fbde",
+          "export_id": "5be16d13264289c76494c0bc6c0f56f4eaadb185",
+          "exported_at": "2026-06-09T05:06:33.805380+00:00",
+          "formats": [
+            "markdown"
+          ],
+          "highlight_signature_hash": "db8e70a687951f62b56e44627e2aed418de86c3b",
+          "highlight_signature_hashes": [
+            "c4006dc7512ef0b2a5b742d7b9ee9ca83f813a07"
+          ],
+          "processed_at": "2026-06-09T05:06:33.331788+00:00",
+          "reexport_without_changes": false
+        }
+      ],
+      "highlight_count": 1,
+      "highlight_signature_hash": "db8e70a687951f62b56e44627e2aed418de86c3b",
+      "highlight_signature_hashes": [
+        "c4006dc7512ef0b2a5b742d7b9ee9ca83f813a07"
+      ],
+      "last_analysis_at": "2026-06-09T05:06:33.331788+00:00",
+      "last_analysis_signature": "60921f411517274fedfcdb9552e8147f86a7fbde",
+      "last_detected_processing": {
+        "bookmark_count": 0,
+        "content_signature_hash": "60921f411517274fedfcdb9552e8147f86a7fbde",
+        "detected_status": "sem_mudancas",
+        "forced": false,
+        "highlight_count": 1,
+        "highlight_signature_hash": "db8e70a687951f62b56e44627e2aed418de86c3b",
+        "new_highlights_count": 0,
+        "note_count": 0,
+        "process_id": "d672c22e516bdda6440b969775e3f128d6ded607",
+        "processed_at": "2026-06-09T05:06:33.331788+00:00"
+      },
+      "last_export": {
+        "content_signature_hash": "60921f411517274fedfcdb9552e8147f86a7fbde",
+        "export_id": "5be16d13264289c76494c0bc6c0f56f4eaadb185",
+        "exported_at": "2026-06-09T05:06:33.805380+00:00",
+        "formats": [
+          "markdown"
+        ],
+        "highlight_signature_hash": "db8e70a687951f62b56e44627e2aed418de86c3b",
+        "highlight_signature_hashes": [
+          "c4006dc7512ef0b2a5b742d7b9ee9ca83f813a07"
+        ],
+        "processed_at": "2026-06-09T05:06:33.331788+00:00",
+        "reexport_without_changes": false
+      },
+      "last_export_at": "2026-06-09T05:06:33.805380+00:00",
+      "last_export_formats": [
+        "markdown"
+      ],
+      "last_export_highlight_signature": "db8e70a687951f62b56e44627e2aed418de86c3b",
+      "last_export_highlight_signature_hashes": [
+        "c4006dc7512ef0b2a5b742d7b9ee9ca83f813a07"
+      ],
+      "last_export_signature": "60921f411517274fedfcdb9552e8147f86a7fbde",
+      "last_exported_at": "2026-06-09T05:06:33.805380+00:00",
+      "last_processed_at": "2026-06-09T05:06:33.331788+00:00",
+      "note_count": 0,
+      "processing_history": [
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "60921f411517274fedfcdb9552e8147f86a7fbde",
+          "detected_status": "novo",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "db8e70a687951f62b56e44627e2aed418de86c3b",
+          "new_highlights_count": 1,
+          "note_count": 0,
+          "process_id": "c63c57e17646af61ab626bd8b2f3c51127c55ca6",
+          "processed_at": "2026-06-09T05:04:34.579284+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "60921f411517274fedfcdb9552e8147f86a7fbde",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "db8e70a687951f62b56e44627e2aed418de86c3b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "cc2fe807ecc612043aa5c8f6e9c019121ee36c44",
+          "processed_at": "2026-06-09T05:04:59.952276+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "60921f411517274fedfcdb9552e8147f86a7fbde",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "db8e70a687951f62b56e44627e2aed418de86c3b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "56fac8870d398fbf2631f55f9cadd624149e5edd",
+          "processed_at": "2026-06-09T05:05:27.555994+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "60921f411517274fedfcdb9552e8147f86a7fbde",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "db8e70a687951f62b56e44627e2aed418de86c3b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "1be0f96ed793db7cc36ec4ab11c1efbbf74a349d",
+          "processed_at": "2026-06-09T05:06:13.782826+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "60921f411517274fedfcdb9552e8147f86a7fbde",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "db8e70a687951f62b56e44627e2aed418de86c3b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "d672c22e516bdda6440b969775e3f128d6ded607",
+          "processed_at": "2026-06-09T05:06:33.331788+00:00"
+        }
+      ],
+      "title": "Livro Sem Autor"
     },
     "9ee6aa0739f2ca44daf84f5e4efea1c611c4b603": {
       "author": "Fiódor Dostoiévski",
@@ -5965,7 +7742,7 @@
         "decdffb7be75332e1549adb4d804363f5260fa9b",
         "eaa509f61e2a06fc2c38dec126befb4a9adacbcf"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "3d00e1601f464ef399b9b0095765eb64557c0664",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -5976,8 +7753,8 @@
         "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -5986,7 +7763,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -6204,6 +7981,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3d00e1601f464ef399b9b0095765eb64557c0664",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 5,
+          "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3d00e1601f464ef399b9b0095765eb64557c0664",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 5,
+          "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3d00e1601f464ef399b9b0095765eb64557c0664",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 5,
+          "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3d00e1601f464ef399b9b0095765eb64557c0664",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 5,
+          "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3d00e1601f464ef399b9b0095765eb64557c0664",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 5,
+          "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3d00e1601f464ef399b9b0095765eb64557c0664",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 5,
+          "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3d00e1601f464ef399b9b0095765eb64557c0664",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 5,
+          "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3d00e1601f464ef399b9b0095765eb64557c0664",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 5,
+          "highlight_signature_hash": "844c2d1bf7ed61c1de014ebc43a314f5c33a4e48",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "Crime e castigo (Clássicos da literatura mundial)"
@@ -6232,7 +8105,7 @@
         "c8eeb51656250e0e6aac63adaa98b9213c2d2437",
         "e1235777c6da870f31c6bb26577a8495d3512940"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "0079febbccab2af6b7ac032456760736cd7802aa",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -6243,8 +8116,8 @@
         "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -6253,7 +8126,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -6471,6 +8344,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0079febbccab2af6b7ac032456760736cd7802aa",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 6,
+          "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0079febbccab2af6b7ac032456760736cd7802aa",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 6,
+          "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0079febbccab2af6b7ac032456760736cd7802aa",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 6,
+          "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0079febbccab2af6b7ac032456760736cd7802aa",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 6,
+          "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0079febbccab2af6b7ac032456760736cd7802aa",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 6,
+          "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0079febbccab2af6b7ac032456760736cd7802aa",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 6,
+          "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0079febbccab2af6b7ac032456760736cd7802aa",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 6,
+          "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "0079febbccab2af6b7ac032456760736cd7802aa",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 6,
+          "highlight_signature_hash": "f11298dbecbd1039593a4aae07e4cd92937a8e47",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "Common Sense (Coterie Classics)"
@@ -6491,7 +8460,7 @@
         "8c7fee295076de8e35dd1c88f3442892f8c9c6db",
         "a25fe9ebef9a2ac74b83ad6be255c1bc3e0921ce"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "bd0c3aa9aa51f04269c429012930453c1f355e18",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -6502,8 +8471,8 @@
         "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -6512,7 +8481,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -6730,6 +8699,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "bd0c3aa9aa51f04269c429012930453c1f355e18",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "bd0c3aa9aa51f04269c429012930453c1f355e18",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 2,
+          "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "bd0c3aa9aa51f04269c429012930453c1f355e18",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "bd0c3aa9aa51f04269c429012930453c1f355e18",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "bd0c3aa9aa51f04269c429012930453c1f355e18",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "bd0c3aa9aa51f04269c429012930453c1f355e18",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "bd0c3aa9aa51f04269c429012930453c1f355e18",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "bd0c3aa9aa51f04269c429012930453c1f355e18",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 2,
+          "highlight_signature_hash": "4b8081836450149de099ae2394823b4d2fb448ae",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "A Metamorfose"
@@ -6813,7 +8878,7 @@
         "bcdeb562819b23cdf675f60de5ad81ac758f731e",
         "fc7af53e9c487de7f6c9f06d0fcc094bc7129033"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "69934cd5b4c58de633202cd23dd352e48befe4c9",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -6824,8 +8889,8 @@
         "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -6834,7 +8899,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -7052,6 +9117,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "69934cd5b4c58de633202cd23dd352e48befe4c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 8,
+          "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "69934cd5b4c58de633202cd23dd352e48befe4c9",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 8,
+          "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "69934cd5b4c58de633202cd23dd352e48befe4c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 8,
+          "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "69934cd5b4c58de633202cd23dd352e48befe4c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 8,
+          "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "69934cd5b4c58de633202cd23dd352e48befe4c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 8,
+          "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "69934cd5b4c58de633202cd23dd352e48befe4c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 8,
+          "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "69934cd5b4c58de633202cd23dd352e48befe4c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 8,
+          "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "69934cd5b4c58de633202cd23dd352e48befe4c9",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 8,
+          "highlight_signature_hash": "8340762c343e00f6db6865cdff372564034417d2",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "O Declínio de um Homem"
@@ -7100,7 +9261,7 @@
         "d92746f9cd29f6480e335af96d3605c030d7356d",
         "d9f152fa1b888f84b2ba6d389642bde82e2645fd"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "3916c214a63db795ec7e79bebc21df67cf2413a2",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -7111,8 +9272,8 @@
         "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -7121,7 +9282,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -7339,6 +9500,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3916c214a63db795ec7e79bebc21df67cf2413a2",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 16,
+          "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3916c214a63db795ec7e79bebc21df67cf2413a2",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 16,
+          "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3916c214a63db795ec7e79bebc21df67cf2413a2",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 16,
+          "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3916c214a63db795ec7e79bebc21df67cf2413a2",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 16,
+          "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3916c214a63db795ec7e79bebc21df67cf2413a2",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 16,
+          "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3916c214a63db795ec7e79bebc21df67cf2413a2",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 16,
+          "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3916c214a63db795ec7e79bebc21df67cf2413a2",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 16,
+          "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "3916c214a63db795ec7e79bebc21df67cf2413a2",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 16,
+          "highlight_signature_hash": "0378f722db5480520e032ebc657be5e3f0db234a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "Ruído"
@@ -7379,7 +9636,50 @@
         "f54061614034f271b2f5dcf00468fd6ca1306946",
         "f6c6e8fc4d5693ddbceffd413d207c40593c313f"
       ],
-      "export_history": [],
+      "export_history": [
+        {
+          "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+          "export_id": "517c09b8182e1c927029602a119041e4ac71d35d",
+          "exported_at": "2026-06-09T04:59:38.689234+00:00",
+          "formats": [
+            "markdown"
+          ],
+          "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+          "highlight_signature_hashes": [
+            "075eb9045e54b0da874def54d9f1484ae198cde9",
+            "0c9b8af3c7eaaa4b9f32aa33bc392cc98ebba18b",
+            "0d70f1ff1d62bcaffe3697b0283e7ea04706296c",
+            "0f7be86c5fe3ad2b277a38c089fe26e793464b1b",
+            "120e0fb4619a6386e4132ddb8cc569fccec6d996",
+            "1ad4acd8b747f57c7ef23cf0a313fd79ab657893",
+            "206beda0dfd167f872e32c5d17c667efa99b1d35",
+            "293532dda0e9cea3a52a1fe2493874d9b4f92d77",
+            "2fa05c45cf6914387f8f1f9a3f5df04121593786",
+            "5cfb4f9e9c6e4461cc6f0f29798b2b00fbb62f7b",
+            "626dd205cc63e2c116efb8497fe97a525dab1f44",
+            "67105eee8fbbca4865ce5188148ed1ede1cde46f",
+            "6914bbb112c0144fda4f411d5b0a8b0cbe787533",
+            "795630dc66b96814a0b5e64165caf8be99f27636",
+            "7e2cb9fbc47349e2cd470fec5d441e864d7a4443",
+            "7e4f7360a24fc21366fd5bd68393caee4dca70b6",
+            "816d2a149609e673a70b16348a5fe2b65ccdefb6",
+            "97890a2d6d1a4aa0a18ebf3fe7fdb2846b7d8282",
+            "9e23f68d0715c6606e2dfb01145ce7505d76ee13",
+            "a28f81c54d8c9059cccc9a9db8b1265fb4922a08",
+            "b107a3e39c6ffb5b24f7a45b973464c0bc4330fd",
+            "b7193d2e8b6b0cf5e01f2538b126847ab1f9b0c4",
+            "bb9f1da4af27d63f62f3627712d20441f3021aed",
+            "c8002e749dbcf7b08f79f49e9c39680dc274082d",
+            "d2cc6666ff4f5a4057f1361f5092a05eef1eaef2",
+            "d8a8ce964699533109d7d45f6b1bac497992417b",
+            "df74963efbd30d4b45f517203b193f3e93713ea7",
+            "e47b590857e7668a847c882e4a651aca79ecc2f0",
+            "f81f70c012393728dd031e405bf78c596c54248c"
+          ],
+          "processed_at": "2026-06-09T04:59:11.153610+00:00",
+          "reexport_without_changes": false
+        }
+      ],
       "highlight_count": 29,
       "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
       "highlight_signature_hashes": [
@@ -7413,7 +9713,7 @@
         "e47b590857e7668a847c882e4a651aca79ecc2f0",
         "f81f70c012393728dd031e405bf78c596c54248c"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -7424,17 +9724,90 @@
         "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
-      "last_export": null,
-      "last_export_at": null,
-      "last_export_formats": [],
-      "last_export_highlight_signature": null,
-      "last_export_highlight_signature_hashes": [],
-      "last_export_signature": null,
-      "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_export": {
+        "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+        "export_id": "517c09b8182e1c927029602a119041e4ac71d35d",
+        "exported_at": "2026-06-09T04:59:38.689234+00:00",
+        "formats": [
+          "markdown"
+        ],
+        "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+        "highlight_signature_hashes": [
+          "075eb9045e54b0da874def54d9f1484ae198cde9",
+          "0c9b8af3c7eaaa4b9f32aa33bc392cc98ebba18b",
+          "0d70f1ff1d62bcaffe3697b0283e7ea04706296c",
+          "0f7be86c5fe3ad2b277a38c089fe26e793464b1b",
+          "120e0fb4619a6386e4132ddb8cc569fccec6d996",
+          "1ad4acd8b747f57c7ef23cf0a313fd79ab657893",
+          "206beda0dfd167f872e32c5d17c667efa99b1d35",
+          "293532dda0e9cea3a52a1fe2493874d9b4f92d77",
+          "2fa05c45cf6914387f8f1f9a3f5df04121593786",
+          "5cfb4f9e9c6e4461cc6f0f29798b2b00fbb62f7b",
+          "626dd205cc63e2c116efb8497fe97a525dab1f44",
+          "67105eee8fbbca4865ce5188148ed1ede1cde46f",
+          "6914bbb112c0144fda4f411d5b0a8b0cbe787533",
+          "795630dc66b96814a0b5e64165caf8be99f27636",
+          "7e2cb9fbc47349e2cd470fec5d441e864d7a4443",
+          "7e4f7360a24fc21366fd5bd68393caee4dca70b6",
+          "816d2a149609e673a70b16348a5fe2b65ccdefb6",
+          "97890a2d6d1a4aa0a18ebf3fe7fdb2846b7d8282",
+          "9e23f68d0715c6606e2dfb01145ce7505d76ee13",
+          "a28f81c54d8c9059cccc9a9db8b1265fb4922a08",
+          "b107a3e39c6ffb5b24f7a45b973464c0bc4330fd",
+          "b7193d2e8b6b0cf5e01f2538b126847ab1f9b0c4",
+          "bb9f1da4af27d63f62f3627712d20441f3021aed",
+          "c8002e749dbcf7b08f79f49e9c39680dc274082d",
+          "d2cc6666ff4f5a4057f1361f5092a05eef1eaef2",
+          "d8a8ce964699533109d7d45f6b1bac497992417b",
+          "df74963efbd30d4b45f517203b193f3e93713ea7",
+          "e47b590857e7668a847c882e4a651aca79ecc2f0",
+          "f81f70c012393728dd031e405bf78c596c54248c"
+        ],
+        "processed_at": "2026-06-09T04:59:11.153610+00:00",
+        "reexport_without_changes": false
+      },
+      "last_export_at": "2026-06-09T04:59:38.689234+00:00",
+      "last_export_formats": [
+        "markdown"
+      ],
+      "last_export_highlight_signature": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+      "last_export_highlight_signature_hashes": [
+        "075eb9045e54b0da874def54d9f1484ae198cde9",
+        "0c9b8af3c7eaaa4b9f32aa33bc392cc98ebba18b",
+        "0d70f1ff1d62bcaffe3697b0283e7ea04706296c",
+        "0f7be86c5fe3ad2b277a38c089fe26e793464b1b",
+        "120e0fb4619a6386e4132ddb8cc569fccec6d996",
+        "1ad4acd8b747f57c7ef23cf0a313fd79ab657893",
+        "206beda0dfd167f872e32c5d17c667efa99b1d35",
+        "293532dda0e9cea3a52a1fe2493874d9b4f92d77",
+        "2fa05c45cf6914387f8f1f9a3f5df04121593786",
+        "5cfb4f9e9c6e4461cc6f0f29798b2b00fbb62f7b",
+        "626dd205cc63e2c116efb8497fe97a525dab1f44",
+        "67105eee8fbbca4865ce5188148ed1ede1cde46f",
+        "6914bbb112c0144fda4f411d5b0a8b0cbe787533",
+        "795630dc66b96814a0b5e64165caf8be99f27636",
+        "7e2cb9fbc47349e2cd470fec5d441e864d7a4443",
+        "7e4f7360a24fc21366fd5bd68393caee4dca70b6",
+        "816d2a149609e673a70b16348a5fe2b65ccdefb6",
+        "97890a2d6d1a4aa0a18ebf3fe7fdb2846b7d8282",
+        "9e23f68d0715c6606e2dfb01145ce7505d76ee13",
+        "a28f81c54d8c9059cccc9a9db8b1265fb4922a08",
+        "b107a3e39c6ffb5b24f7a45b973464c0bc4330fd",
+        "b7193d2e8b6b0cf5e01f2538b126847ab1f9b0c4",
+        "bb9f1da4af27d63f62f3627712d20441f3021aed",
+        "c8002e749dbcf7b08f79f49e9c39680dc274082d",
+        "d2cc6666ff4f5a4057f1361f5092a05eef1eaef2",
+        "d8a8ce964699533109d7d45f6b1bac497992417b",
+        "df74963efbd30d4b45f517203b193f3e93713ea7",
+        "e47b590857e7668a847c882e4a651aca79ecc2f0",
+        "f81f70c012393728dd031e405bf78c596c54248c"
+      ],
+      "last_export_signature": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+      "last_exported_at": "2026-06-09T04:59:38.689234+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -7652,6 +10025,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 29,
+          "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 29,
+          "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 29,
+          "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 29,
+          "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 29,
+          "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 29,
+          "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 29,
+          "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "6bf27eba0eaaef1b68c2a4630db4ebfe9427e320",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 29,
+          "highlight_signature_hash": "1022eaac1715b3b6d2790f67db285a218c8f55fe",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "O arqueiro - A busca do Graal - vol. 1"
@@ -7664,13 +10133,28 @@
       "entry_signature_hashes": [
         "8891c598c3da1e40912407b86a3bd201138b4710"
       ],
-      "export_history": [],
+      "export_history": [
+        {
+          "content_signature_hash": "7a6f0d1e9d6e9a7f0cc9ae67adec043a11e53358",
+          "export_id": "15323404ad354d8467b902d6cf3255e180be8d4d",
+          "exported_at": "2026-06-09T05:06:33.805380+00:00",
+          "formats": [
+            "markdown"
+          ],
+          "highlight_signature_hash": "53115b0e1db5fa9c377bfcf5c3d546052de48f4c",
+          "highlight_signature_hashes": [
+            "4bc9f8d32fca982d7bae9c4b72715dbf3c83994a"
+          ],
+          "processed_at": "2026-06-09T05:06:33.331788+00:00",
+          "reexport_without_changes": false
+        }
+      ],
       "highlight_count": 1,
       "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
       "highlight_signature_hashes": [
         "a8a59c5e68a30c1ab398583aa2bfb2c7a5d219cf"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "f13c610960df8dd0e2512c61925da64c4e7f8325",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -7681,17 +10165,34 @@
         "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
-      "last_export": null,
-      "last_export_at": null,
-      "last_export_formats": [],
-      "last_export_highlight_signature": null,
-      "last_export_highlight_signature_hashes": [],
-      "last_export_signature": null,
-      "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_export": {
+        "content_signature_hash": "7a6f0d1e9d6e9a7f0cc9ae67adec043a11e53358",
+        "export_id": "15323404ad354d8467b902d6cf3255e180be8d4d",
+        "exported_at": "2026-06-09T05:06:33.805380+00:00",
+        "formats": [
+          "markdown"
+        ],
+        "highlight_signature_hash": "53115b0e1db5fa9c377bfcf5c3d546052de48f4c",
+        "highlight_signature_hashes": [
+          "4bc9f8d32fca982d7bae9c4b72715dbf3c83994a"
+        ],
+        "processed_at": "2026-06-09T05:06:33.331788+00:00",
+        "reexport_without_changes": false
+      },
+      "last_export_at": "2026-06-09T05:06:33.805380+00:00",
+      "last_export_formats": [
+        "markdown"
+      ],
+      "last_export_highlight_signature": "53115b0e1db5fa9c377bfcf5c3d546052de48f4c",
+      "last_export_highlight_signature_hashes": [
+        "4bc9f8d32fca982d7bae9c4b72715dbf3c83994a"
+      ],
+      "last_export_signature": "7a6f0d1e9d6e9a7f0cc9ae67adec043a11e53358",
+      "last_exported_at": "2026-06-09T05:06:33.805380+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -7909,6 +10410,162 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f13c610960df8dd0e2512c61925da64c4e7f8325",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f13c610960df8dd0e2512c61925da64c4e7f8325",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 1,
+          "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "7a6f0d1e9d6e9a7f0cc9ae67adec043a11e53358",
+          "detected_status": "atualizado",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "53115b0e1db5fa9c377bfcf5c3d546052de48f4c",
+          "new_highlights_count": 1,
+          "note_count": 0,
+          "process_id": "c63c57e17646af61ab626bd8b2f3c51127c55ca6",
+          "processed_at": "2026-06-09T05:04:34.579284+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "7a6f0d1e9d6e9a7f0cc9ae67adec043a11e53358",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "53115b0e1db5fa9c377bfcf5c3d546052de48f4c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "cc2fe807ecc612043aa5c8f6e9c019121ee36c44",
+          "processed_at": "2026-06-09T05:04:59.952276+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "7a6f0d1e9d6e9a7f0cc9ae67adec043a11e53358",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "53115b0e1db5fa9c377bfcf5c3d546052de48f4c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "56fac8870d398fbf2631f55f9cadd624149e5edd",
+          "processed_at": "2026-06-09T05:05:27.555994+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "7a6f0d1e9d6e9a7f0cc9ae67adec043a11e53358",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "53115b0e1db5fa9c377bfcf5c3d546052de48f4c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "1be0f96ed793db7cc36ec4ab11c1efbbf74a349d",
+          "processed_at": "2026-06-09T05:06:13.782826+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "7a6f0d1e9d6e9a7f0cc9ae67adec043a11e53358",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "53115b0e1db5fa9c377bfcf5c3d546052de48f4c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "d672c22e516bdda6440b969775e3f128d6ded607",
+          "processed_at": "2026-06-09T05:06:33.331788+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f13c610960df8dd0e2512c61925da64c4e7f8325",
+          "detected_status": "atualizado",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
+          "new_highlights_count": 1,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f13c610960df8dd0e2512c61925da64c4e7f8325",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f13c610960df8dd0e2512c61925da64c4e7f8325",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f13c610960df8dd0e2512c61925da64c4e7f8325",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f13c610960df8dd0e2512c61925da64c4e7f8325",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "f13c610960df8dd0e2512c61925da64c4e7f8325",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 1,
+          "highlight_signature_hash": "b175f7e8e2aade048bb43ed57c0934d989a2079c",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "A Morte de Ivan Ilitch"
@@ -8149,7 +10806,7 @@
         "fab6f9415e98a2b7c50f142bc863d68f66be39b7",
         "fdb0de2785589a336ec48c6c1f3eacfbc5addeeb"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -8160,8 +10817,8 @@
         "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
         "new_highlights_count": 0,
         "note_count": 2,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -8170,7 +10827,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 2,
       "processing_history": [
         {
@@ -8388,6 +11045,102 @@
           "note_count": 2,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 111,
+          "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
+          "new_highlights_count": 0,
+          "note_count": 2,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 111,
+          "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
+          "new_highlights_count": 0,
+          "note_count": 2,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 111,
+          "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
+          "new_highlights_count": 0,
+          "note_count": 2,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 111,
+          "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
+          "new_highlights_count": 0,
+          "note_count": 2,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 111,
+          "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
+          "new_highlights_count": 0,
+          "note_count": 2,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 111,
+          "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
+          "new_highlights_count": 0,
+          "note_count": 2,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 111,
+          "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
+          "new_highlights_count": 0,
+          "note_count": 2,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "a1f9cf37b978f5f05d9609bda1320bf6bbc8cd40",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 111,
+          "highlight_signature_hash": "a7080287275bbe22b74c067ed842d18fa8284411",
+          "new_highlights_count": 0,
+          "note_count": 2,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "Respire - uma vida em movimento"
@@ -8442,7 +11195,7 @@
         "e4a0a4f28944155230c67fd28fb886ffcf79da87",
         "f87de4f1f35b5108804823405268e4c95cf98779"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -8453,8 +11206,8 @@
         "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -8463,7 +11216,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -8681,6 +11434,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 19,
+          "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 19,
+          "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 19,
+          "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 19,
+          "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 19,
+          "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 19,
+          "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 19,
+          "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "efa3218b8c58844aad62d8e216a0499c4e8c23e4",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 19,
+          "highlight_signature_hash": "bad58bed6c49bec8bfe7f168a4c98f6fc8867406",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "Flores Para Algernon"
@@ -9019,7 +11868,7 @@
         "f9837854e8001b3846b3fe40d64e5a93e8dfa220",
         "fb18512159302f16e499c0afb77a1c6347b9f9b5"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
       "last_detected_processing": {
         "bookmark_count": 2,
@@ -9030,8 +11879,8 @@
         "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -9040,7 +11889,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -9258,6 +12107,102 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 2,
+          "content_signature_hash": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 160,
+          "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 2,
+          "content_signature_hash": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 160,
+          "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 2,
+          "content_signature_hash": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 160,
+          "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 2,
+          "content_signature_hash": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 160,
+          "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 2,
+          "content_signature_hash": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 160,
+          "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 2,
+          "content_signature_hash": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 160,
+          "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 2,
+          "content_signature_hash": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 160,
+          "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 2,
+          "content_signature_hash": "20d2cf55e465a05276d23b9ad59d114bc06ae46a",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 160,
+          "highlight_signature_hash": "726707be7cfd95305df33c67245c568645609c0a",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "A lógica do Cisne Negro (Edição revista e ampliada)"
@@ -9298,7 +12243,7 @@
         "c4184d895146b9937692644784cde20ad9cfd983",
         "d453f9de32412fabe81321cb9dcb4739639441da"
       ],
-      "last_analysis_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_analysis_at": "2026-06-09T05:36:09.923043+00:00",
       "last_analysis_signature": "79f00636df99811b1f46dc3134601b2e0715f9dd",
       "last_detected_processing": {
         "bookmark_count": 0,
@@ -9309,8 +12254,8 @@
         "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
         "new_highlights_count": 0,
         "note_count": 0,
-        "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
-        "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+        "processed_at": "2026-06-09T05:36:09.923043+00:00"
       },
       "last_export": null,
       "last_export_at": null,
@@ -9319,7 +12264,7 @@
       "last_export_highlight_signature_hashes": [],
       "last_export_signature": null,
       "last_exported_at": null,
-      "last_processed_at": "2026-06-09T04:47:57.458774+00:00",
+      "last_processed_at": "2026-06-09T05:36:09.923043+00:00",
       "note_count": 0,
       "processing_history": [
         {
@@ -9537,13 +12482,109 @@
           "note_count": 0,
           "process_id": "96e39423db3211f73a9f3773d6b2a5edf3a810e7",
           "processed_at": "2026-06-09T04:47:57.458774+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "79f00636df99811b1f46dc3134601b2e0715f9dd",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 12,
+          "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "961f6908348fd65fec593914692f6091df313e14",
+          "processed_at": "2026-06-09T04:59:11.153610+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "79f00636df99811b1f46dc3134601b2e0715f9dd",
+          "detected_status": "sem_mudancas",
+          "forced": true,
+          "highlight_count": 12,
+          "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "b2273cebfe2379bc7ec76284b83e886c7685ce2d",
+          "processed_at": "2026-06-09T04:59:57.623757+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "79f00636df99811b1f46dc3134601b2e0715f9dd",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 12,
+          "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "228e696e17dd4588b96dee6d8be91accbf2b9dca",
+          "processed_at": "2026-06-09T05:14:58.226532+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "79f00636df99811b1f46dc3134601b2e0715f9dd",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 12,
+          "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "9e7904691d1dbf96657a4356e19d169cba7a2a2d",
+          "processed_at": "2026-06-09T05:25:36.467936+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "79f00636df99811b1f46dc3134601b2e0715f9dd",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 12,
+          "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "c90428d6d5ce4ac78fc3ddf8d8714d3e8311aa4d",
+          "processed_at": "2026-06-09T05:29:06.373963+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "79f00636df99811b1f46dc3134601b2e0715f9dd",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 12,
+          "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "0661df2eb4b2ab3bb0d4a40afcfda6eecff6f10e",
+          "processed_at": "2026-06-09T05:32:35.029212+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "79f00636df99811b1f46dc3134601b2e0715f9dd",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 12,
+          "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "97ea77e3cf1d0f0b76ce4da6befef3af09e06e30",
+          "processed_at": "2026-06-09T05:33:50.529161+00:00"
+        },
+        {
+          "bookmark_count": 0,
+          "content_signature_hash": "79f00636df99811b1f46dc3134601b2e0715f9dd",
+          "detected_status": "sem_mudancas",
+          "forced": false,
+          "highlight_count": 12,
+          "highlight_signature_hash": "8660cfffecfc8157878d873ea7f77721dd60d18b",
+          "new_highlights_count": 0,
+          "note_count": 0,
+          "process_id": "dfb774b61e68d15eaec6e789946d6a171aad8b08",
+          "processed_at": "2026-06-09T05:36:09.923043+00:00"
         }
       ],
       "title": "O herege - A busca do Graal"
     }
   },
   "meta": {
-    "updated_at": "2026-06-09T04:47:57.477875+00:00"
+    "updated_at": "2026-06-09T05:36:09.942320+00:00"
   },
   "version": 2
 }

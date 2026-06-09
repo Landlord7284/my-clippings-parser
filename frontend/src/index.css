@@ -112,6 +112,10 @@
       0;
   }
 
+  html {
+    font-size: 115%;
+  }
+
   * {
     @apply border-border;
   }
