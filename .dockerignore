@@ -13,3 +13,4 @@ tests
 history
 htmlcov
 coverage.xml
+.kindle_processing_store.json

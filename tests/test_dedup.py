@@ -126,6 +126,20 @@ def test_distinct_text_with_related_position_is_not_removed():
     assert decision.reason is None
 
 
+def test_real_regression_case_distinct_single_position_intro_keeps_following_range():
+    existing = [_entry(355, 355, "Entre outros impulsos potencialmente autossabotadores estão:")]
+    new_entry = _entry(
+        355,
+        357,
+        "O desejo de parecer forte o tempo todo...",
+    )
+
+    decision = decide_duplicate(new_entry, existing, _dedup_config())
+
+    assert decision.is_duplicate is False
+    assert decision.reason is None
+
+
 def test_similarity_fallback_can_detect_near_duplicates_conservatively():
     existing = [
         _entry(
