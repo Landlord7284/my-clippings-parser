@@ -75,6 +75,22 @@ Run a specific Python test module:
 pytest tests/test_parser.py -q
 ```
 
+## Docker
+
+Build the image:
+
+```powershell
+docker build -t legroom2669/parser:1.0 .
+```
+
+Run the container on port `8501`:
+
+```powershell
+docker run --rm -p 8501:8501 -v "${PWD}\data:/data" legroom2669/parser:1.0
+```
+
+Open `http://127.0.0.1:8501`. The `/data` volume stores `.kindle_processing_store.json` outside the container.
+
 ## Project Structure
 
 ```text

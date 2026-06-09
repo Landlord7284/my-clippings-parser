@@ -1,8 +1,20 @@
-FROM python:3.11-slim
+FROM node:22-slim AS frontend-builder
+
+WORKDIR /app/frontend
+
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci
+
+COPY frontend/ ./
+RUN npm run build
+
+
+FROM python:3.11-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PIP_NO_CACHE_DIR=1
+ENV HISTORY_DIR=/data
 
 WORKDIR /app
 
@@ -13,8 +25,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip && pip install -r /app/requirements.txt
 
-COPY . /app
+COPY kindle_extractor /app/kindle_extractor
+COPY config.json app.py /app/
+COPY --from=frontend-builder /app/frontend/dist /app/frontend/dist
 
-EXPOSE 8000
+RUN mkdir -p /data
 
-CMD ["uvicorn", "kindle_extractor.api:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 8501
+
+CMD ["uvicorn", "kindle_extractor.api:app", "--host", "0.0.0.0", "--port", "8501"]
