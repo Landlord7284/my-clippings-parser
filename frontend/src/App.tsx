@@ -23,6 +23,7 @@ import {
   applyBatchSelection,
   buildSelectionSummary,
   filterRows,
+  markRowsExported,
 } from "@/lib/selection";
 import type { AnalysisResponse, AppConfig, BookRow, FilterState } from "@/types";
 import { Badge } from "@/components/ui/badge";
@@ -439,12 +440,29 @@ export default function App() {
     }
   };
 
+  const applyExportedRows = (exportedKeys: string[]) => {
+    const lastExportDisplay = formatLocalDateTime(new Date());
+    setAnalysis((currentAnalysis) => {
+      if (!currentAnalysis) return currentAnalysis;
+      return {
+        ...currentAnalysis,
+        rows: markRowsExported(
+          currentAnalysis.rows,
+          exportedKeys,
+          activeFormatKeys,
+          lastExportDisplay,
+        ),
+      };
+    });
+  };
+
   const runExport = async () => {
     if (!analysis || !selectedBookKeys.length || !activeFormats.length) return;
     setIsExporting(true);
     try {
       const blob = await exportBooks(analysis.analysisId, selectedBookKeys, config);
       downloadBlob(blob);
+      applyExportedRows(selectedBookKeys);
       toast.success("ZIP gerado.");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Falha na exportação.");
@@ -464,25 +482,7 @@ export default function App() {
           filePayload.filename,
         );
       }
-      const lastExportDisplay = formatLocalDateTime(new Date());
-      setAnalysis((currentAnalysis) => {
-        if (!currentAnalysis) return currentAnalysis;
-        return {
-          ...currentAnalysis,
-          rows: currentAnalysis.rows.map((currentRow) =>
-            currentRow.book_key === row.book_key
-              ? {
-                ...currentRow,
-                status: "sem_novidades",
-                status_label: "Exportado",
-                new_highlights_count: 0,
-                last_export_display: lastExportDisplay,
-                last_export_formats: activeFormatKeys,
-              }
-              : currentRow,
-          ),
-        };
-      });
+      applyExportedRows([row.book_key]);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Falha no download.");
     } finally {

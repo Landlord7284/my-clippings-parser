@@ -3,6 +3,8 @@ import unicodedata
 from datetime import datetime
 from typing import Optional, Tuple
 
+from .datetime_utils import format_date_pt
+
 
 def _fix_mojibake(value: str) -> str:
     text = value or ""
@@ -102,21 +104,6 @@ def parse_date(date_str: str) -> Tuple[str, Optional[datetime]]:
         "novembro": 11,
         "dezembro": 12,
     }
-    months_pt = {
-        1: "janeiro",
-        2: "fevereiro",
-        3: "março",
-        4: "abril",
-        5: "maio",
-        6: "junho",
-        7: "julho",
-        8: "agosto",
-        9: "setembro",
-        10: "outubro",
-        11: "novembro",
-        12: "dezembro",
-    }
-
     match = re.search(r"(\d{1,2})\s+de\s+([a-z]+)\s+de\s+(\d{4})", normalized)
     if match:
         day = int(match.group(1))
@@ -124,9 +111,7 @@ def parse_date(date_str: str) -> Tuple[str, Optional[datetime]]:
         year = int(match.group(3))
 
         if month_name in months:
-            month = months[month_name]
-            dt = datetime(year, month, day)
-            formatted = f"{day} de {months_pt[month]} de {year}"
-            return formatted, dt
+            dt = datetime(year, months[month_name], day)
+            return format_date_pt(dt), dt
 
     return date_str, None

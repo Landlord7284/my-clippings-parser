@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+from .book_selection_service import build_book_key
 from .config import deep_merge, get_default_config
 from .dedup import decide_duplicate, is_duplicate
 from .exporters import generate_html, generate_markdown, generate_txt
@@ -124,19 +125,18 @@ class KindleHighlightsExtractor:
                 "metadata_line": metadata_line,
             }
 
-            if title not in self.books:
-                self.books[title] = []
+            book_entries = self.books.setdefault(build_book_key(title, author), [])
 
-            dedup_decision = decide_duplicate(entry, self.books[title], self.config)
+            dedup_decision = decide_duplicate(entry, book_entries, self.config)
             if not dedup_decision.is_duplicate:
-                self.books[title].append(entry)
+                book_entries.append(entry)
                 self.stats["total_entries"] += 1
             else:
                 if (
                     dedup_decision.replace_existing
                     and dedup_decision.matched_index is not None
                 ):
-                    self.books[title][dedup_decision.matched_index] = entry
+                    book_entries[dedup_decision.matched_index] = entry
                 self.stats["duplicates_removed"] += 1
                 self._register_dedup_result(
                     title,
@@ -167,8 +167,8 @@ class KindleHighlightsExtractor:
     def generate_txt(self, title: str, entries: List[dict], format_config: dict) -> str:
         return generate_txt(title, entries, format_config, self.config)
 
-    def generate_files(self, output_dir: Path, selected_titles=None):
-        titles_to_export = selected_titles or list(self.books.keys())
+    def generate_files(self, output_dir: Path, selected_keys=None):
+        keys_to_export = selected_keys or list(self.books.keys())
 
         for format_name, format_config in self.config["export_formats"].items():
             if not format_config.get("enabled", False):
@@ -177,11 +177,12 @@ class KindleHighlightsExtractor:
             format_dir = output_dir / format_config["folder"]
             format_dir.mkdir(parents=True, exist_ok=True)
 
-            for title in titles_to_export:
-                entries = self.books.get(title, [])
+            for book_key in keys_to_export:
+                entries = self.books.get(book_key, [])
                 if not entries:
                     continue
-                author = entries[0]["author"] if entries else "autor-desconhecido"
+                title = entries[0]["title"]
+                author = entries[0]["author"] or "autor-desconhecido"
                 safe_author = self.normalize_title(author)
                 filename = f"{self.normalize_title(title)}-{safe_author}"
 

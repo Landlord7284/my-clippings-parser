@@ -1,5 +1,6 @@
 ﻿from datetime import datetime
 
+from kindle_extractor.book_selection_service import build_book_key
 from kindle_extractor.extractor import KindleHighlightsExtractor
 from kindle_extractor.parser import parse_date, parse_location, parse_page, parse_title_and_author
 
@@ -75,13 +76,38 @@ def test_parse_content_groups_entries_by_book(real_clippings_excerpt):
 
     extractor.parse_content(real_clippings_excerpt)
 
-    assert set(extractor.books.keys()) == {
+    titles = {entries[0]["title"] for entries in extractor.books.values()}
+    assert titles == {
         "Blade Runner",
         "A Morte de Ivan Ilitch",
         "Livro Sem Autor",
     }
-    assert len(extractor.books["Blade Runner"]) == 2
-    assert extractor.books["Blade Runner"][0]["author"] == "Philip K. Dick"
+
+    blade_runner = extractor.books[build_book_key("Blade Runner", "Philip K. Dick")]
+    assert len(blade_runner) == 2
+    assert blade_runner[0]["author"] == "Philip K. Dick"
+
+
+def test_books_with_the_same_title_are_kept_apart_by_author():
+    content = (
+        "Ensaios (Montaigne, Michel de)\n"
+        "- Seu destaque na página 10 | posição 101-101 | Adicionado em 1 de março de 2024\n\n"
+        "Trecho de Montaigne\n"
+        "==========\n"
+        "Ensaios (Emerson, Ralph Waldo)\n"
+        "- Seu destaque na página 10 | posição 101-101 | Adicionado em 2 de março de 2024\n\n"
+        "Trecho de Emerson\n"
+    )
+
+    extractor = KindleHighlightsExtractor({"remove_duplicates": True})
+    extractor.parse_content(content)
+
+    assert len(extractor.books) == 2
+    assert extractor.stats["books_processed"] == 2
+    montaigne = extractor.books[build_book_key("Ensaios", "Michel de Montaigne")]
+    emerson = extractor.books[build_book_key("Ensaios", "Ralph Waldo Emerson")]
+    assert montaigne[0]["content"] == "Trecho de Montaigne"
+    assert emerson[0]["content"] == "Trecho de Emerson"
 
 
 def test_parse_content_sets_unknown_author_when_missing_parentheses():
@@ -107,7 +133,6 @@ def test_parse_content_sets_unknown_author_when_missing_parentheses():
     )
     extractor.parse_content(content)
 
-    assert len(extractor.books["Livro Sem Autor"]) == 2
-    assert {entry["author"] for entry in extractor.books["Livro Sem Autor"]} == {
-        "Autor desconhecido"
-    }
+    entries = extractor.books[build_book_key("Livro Sem Autor", "Autor desconhecido")]
+    assert len(entries) == 2
+    assert {entry["author"] for entry in entries} == {"Autor desconhecido"}

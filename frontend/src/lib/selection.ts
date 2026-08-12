@@ -74,6 +74,27 @@ export function applyBatchSelection(
   return next;
 }
 
+export function markRowsExported(
+  rows: BookRow[],
+  exportedKeys: string[],
+  activeFormats: string[],
+  lastExportDisplay: string,
+): BookRow[] {
+  const exported = new Set(exportedKeys);
+  return rows.map((row) =>
+    exported.has(row.book_key)
+      ? {
+        ...row,
+        status: "sem_novidades",
+        status_label: "Exportado",
+        new_highlights_count: 0,
+        last_export_display: lastExportDisplay,
+        last_export_formats: activeFormats,
+      }
+      : row,
+  );
+}
+
 export function buildSelectionSummary(
   rows: BookRow[],
   selectionMap: Record<string, boolean>,

@@ -166,21 +166,20 @@ def _cached_analysis_or_409(analysis_id: str) -> dict:
     return cached_analysis
 
 
-def _selected_titles_from_keys(cached_analysis: dict, selected_book_keys: List[str]) -> List[str]:
-    rows = cached_analysis["rows"]
-    key_to_title = {row["book_key"]: row["title"] for row in rows}
-    return [key_to_title[key] for key in selected_book_keys if key in key_to_title]
+def _known_book_keys(cached_analysis: dict, selected_book_keys: List[str]) -> List[str]:
+    known = {row["book_key"] for row in cached_analysis["rows"]}
+    return [key for key in selected_book_keys if key in known]
 
 
 def _build_export_extractor(
     cached_analysis: dict,
     config: AppConfig,
-    selected_titles: List[str],
+    selected_keys: List[str],
 ) -> KindleHighlightsExtractor:
     extractor = KindleHighlightsExtractor(build_extractor_config(config))
     extractor.books = cached_analysis["books"]
-    selected_entries = sum(len(extractor.books.get(title, [])) for title in selected_titles)
-    extractor.stats["books_processed"] = len(selected_titles)
+    selected_entries = sum(len(extractor.books.get(key, [])) for key in selected_keys)
+    extractor.stats["books_processed"] = len(selected_keys)
     extractor.stats["total_entries"] = selected_entries
     return extractor
 
@@ -248,18 +247,18 @@ def export_books(request: ExportRequest):
     if not request.selectedBookKeys:
         raise HTTPException(status_code=400, detail="Select at least one book before exporting.")
 
-    selected_titles = _selected_titles_from_keys(cached_analysis, request.selectedBookKeys)
-    if not selected_titles:
+    selected_keys = _known_book_keys(cached_analysis, request.selectedBookKeys)
+    if not selected_keys:
         raise HTTPException(
             status_code=400,
             detail="No valid selected books were found for this analysis.",
         )
 
-    extractor = _build_export_extractor(cached_analysis, request.config, selected_titles)
+    extractor = _build_export_extractor(cached_analysis, request.config, selected_keys)
 
     with tempfile.TemporaryDirectory() as temp_dir:
         output_dir = Path(temp_dir) / "temp_output"
-        extractor.generate_files(output_dir, selected_titles=selected_titles)
+        extractor.generate_files(output_dir, selected_keys=selected_keys)
         zip_buffer = _create_zip_file(output_dir)
 
     exported_at = _current_export_datetime()
@@ -281,18 +280,18 @@ def export_books(request: ExportRequest):
 @app.post("/api/export/book")
 def export_book_files(request: ExportBookRequest):
     cached_analysis = _cached_analysis_or_409(request.analysisId)
-    selected_titles = _selected_titles_from_keys(cached_analysis, [request.bookKey])
-    if not selected_titles:
+    selected_keys = _known_book_keys(cached_analysis, [request.bookKey])
+    if not selected_keys:
         raise HTTPException(
             status_code=400,
             detail="No valid selected book was found for this analysis.",
         )
 
-    extractor = _build_export_extractor(cached_analysis, request.config, selected_titles)
+    extractor = _build_export_extractor(cached_analysis, request.config, selected_keys)
     files = []
     with tempfile.TemporaryDirectory() as temp_dir:
         output_dir = Path(temp_dir) / "temp_output"
-        extractor.generate_files(output_dir, selected_titles=selected_titles)
+        extractor.generate_files(output_dir, selected_keys=selected_keys)
         for file_path in sorted(output_dir.rglob("*")):
             if not file_path.is_file():
                 continue

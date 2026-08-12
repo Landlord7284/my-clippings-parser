@@ -5,6 +5,7 @@ import {
   applyBatchSelection,
   buildSelectionSummary,
   filterRows,
+  markRowsExported,
 } from "./selection";
 import type { BookRow } from "@/types";
 
@@ -91,5 +92,19 @@ describe("selection helpers", () => {
       selectedHighlights: 2,
       activeFormats: 1,
     });
+  });
+
+  it("marks only the exported rows without touching the others", () => {
+    const updated = markRowsExported(rows, ["a"], ["markdown"], "2 de fevereiro de 2024");
+
+    expect(updated[0]).toMatchObject({
+      book_key: "a",
+      status: "sem_novidades",
+      status_label: "Exportado",
+      new_highlights_count: 0,
+      last_export_display: "2 de fevereiro de 2024",
+      last_export_formats: ["markdown"],
+    });
+    expect(updated[1]).toEqual(rows[1]);
   });
 });

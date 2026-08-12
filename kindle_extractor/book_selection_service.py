@@ -81,8 +81,9 @@ class BookSelectionService:
     def __init__(self, store):
         self.store = store
 
-    def _build_snapshot(self, title: str, entries: List[dict]) -> dict:
-        author = entries[0]["author"] if entries else "Autor desconhecido"
+    def _build_snapshot(self, entries: List[dict]) -> dict:
+        title = entries[0]["title"]
+        author = entries[0]["author"] or "Autor desconhecido"
         entry_signature_hashes = sorted(
             {_hash_signature(build_entry_signature(entry)) for entry in entries}
         )
@@ -190,8 +191,10 @@ class BookSelectionService:
         rows = []
         current_analysis_iso = to_utc_iso(processed_at) if persist else None
 
-        for title, entries in books.items():
-            snapshot = self._build_snapshot(title, entries)
+        for entries in books.values():
+            if not entries:
+                continue
+            snapshot = self._build_snapshot(entries)
             snapshots[snapshot["book_key"]] = snapshot
             previous = previous_books.get(snapshot["book_key"])
             classification = self._classify_book(snapshot, previous)

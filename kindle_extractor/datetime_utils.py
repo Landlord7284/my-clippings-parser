@@ -8,6 +8,30 @@ except ImportError:  # pragma: no cover
 
 APP_TIMEZONE_NAME = "America/Sao_Paulo"
 
+MONTHS_PT = {
+    1: "janeiro",
+    2: "fevereiro",
+    3: "março",
+    4: "abril",
+    5: "maio",
+    6: "junho",
+    7: "julho",
+    8: "agosto",
+    9: "setembro",
+    10: "outubro",
+    11: "novembro",
+    12: "dezembro",
+}
+
+
+def format_date_pt(value: datetime) -> str:
+    """Formata como "14 de julho de 2023" sem depender do locale do processo."""
+    return f"{value.day} de {MONTHS_PT[value.month]} de {value.year}"
+
+
+def today_in_app_timezone() -> datetime:
+    return datetime.now(timezone.utc).astimezone(_get_app_timezone())
+
 
 def _get_app_timezone():
     if ZoneInfo is None:

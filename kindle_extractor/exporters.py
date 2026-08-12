@@ -1,5 +1,8 @@
+import html
 from datetime import datetime, timezone
-from typing import Dict, List
+from typing import Dict, List, Optional
+
+from .datetime_utils import format_date_pt, today_in_app_timezone
 
 
 def _sortable_date(value):
@@ -8,6 +11,49 @@ def _sortable_date(value):
     if value.tzinfo is not None:
         return value.astimezone(timezone.utc).replace(tzinfo=None)
     return value
+
+
+def _position_label(entry: dict) -> Optional[str]:
+    start_pos = entry.get("start_pos")
+    end_pos = entry.get("end_pos")
+    if start_pos is None or end_pos is None:
+        return None
+    if start_pos == end_pos:
+        return f"Posição: {start_pos}"
+    return f"Posição: {start_pos}-{end_pos}"
+
+
+def _location_parts(entry: dict) -> List[str]:
+    parts = []
+    if entry.get("page") is not None:
+        parts.append(f"Página {entry['page']}")
+
+    position = _position_label(entry)
+    if position:
+        parts.append(position)
+
+    if entry.get("date_formatted"):
+        parts.append(entry["date_formatted"])
+    return parts
+
+
+def _bookmark_positions(bookmarks: List[dict]) -> List[str]:
+    return [
+        str(bookmark["start_pos"])
+        for bookmark in bookmarks
+        if bookmark.get("start_pos") is not None
+    ]
+
+
+def _generated_at_label() -> str:
+    return format_date_pt(today_in_app_timezone())
+
+
+def _is_renderable(entry: dict, app_config: dict) -> bool:
+    """Bookmarks nao tem conteudo: valem pela posicao. Os demais precisam de texto."""
+    if entry["type"] == "bookmark":
+        return bool(app_config["include_bookmarks"])
+    return bool(entry["content"])
 
 
 def sort_entries(entries: List[dict]) -> List[dict]:
@@ -26,12 +72,7 @@ def _build_book_metadata(entries: List[dict]) -> Dict[str, object]:
 
     dates = [_sortable_date(e["date_obj"]) for e in entries if e["date_obj"]]
     if dates:
-        first_date = min(dates)
-        last_date = max(dates)
-        period = (
-            f"{first_date.strftime('%d de %B de %Y')} - "
-            f"{last_date.strftime('%d de %B de %Y')}"
-        )
+        period = f"{format_date_pt(min(dates))} - {format_date_pt(max(dates))}"
     else:
         period = "Período desconhecido"
 
@@ -67,38 +108,25 @@ def generate_markdown(
         md_content += f"**Total de notas**: {len(meta['notes'])}  \n"
 
         if app_config["include_bookmarks"] and meta["bookmarks"]:
-            bookmark_positions = [
-                str(b["start_pos"]) for b in meta["bookmarks"] if b["start_pos"]
-            ]
-            md_content += f"**Posições marcadas**: {', '.join(bookmark_positions)}  \n"
+            positions = _bookmark_positions(meta["bookmarks"])
+            md_content += f"**Posições marcadas**: {', '.join(positions)}  \n"
 
         md_content += f"**Período**: {meta['period']}  \n"
-        md_content += f"**Gerado em**: {datetime.now().strftime('%d de %B de %Y')}  \n"
+        md_content += f"**Gerado em**: {_generated_at_label()}  \n"
         md_content += "\n---\n\n"
 
     for entry in entries:
-        if entry["type"] == "bookmark" and not app_config["include_bookmarks"]:
+        if not _is_renderable(entry, app_config):
             continue
 
-        if entry["page"]:
-            location = f"Página {entry['page']} | "
-        else:
-            location = ""
-
-        if entry["start_pos"] and entry["end_pos"]:
-            if entry["start_pos"] == entry["end_pos"]:
-                location += f"Posição: {entry['start_pos']}"
-            else:
-                location += f"Posição: {entry['start_pos']}-{entry['end_pos']}"
-
-        if entry["date_formatted"]:
-            location += f" | {entry['date_formatted']}"
+        location = " | ".join(_location_parts(entry))
 
         if entry["type"] == "note":
             md_content += f"- **NOTA** {location}\n"
-            if entry["content"]:
-                md_content += f"**{entry['content']}**\n\n"
-        elif entry["content"]:
+            md_content += f"**{entry['content']}**\n\n"
+        elif entry["type"] == "bookmark":
+            md_content += f"- **MARCADOR** {location}\n\n"
+        else:
             md_content += f"- {location}\n"
             md_content += f"{entry['content']}\n\n"
 
@@ -169,63 +197,49 @@ def generate_html(
         </style>
     """
 
+    escaped_title = html.escape(full_title)
     html_content = f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{full_title}</title>
+    <title>{escaped_title}</title>
     {css}
 </head>
 <body>
-    <h1>{full_title}</h1>
+    <h1>{escaped_title}</h1>
 """
 
     if format_config.get("include_metadata", True):
         html_content += f"""
     <div class="metadata">
-        <p><strong>Autor:</strong> {meta['author']}</p>
+        <p><strong>Autor:</strong> {html.escape(meta['author'])}</p>
         <p><strong>Total de destaques:</strong> {len(meta['highlights'])}</p>
         <p><strong>Total de notas:</strong> {len(meta['notes'])}</p>
 """
         if app_config["include_bookmarks"] and meta["bookmarks"]:
-            bookmark_positions = [
-                str(b["start_pos"]) for b in meta["bookmarks"] if b["start_pos"]
-            ]
+            positions = _bookmark_positions(meta["bookmarks"])
             html_content += (
                 "        <p><strong>Posições marcadas:</strong> "
-                f"{', '.join(bookmark_positions)}</p>\n"
+                f"{html.escape(', '.join(positions))}</p>\n"
             )
 
-        html_content += f"""        <p><strong>Período:</strong> {meta['period']}</p>
-        <p><strong>Gerado em:</strong> {datetime.now().strftime('%d de %B de %Y')}</p>
+        html_content += f"""        <p><strong>Período:</strong> {html.escape(meta['period'])}</p>
+        <p><strong>Gerado em:</strong> {html.escape(_generated_at_label())}</p>
     </div>
 """
 
     for entry in entries:
-        if entry["type"] == "bookmark" and not app_config["include_bookmarks"]:
-            continue
-        if not entry["content"] and entry["type"] != "note":
+        if not _is_renderable(entry, app_config):
             continue
 
         css_class = "note" if entry["type"] == "note" else "highlight"
-        location_parts = []
-        if entry["page"]:
-            location_parts.append(f"Página {entry['page']}")
-        if entry["start_pos"] and entry["end_pos"]:
-            if entry["start_pos"] == entry["end_pos"]:
-                location_parts.append(f"Posição: {entry['start_pos']}")
-            else:
-                location_parts.append(f"Posição: {entry['start_pos']}-{entry['end_pos']}")
-        if entry["date_formatted"]:
-            location_parts.append(entry["date_formatted"])
-
-        location = " | ".join(location_parts)
-        prefix = "NOTA " if entry["type"] == "note" else ""
+        location = html.escape(" | ".join(_location_parts(entry)))
+        prefix = {"note": "NOTA ", "bookmark": "MARCADOR "}.get(entry["type"], "")
         html_content += f"""
     <div class="entry {css_class}">
         <div class="entry-meta">{prefix}{location}</div>
-        <div class="entry-content">{entry['content']}</div>
+        <div class="entry-content">{html.escape(entry['content'])}</div>
     </div>
 """
 
@@ -255,34 +269,19 @@ def generate_txt(
         txt_content += f"Total de notas: {len(meta['notes'])}\n"
 
         if app_config["include_bookmarks"] and meta["bookmarks"]:
-            bookmark_positions = [
-                str(b["start_pos"]) for b in meta["bookmarks"] if b["start_pos"]
-            ]
-            txt_content += f"Posições marcadas: {', '.join(bookmark_positions)}\n"
+            positions = _bookmark_positions(meta["bookmarks"])
+            txt_content += f"Posições marcadas: {', '.join(positions)}\n"
 
         txt_content += f"Período: {meta['period']}\n"
-        txt_content += f"Gerado em: {datetime.now().strftime('%d de %B de %Y')}\n"
+        txt_content += f"Gerado em: {_generated_at_label()}\n"
         txt_content += "\n" + "-" * 50 + "\n\n"
 
     for entry in entries:
-        if entry["type"] == "bookmark" and not app_config["include_bookmarks"]:
-            continue
-        if not entry["content"] and entry["type"] != "note":
+        if not _is_renderable(entry, app_config):
             continue
 
-        location_parts = []
-        if entry["page"]:
-            location_parts.append(f"Página {entry['page']}")
-        if entry["start_pos"] and entry["end_pos"]:
-            if entry["start_pos"] == entry["end_pos"]:
-                location_parts.append(f"Posição: {entry['start_pos']}")
-            else:
-                location_parts.append(f"Posição: {entry['start_pos']}-{entry['end_pos']}")
-        if entry["date_formatted"]:
-            location_parts.append(entry["date_formatted"])
-
-        location = " | ".join(location_parts)
-        prefix = "NOTA " if entry["type"] == "note" else ""
+        location = " | ".join(_location_parts(entry))
+        prefix = {"note": "NOTA ", "bookmark": "MARCADOR "}.get(entry["type"], "")
         txt_content += f"{prefix}{location}\n"
         if entry["content"]:
             txt_content += f"{entry['content']}\n\n"

@@ -71,7 +71,7 @@ def test_analyze_returns_rows_options_and_default_selection(
     assert {option["label"] for option in payload["statusOptions"]} >= {
         "Novo",
         "Pendente",
-        "Alterados",
+        "Alterado",
         "Exportado",
     }
 
