@@ -17,6 +17,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
 
 from .book_selection_service import FILTER_ALL, STATUS_FILTER_LABELS, BookSelectionService
+from .exporters import sort_entries
 from .extractor import KindleHighlightsExtractor
 from .processing_store import ProcessingStore
 
@@ -157,6 +158,18 @@ def _create_zip_file(files: Dict[str, str]) -> io.BytesIO:
     return zip_buffer
 
 
+def _serialize_entry(entry: dict) -> dict:
+    """Campos explicitos: a entrada crua carrega date_obj e caches internos da dedup."""
+    return {
+        "type": entry["type"],
+        "page": entry["page"],
+        "start_pos": entry["start_pos"],
+        "end_pos": entry["end_pos"],
+        "content": entry["content"],
+        "date_formatted": entry["date_formatted"],
+    }
+
+
 def _build_author_options(rows: List[dict]) -> List[str]:
     return sorted({str(row["author"]) for row in rows})
 
@@ -251,6 +264,21 @@ async def analyze_file(
             if key != FILTER_ALL or rows
         ],
         "authorOptions": _build_author_options(rows),
+    }
+
+
+@app.get("/api/analysis/{analysis_id}/books/{book_key}/entries")
+def get_book_entries(analysis_id: str, book_key: str):
+    cached_analysis = _cached_analysis_or_409(analysis_id)
+    entries = cached_analysis["books"].get(book_key)
+    if not entries:
+        raise HTTPException(status_code=404, detail="Book not found in this analysis.")
+
+    return {
+        "book_key": book_key,
+        "title": entries[0]["title"],
+        "author": entries[0]["author"],
+        "entries": [_serialize_entry(entry) for entry in sort_entries(entries)],
     }
 
 

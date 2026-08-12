@@ -104,6 +104,50 @@ def test_analysis_cache_keeps_only_the_most_recent_analyses(
     assert ids[-1] in ANALYSIS_CACHE
 
 
+def test_book_entries_are_served_sorted_without_internal_fields(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+    analysis = _analyze(client, real_clippings_excerpt.encode("utf-8")).json()
+    row = next(row for row in analysis["rows"] if row["title"] == "Blade Runner")
+
+    response = client.get(
+        f"/api/analysis/{analysis['analysisId']}/books/{row['book_key']}/entries"
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["title"] == "Blade Runner"
+    assert payload["author"] == "Philip K. Dick"
+    assert payload["entries"]
+
+    positions = [entry["start_pos"] for entry in payload["entries"]]
+    assert positions == sorted(positions)
+    assert set(payload["entries"][0]) == {
+        "type",
+        "page",
+        "start_pos",
+        "end_pos",
+        "content",
+        "date_formatted",
+    }
+
+
+def test_book_entries_return_404_for_unknown_book(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+    analysis = _analyze(client, real_clippings_excerpt.encode("utf-8")).json()
+
+    response = client.get(f"/api/analysis/{analysis['analysisId']}/books/inexistente/entries")
+
+    assert response.status_code == 404
+
+
 def test_export_returns_zip_for_selected_book_only_and_marks_store(
     workspace_tmp_path, real_clippings_excerpt, monkeypatch
 ):

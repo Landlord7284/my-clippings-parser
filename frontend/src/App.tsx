@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
-import { analyzeFile, exportBookFiles, exportBooks } from "@/lib/api";
+import { analyzeFile, exportBookFiles, exportBooks, fetchBookEntries } from "@/lib/api";
 import {
   DEFAULT_CONFIG,
   DEFAULT_FILTERS,
@@ -25,7 +25,14 @@ import {
   filterRows,
   markRowsExported,
 } from "@/lib/selection";
-import type { AnalysisResponse, AppConfig, BookRow, FilterState } from "@/types";
+import type {
+  AnalysisResponse,
+  AppConfig,
+  BookEntriesResponse,
+  BookEntry,
+  BookRow,
+  FilterState,
+} from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -305,12 +312,128 @@ function MetricsStrip({
   );
 }
 
+const ENTRY_TYPE_TABS = [
+  { value: "all", label: "Tudo" },
+  { value: "highlight", label: "Destaques" },
+  { value: "note", label: "Notas" },
+  { value: "bookmark", label: "Marcadores" },
+] as const;
+
+type EntryTypeFilter = (typeof ENTRY_TYPE_TABS)[number]["value"];
+
+function entryLocation(entry: BookEntry) {
+  const parts: string[] = [];
+  if (entry.page !== null) parts.push(`Página ${entry.page}`);
+  if (entry.start_pos !== null && entry.end_pos !== null) {
+    parts.push(
+      entry.start_pos === entry.end_pos
+        ? `Posição ${entry.start_pos}`
+        : `Posição ${entry.start_pos}-${entry.end_pos}`,
+    );
+  }
+  if (entry.date_formatted) parts.push(entry.date_formatted);
+  return parts.join(" · ");
+}
+
+function BookEntriesPanel({
+  book,
+  isLoading,
+  onOpenChange,
+}: {
+  book: BookEntriesResponse | null;
+  isLoading: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
+  const [search, setSearch] = useState("");
+  const [typeFilter, setTypeFilter] = useState<EntryTypeFilter>("all");
+
+  useEffect(() => {
+    setSearch("");
+    setTypeFilter("all");
+  }, [book?.book_key]);
+
+  const entries = book?.entries ?? [];
+  const visibleEntries = useMemo(() => {
+    const needle = search.trim().toLowerCase();
+    return entries.filter((entry) => {
+      if (typeFilter !== "all" && entry.type !== typeFilter) return false;
+      if (needle && !entry.content.toLowerCase().includes(needle)) return false;
+      return true;
+    });
+  }, [entries, search, typeFilter]);
+
+  return (
+    <Sheet open={Boolean(book) || isLoading} onOpenChange={onOpenChange}>
+      <SheetContent className="flex w-full flex-col gap-4 sm:max-w-2xl">
+        <SheetHeader>
+          <SheetTitle className="pr-6 text-left">{book?.title ?? "Carregando…"}</SheetTitle>
+          {book ? (
+            <p className="text-left text-sm text-muted-foreground">{book.author}</p>
+          ) : null}
+        </SheetHeader>
+
+        <div className="space-y-3">
+          <Input
+            placeholder="Buscar no texto dos destaques…"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+          />
+          <Tabs value={typeFilter} onValueChange={(value) => setTypeFilter(value as EntryTypeFilter)}>
+            <TabsList className="w-full">
+              {ENTRY_TYPE_TABS.map((tab) => (
+                <TabsTrigger key={tab.value} value={tab.value} className="flex-1">
+                  {tab.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+          <p className="text-xs text-muted-foreground">
+            {visibleEntries.length} de {entries.length}
+          </p>
+        </div>
+
+        <div className="-mr-2 flex-1 space-y-3 overflow-y-auto pr-2">
+          {isLoading ? <p className="text-sm text-muted-foreground">Carregando…</p> : null}
+
+          {!isLoading && !visibleEntries.length ? (
+            <p className="text-sm text-muted-foreground">Nada encontrado.</p>
+          ) : null}
+
+          {visibleEntries.map((entry, index) => (
+            <article
+              key={`${entry.start_pos}-${entry.end_pos}-${index}`}
+              className={
+                entry.type === "note"
+                  ? "rounded-md border-l-4 border-l-amber-400 bg-muted/40 p-3"
+                  : "rounded-md border-l-4 border-l-transparent bg-muted/40 p-3"
+              }
+            >
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                {entry.type !== "highlight" ? (
+                  <Badge variant="gray">
+                    {entry.type === "note" ? "Nota" : entry.type === "bookmark" ? "Marcador" : "?"}
+                  </Badge>
+                ) : null}
+                <span>{entryLocation(entry)}</span>
+              </div>
+              {entry.content ? (
+                <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed">{entry.content}</p>
+              ) : null}
+            </article>
+          ))}
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}
+
 function BookTable({
   rows,
   visibleRows,
   selectionMap,
   onSelectionChange,
   onBookDownload,
+  onBookOpen,
   downloadingBookKey,
   canDownload,
 }: {
@@ -319,6 +442,7 @@ function BookTable({
   selectionMap: Record<string, boolean>;
   onSelectionChange: (selectionMap: Record<string, boolean>) => void;
   onBookDownload: (row: BookRow) => void;
+  onBookOpen: (row: BookRow) => void;
   downloadingBookKey: string | null;
   canDownload: boolean;
 }) {
@@ -386,10 +510,15 @@ function BookTable({
                 />
               </TableCell>
               <TableCell className="max-w-0">
-                <div className="min-w-0">
+                <button
+                  type="button"
+                  className="min-w-0 max-w-full text-left hover:underline"
+                  onClick={() => onBookOpen(row)}
+                  aria-label={`Ler destaques de ${row.title}`}
+                >
                   <div className="truncate font-medium">{row.title}</div>
                   <div className="truncate text-xs text-muted-foreground">{row.author}</div>
-                </div>
+                </button>
               </TableCell>
               <TableCell>
                 <Badge variant={statusVariant[row.status] ?? "gray"}>
@@ -485,6 +614,8 @@ export default function App() {
   const [isExporting, setIsExporting] = useState(false);
   const [downloadingBookKey, setDownloadingBookKey] = useState<string | null>(null);
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [openBook, setOpenBook] = useState<BookEntriesResponse | null>(null);
+  const [isLoadingBook, setIsLoadingBook] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -577,6 +708,18 @@ export default function App() {
       toast.error(error instanceof Error ? error.message : "Falha no download.");
     } finally {
       setDownloadingBookKey(null);
+    }
+  };
+
+  const openBookEntries = async (row: BookRow) => {
+    if (!analysis) return;
+    setIsLoadingBook(true);
+    try {
+      setOpenBook(await fetchBookEntries(analysis.analysisId, row.book_key));
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Falha ao carregar destaques.");
+    } finally {
+      setIsLoadingBook(false);
     }
   };
 
@@ -791,11 +934,20 @@ export default function App() {
               selectionMap={selectionMap}
               onSelectionChange={setSelectionMap}
               onBookDownload={runBookDownload}
+              onBookOpen={openBookEntries}
               downloadingBookKey={downloadingBookKey}
               canDownload={Boolean(analysis && activeFormats.length && !isExporting)}
             />
           </main>
         </div>
+
+        <BookEntriesPanel
+          book={openBook}
+          isLoading={isLoadingBook}
+          onOpenChange={(open) => {
+            if (!open) setOpenBook(null);
+          }}
+        />
       </div>
     </TooltipProvider>
   );

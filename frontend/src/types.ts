@@ -30,6 +30,22 @@ export type BookRow = {
   last_export_formats?: string[];
 };
 
+export type BookEntry = {
+  type: "highlight" | "note" | "bookmark" | "unknown";
+  page: number | null;
+  start_pos: number | null;
+  end_pos: number | null;
+  content: string;
+  date_formatted: string;
+};
+
+export type BookEntriesResponse = {
+  book_key: string;
+  title: string;
+  author: string;
+  entries: BookEntry[];
+};
+
 export type StatusOption = {
   value: string;
   label: string;

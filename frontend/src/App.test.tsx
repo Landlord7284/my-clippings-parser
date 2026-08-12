@@ -133,6 +133,94 @@ describe("App shell", () => {
     expect(fetchMock.mock.calls[1][0]).toBe("/api/export/book");
   });
 
+  it("opens the reading panel and filters entries by text and type", async () => {
+    const user = userEvent.setup();
+    vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            analysisId: "analysis-1",
+            uploadedName: "My Clippings.txt",
+            stats: {
+              total_entries: 2,
+              duplicates_removed: 0,
+              books_processed: 1,
+              errors: 0,
+              files_generated: {},
+            },
+            rows: [
+              {
+                book_key: "book-1",
+                title: "Livro A",
+                author: "Autor A",
+                highlights: 1,
+                notes: 1,
+                bookmarks: 0,
+                status: "novo",
+                status_label: "Novo",
+                new_highlights_count: 1,
+                default_selected: true,
+                last_analysis_display: "-",
+                last_export_display: "-",
+              },
+            ],
+            selectionMap: { "book-1": true },
+            statusOptions: [{ value: "todos", label: "Todos" }],
+            authorOptions: ["Autor A"],
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        ),
+      )
+      .mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            book_key: "book-1",
+            title: "Livro A",
+            author: "Autor A",
+            entries: [
+              {
+                type: "highlight",
+                page: 12,
+                start_pos: 200,
+                end_pos: 205,
+                content: "O tempo é a substância de que sou feito.",
+                date_formatted: "2 de fevereiro de 2024",
+              },
+              {
+                type: "note",
+                page: 12,
+                start_pos: 206,
+                end_pos: 206,
+                content: "Revisar depois.",
+                date_formatted: "2 de fevereiro de 2024",
+              },
+            ],
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        ),
+      );
+    const { container } = render(<App />);
+    const input = container.querySelector('input[type="file"]') as HTMLInputElement;
+
+    await user.upload(input, new File(["content"], "My Clippings.txt", { type: "text/plain" }));
+    await user.click(screen.getByRole("button", { name: /Analisar/i }));
+
+    await user.click(await screen.findByRole("button", { name: /Ler destaques de Livro A/i }));
+
+    expect(await screen.findByText(/O tempo é a substância/)).toBeInTheDocument();
+    expect(screen.getByText("Revisar depois.")).toBeInTheDocument();
+    expect(screen.getByText("Página 12 · Posição 200-205 · 2 de fevereiro de 2024")).toBeInTheDocument();
+
+    await user.type(screen.getByPlaceholderText(/Buscar no texto/i), "substância");
+    expect(screen.queryByText("Revisar depois.")).not.toBeInTheDocument();
+
+    await user.clear(screen.getByPlaceholderText(/Buscar no texto/i));
+    await user.click(screen.getByRole("tab", { name: "Notas" }));
+
+    expect(screen.getByText("Revisar depois.")).toBeInTheDocument();
+    expect(screen.queryByText(/O tempo é a substância/)).not.toBeInTheDocument();
+  });
+
   it("shows compact status labels and friendly stale-server download errors", async () => {
     const user = userEvent.setup();
     vi.spyOn(globalThis, "fetch")

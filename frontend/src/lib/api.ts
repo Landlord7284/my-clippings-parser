@@ -1,4 +1,9 @@
-import type { AnalysisResponse, AppConfig, ExportBookFilesResponse } from "@/types";
+import type {
+  AnalysisResponse,
+  AppConfig,
+  BookEntriesResponse,
+  ExportBookFilesResponse,
+} from "@/types";
 
 const API_BASE = "";
 
@@ -29,6 +34,19 @@ export async function analyzeFile(
     method: "POST",
     body: formData,
   });
+  if (!response.ok) {
+    throw new Error(await parseError(response));
+  }
+  return response.json();
+}
+
+export async function fetchBookEntries(
+  analysisId: string,
+  bookKey: string,
+): Promise<BookEntriesResponse> {
+  const response = await fetch(
+    `${API_BASE}/api/analysis/${encodeURIComponent(analysisId)}/books/${encodeURIComponent(bookKey)}/entries`,
+  );
   if (!response.ok) {
     throw new Error(await parseError(response));
   }
