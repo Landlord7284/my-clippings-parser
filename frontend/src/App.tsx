@@ -146,6 +146,13 @@ function SettingsPanel({
           checked={config.includeMetadata}
           onCheckedChange={(checked) => setValue("includeMetadata", checked)}
         />
+        <ToggleRow
+          id="only-new"
+          label="Só novidades"
+          hint="Exporta apenas as entradas que ainda não saíram no export anterior de cada livro."
+          checked={config.exportOnlyNew}
+          onCheckedChange={(checked) => setValue("exportOnlyNew", checked)}
+        />
       </section>
 
       <Separator />
@@ -261,19 +268,32 @@ function SliderRow({
 function ToggleRow({
   id,
   label,
+  hint,
   checked,
   onCheckedChange,
 }: {
   id: string;
   label: string;
+  hint?: string;
   checked: boolean;
   onCheckedChange: (checked: boolean) => void;
 }) {
+  const labelNode = (
+    <Label htmlFor={id} className={hint ? "cursor-help text-sm font-normal" : "text-sm font-normal"}>
+      {label}
+    </Label>
+  );
+
   return (
     <div className="flex min-h-8 items-center justify-between gap-3">
-      <Label htmlFor={id} className="text-sm font-normal">
-        {label}
-      </Label>
+      {hint ? (
+        <Tooltip>
+          <TooltipTrigger asChild>{labelNode}</TooltipTrigger>
+          <TooltipContent className="max-w-56">{hint}</TooltipContent>
+        </Tooltip>
+      ) : (
+        labelNode
+      )}
       <Checkbox
         id={id}
         checked={checked}
@@ -287,16 +307,18 @@ function MetricsStrip({
   analysis,
   summary,
   activeFormats,
+  onlyNew,
 }: {
   analysis: AnalysisResponse | null;
   summary: ReturnType<typeof buildSelectionSummary>;
   activeFormats: string[];
+  onlyNew: boolean;
 }) {
   const metrics = [
     ["Entradas", analysis?.stats.total_entries ?? "-"],
     ["Livros", analysis?.stats.books_processed ?? "-"],
     ["Selecionado", summary.selectedBooks],
-    ["Highlights", summary.selectedHighlights],
+    [onlyNew ? "Highlights novos" : "Highlights", summary.selectedHighlights],
     ["Formatos", activeFormats.length ? activeFormats.join(" / ") : "Nenhum"],
   ];
 
@@ -818,7 +840,12 @@ export default function App() {
               <Progress value={isAnalyzing ? 62 : 86} />
             )}
 
-            <MetricsStrip analysis={analysis} summary={summary} activeFormats={activeFormats} />
+            <MetricsStrip
+              analysis={analysis}
+              summary={summary}
+              activeFormats={activeFormats}
+              onlyNew={config.exportOnlyNew}
+            />
 
             <section className="rounded-md border bg-card p-3">
               <div className="grid gap-3 xl:grid-cols-[1fr_160px_220px_auto]">

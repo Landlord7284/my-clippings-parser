@@ -12,6 +12,8 @@ export type AppConfig = {
   dedupSessionWindowMinutes: number;
   includeBookmarks: boolean;
   includeMetadata: boolean;
+  /** Exporta so as entradas ainda nao exportadas de cada livro. */
+  exportOnlyNew: boolean;
 };
 
 export type BookRow = {

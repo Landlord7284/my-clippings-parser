@@ -94,6 +94,16 @@ describe("selection helpers", () => {
     });
   });
 
+  it("counts only new highlights when exporting incrementally", () => {
+    const selectionMap = { a: true, b: true };
+
+    expect(buildSelectionSummary(rows, selectionMap, DEFAULT_CONFIG).selectedHighlights).toBe(3);
+    expect(
+      buildSelectionSummary(rows, selectionMap, { ...DEFAULT_CONFIG, exportOnlyNew: true })
+        .selectedHighlights,
+    ).toBe(2);
+  });
+
   it("marks only the exported rows without touching the others", () => {
     const updated = markRowsExported(rows, ["a"], ["markdown"], "2 de fevereiro de 2024");
 

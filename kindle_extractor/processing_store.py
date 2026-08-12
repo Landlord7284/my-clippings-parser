@@ -259,6 +259,7 @@ class ProcessingStore:
                 current_content_hash = book.get("content_signature_hash")
                 current_highlight_hash = book.get("highlight_signature_hash")
                 current_highlight_hashes = list(book.get("highlight_signature_hashes") or [])
+                current_entry_hashes = list(book.get("entry_signature_hashes") or [])
                 reexport_without_changes = (
                     bool(last_export)
                     and current_content_hash
@@ -271,6 +272,7 @@ class ProcessingStore:
                     "content_signature_hash": current_content_hash,
                     "highlight_signature_hash": current_highlight_hash,
                     "highlight_signature_hashes": current_highlight_hashes,
+                    "entry_signature_hashes": current_entry_hashes,
                     "processed_at": book.get("last_analysis_at") or book.get("last_processed_at"),
                     "reexport_without_changes": reexport_without_changes,
                 }
@@ -282,6 +284,7 @@ class ProcessingStore:
                 book["last_export_signature"] = current_content_hash
                 book["last_export_highlight_signature"] = current_highlight_hash
                 book["last_export_highlight_signature_hashes"] = current_highlight_hashes
+                book["last_export_entry_signature_hashes"] = current_entry_hashes
                 book["last_export"] = deepcopy(event)
                 book["export_history"] = export_history
                 books[book_key] = book
@@ -375,6 +378,12 @@ class ProcessingStore:
             raw_book.get("last_export_highlight_signature_hashes")
             or (last_export or {}).get("highlight_signature_hashes")
         )
+        # Historico anterior a este campo so guardava as assinaturas dos destaques.
+        # Sem fallback, um export antigo pareceria nao ter exportado nada.
+        last_export_entry_signature_hashes = _normalize_signature_hashes(
+            raw_book.get("last_export_entry_signature_hashes")
+            or (last_export or {}).get("entry_signature_hashes")
+        )
 
         return {
             "book_key": book_key,
@@ -397,6 +406,7 @@ class ProcessingStore:
             "last_export_signature": last_export_signature,
             "last_export_highlight_signature": last_export_highlight_signature,
             "last_export_highlight_signature_hashes": last_export_highlight_signature_hashes,
+            "last_export_entry_signature_hashes": last_export_entry_signature_hashes,
             "last_detected_processing": last_detected,
             "last_export": last_export,
             "processing_history": processing_history,

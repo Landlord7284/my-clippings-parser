@@ -11,6 +11,7 @@ export const DEFAULT_CONFIG: AppConfig = {
   dedupSessionWindowMinutes: 15,
   includeBookmarks: true,
   includeMetadata: true,
+  exportOnlyNew: false,
 };
 
 export const DEFAULT_FILTERS: FilterState = {
@@ -106,7 +107,10 @@ export function buildSelectionSummary(
   const selectedRows = rows.filter((row) => selectionMap[row.book_key]);
   return {
     selectedBooks: selectedRows.length,
-    selectedHighlights: selectedRows.reduce((total, row) => total + row.highlights, 0),
+    selectedHighlights: selectedRows.reduce(
+      (total, row) => total + (config.exportOnlyNew ? row.new_highlights_count : row.highlights),
+      0,
+    ),
     activeFormats: activeFormatLabels(config).length,
   };
 }

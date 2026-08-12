@@ -67,6 +67,7 @@ class AppConfig(BaseModel):
     ] = 15
     include_bookmarks: Annotated[bool, Field(alias="includeBookmarks")] = True
     include_metadata: Annotated[bool, Field(alias="includeMetadata")] = True
+    export_only_new: Annotated[bool, Field(alias="exportOnlyNew")] = False
 
     model_config = ConfigDict(populate_by_name=True)
 
@@ -200,11 +201,28 @@ def _build_export_extractor(
     selected_keys: List[str],
 ) -> KindleHighlightsExtractor:
     extractor = KindleHighlightsExtractor(build_extractor_config(config))
-    extractor.books = cached_analysis["books"]
-    selected_entries = sum(len(extractor.books.get(key, [])) for key in selected_keys)
+    books = cached_analysis["books"]
+    if config.export_only_new:
+        selected_books = {key: books[key] for key in selected_keys if key in books}
+        books = BookSelectionService(get_processing_store()).keep_only_new_entries(selected_books)
+
+    extractor.books = books
+    selected_entries = sum(len(books.get(key, [])) for key in selected_keys)
     extractor.stats["books_processed"] = len(selected_keys)
     extractor.stats["total_entries"] = selected_entries
     return extractor
+
+
+def _no_files_error(config: AppConfig) -> HTTPException:
+    if config.export_only_new:
+        return HTTPException(
+            status_code=400,
+            detail="Nenhuma novidade desde o último export. Desative 'Só novidades' para exportar tudo.",
+        )
+    return HTTPException(
+        status_code=400,
+        detail="No files were generated. Enable at least one export format.",
+    )
 
 
 @app.get("/api/health")
@@ -296,7 +314,11 @@ def export_books(request: ExportRequest):
         )
 
     extractor = _build_export_extractor(cached_analysis, request.config, selected_keys)
-    zip_buffer = _create_zip_file(extractor.build_files(selected_keys))
+    files = extractor.build_files(selected_keys)
+    if not files:
+        raise _no_files_error(request.config)
+
+    zip_buffer = _create_zip_file(files)
 
     exported_at = _current_export_datetime()
     service = BookSelectionService(get_processing_store())
@@ -338,10 +360,7 @@ def export_book_files(request: ExportBookRequest):
         )
 
     if not files:
-        raise HTTPException(
-            status_code=400,
-            detail="No files were generated. Enable at least one export format.",
-        )
+        raise _no_files_error(request.config)
 
     service = BookSelectionService(get_processing_store())
     service.mark_exported(

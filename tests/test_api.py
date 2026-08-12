@@ -148,6 +148,81 @@ def test_book_entries_return_404_for_unknown_book(
     assert response.status_code == 404
 
 
+def test_incremental_export_only_carries_entries_added_since_last_export(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+
+    first = _analyze(client, real_clippings_excerpt.encode("utf-8")).json()
+    blade_runner = next(row for row in first["rows"] if row["title"] == "Blade Runner")
+    export_config = _config(exportMarkdown=False, exportTxt=True, includeMetadata=False)
+
+    full_export = client.post(
+        "/api/export",
+        json={
+            "analysisId": first["analysisId"],
+            "selectedBookKeys": [blade_runner["book_key"]],
+            "config": export_config,
+        },
+    )
+    assert full_export.status_code == 200
+
+    added = (
+        f"{real_clippings_excerpt}\n==========\n"
+        "Blade Runner (Dick, Philip K.)\n"
+        "- Seu destaque na página 90 | posição 900-905 | "
+        "Adicionado: quinta-feira, 3 de abril de 2025 08:00:00\n\n"
+        "Um destaque inedito depois do primeiro export.\n"
+    )
+    second = _analyze(client, added.encode("utf-8")).json()
+    blade_runner_again = next(row for row in second["rows"] if row["title"] == "Blade Runner")
+
+    incremental = client.post(
+        "/api/export",
+        json={
+            "analysisId": second["analysisId"],
+            "selectedBookKeys": [blade_runner_again["book_key"]],
+            "config": {**export_config, "exportOnlyNew": True},
+        },
+    )
+
+    assert incremental.status_code == 200
+    with zipfile.ZipFile(io.BytesIO(incremental.content)) as archive:
+        exported_text = archive.read(archive.namelist()[0]).decode("utf-8")
+
+    assert "Um destaque inedito depois do primeiro export." in exported_text
+    assert "Por um longo tempo ele permaneceu fitando a coruja." not in exported_text
+    assert "Nota pessoal sobre o capítulo." not in exported_text
+
+
+def test_incremental_export_refuses_when_nothing_is_new(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+
+    analysis = _analyze(client, real_clippings_excerpt.encode("utf-8")).json()
+    row = next(row for row in analysis["rows"] if row["title"] == "Blade Runner")
+    payload = {
+        "analysisId": analysis["analysisId"],
+        "selectedBookKeys": [row["book_key"]],
+        "config": _config(exportMarkdown=False, exportTxt=True),
+    }
+
+    assert client.post("/api/export", json=payload).status_code == 200
+
+    repeated = client.post(
+        "/api/export",
+        json={**payload, "config": {**payload["config"], "exportOnlyNew": True}},
+    )
+
+    assert repeated.status_code == 400
+    assert "novidade" in repeated.json()["detail"]
+
+
 def test_export_returns_zip_for_selected_book_only_and_marks_store(
     workspace_tmp_path, real_clippings_excerpt, monkeypatch
 ):

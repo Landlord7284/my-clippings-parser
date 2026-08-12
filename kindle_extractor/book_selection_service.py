@@ -247,6 +247,34 @@ class BookSelectionService:
     def build_default_selection_map(self, rows: List[dict]) -> Dict[str, bool]:
         return {row["book_key"]: row["default_selected"] for row in rows}
 
+    def keep_only_new_entries(
+        self, books: Dict[str, List[dict]]
+    ) -> Dict[str, List[dict]]:
+        """Descarta as entradas que ja sairam no ultimo export de cada livro.
+
+        Livro sem export anterior entra inteiro. Livro sem nada novo sai do
+        resultado, para nao gerar um arquivo vazio.
+        """
+        previous_books = self.store.get_books()
+        filtered: Dict[str, List[dict]] = {}
+
+        for book_key, entries in books.items():
+            previous = previous_books.get(book_key) or {}
+            exported = set(previous.get("last_export_entry_signature_hashes") or [])
+            if not exported:
+                filtered[book_key] = entries
+                continue
+
+            fresh = [
+                entry
+                for entry in entries
+                if _hash_signature(build_entry_signature(entry)) not in exported
+            ]
+            if fresh:
+                filtered[book_key] = fresh
+
+        return filtered
+
     def mark_exported(
         self,
         selected_book_keys,
