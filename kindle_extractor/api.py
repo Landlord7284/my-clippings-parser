@@ -3,10 +3,10 @@ import hashlib
 import io
 import json
 import os
-import tempfile
 import zipfile
+from collections import OrderedDict
 from datetime import datetime, timezone
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Dict, List
 from typing_extensions import Annotated
 
@@ -35,7 +35,18 @@ app.add_middleware(
 )
 
 
-ANALYSIS_CACHE: Dict[str, dict] = {}
+# Cada analise guarda o `books` inteiro. Sem teto, um backend de vida longa
+# acumula uma copia por arquivo analisado e nunca devolve a memoria.
+MAX_CACHED_ANALYSES = 5
+
+ANALYSIS_CACHE: "OrderedDict[str, dict]" = OrderedDict()
+
+
+def _cache_analysis(analysis_id: str, payload: dict) -> None:
+    ANALYSIS_CACHE[analysis_id] = payload
+    ANALYSIS_CACHE.move_to_end(analysis_id)
+    while len(ANALYSIS_CACHE) > MAX_CACHED_ANALYSES:
+        ANALYSIS_CACHE.popitem(last=False)
 
 
 class AppConfig(BaseModel):
@@ -137,13 +148,11 @@ def _selected_format_labels(config: AppConfig) -> List[str]:
     return labels
 
 
-def _create_zip_file(output_dir: Path) -> io.BytesIO:
+def _create_zip_file(files: Dict[str, str]) -> io.BytesIO:
     zip_buffer = io.BytesIO()
     with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
-        for file_path in output_dir.rglob("*"):
-            if file_path.is_file():
-                relative_path = file_path.relative_to(output_dir)
-                zip_file.write(file_path, relative_path)
+        for relative_path, content in sorted(files.items()):
+            zip_file.writestr(relative_path, content)
     zip_buffer.seek(0)
     return zip_buffer
 
@@ -163,6 +172,7 @@ def _cached_analysis_or_409(analysis_id: str) -> dict:
             status_code=409,
             detail="Analysis not found. Reanalyze the uploaded file before exporting.",
         )
+    ANALYSIS_CACHE.move_to_end(analysis_id)
     return cached_analysis
 
 
@@ -218,13 +228,16 @@ async def analyze_file(
     )
     selection_map = service.build_default_selection_map(rows)
 
-    ANALYSIS_CACHE[analysis_id] = {
-        "books": extractor.books,
-        "rows": rows,
-        "stats": extractor.stats,
-        "uploaded_name": file.filename,
-        "selection_map": selection_map,
-    }
+    _cache_analysis(
+        analysis_id,
+        {
+            "books": extractor.books,
+            "rows": rows,
+            "stats": extractor.stats,
+            "uploaded_name": file.filename,
+            "selection_map": selection_map,
+        },
+    )
 
     return {
         "analysisId": analysis_id,
@@ -255,11 +268,7 @@ def export_books(request: ExportRequest):
         )
 
     extractor = _build_export_extractor(cached_analysis, request.config, selected_keys)
-
-    with tempfile.TemporaryDirectory() as temp_dir:
-        output_dir = Path(temp_dir) / "temp_output"
-        extractor.generate_files(output_dir, selected_keys=selected_keys)
-        zip_buffer = _create_zip_file(output_dir)
+    zip_buffer = _create_zip_file(extractor.build_files(selected_keys))
 
     exported_at = _current_export_datetime()
     service = BookSelectionService(get_processing_store())
@@ -289,20 +298,16 @@ def export_book_files(request: ExportBookRequest):
 
     extractor = _build_export_extractor(cached_analysis, request.config, selected_keys)
     files = []
-    with tempfile.TemporaryDirectory() as temp_dir:
-        output_dir = Path(temp_dir) / "temp_output"
-        extractor.generate_files(output_dir, selected_keys=selected_keys)
-        for file_path in sorted(output_dir.rglob("*")):
-            if not file_path.is_file():
-                continue
-            files.append(
-                {
-                    "filename": file_path.name,
-                    "format": file_path.parent.name,
-                    "mimeType": MIME_TYPES.get(file_path.suffix, "application/octet-stream"),
-                    "contentBase64": base64.b64encode(file_path.read_bytes()).decode("ascii"),
-                }
-            )
+    for relative_path, content in sorted(extractor.build_files(selected_keys).items()):
+        path = PurePosixPath(relative_path)
+        files.append(
+            {
+                "filename": path.name,
+                "format": path.parent.name,
+                "mimeType": MIME_TYPES.get(path.suffix, "application/octet-stream"),
+                "contentBase64": base64.b64encode(content.encode("utf-8")).decode("ascii"),
+            }
+        )
 
     if not files:
         raise HTTPException(

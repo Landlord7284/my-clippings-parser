@@ -4,6 +4,12 @@ export type AppConfig = {
   exportTxt: boolean;
   removeDuplicates: boolean;
   similarityThreshold: number;
+  /** Fracao de sobreposicao de posicao a partir da qual duas entradas sao a mesma. */
+  dedupPositionOverlapRatio: number;
+  /** Fracao de palavras em comum exigida quando as posicoes se sobrepoem. */
+  dedupTokenOverlapThreshold: number;
+  /** Janela em minutos para tratar destaques vizinhos como da mesma sessao. */
+  dedupSessionWindowMinutes: number;
   includeBookmarks: boolean;
   includeMetadata: boolean;
 };

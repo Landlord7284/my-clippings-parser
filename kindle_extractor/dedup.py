@@ -14,6 +14,14 @@ DEFAULT_TOKEN_OVERLAP_THRESHOLD = 0.75
 DEFAULT_SESSION_WINDOW_MINUTES = 15
 MIN_POSITION_OVERLAP_UNITS = 3
 
+_PUNCTUATION_RE = re.compile(r"[^\w\s]")
+_WHITESPACE_RE = re.compile(r"\s+")
+
+# Normalizar custa uma decomposicao NFD por caractere. Como o texto de uma
+# entrada nunca muda depois de criada, o resultado fica guardado nela propria:
+# sem isso a normalizacao roda uma vez por comparacao, nao uma vez por entrada.
+_NORMALIZED_CONTENT_KEY = "_normalized_content"
+
 
 @dataclass
 class DedupDecision:
@@ -36,9 +44,8 @@ def normalize_text(text: Optional[str]) -> str:
 
     normalized = unicodedata.normalize("NFD", text.casefold())
     normalized = "".join(ch for ch in normalized if unicodedata.category(ch) != "Mn")
-    normalized = re.sub(r"[^\w\s]", " ", normalized)
-    normalized = re.sub(r"\s+", " ", normalized).strip()
-    return normalized
+    normalized = _PUNCTUATION_RE.sub(" ", normalized)
+    return _WHITESPACE_RE.sub(" ", normalized).strip()
 
 
 def _entry_type(entry: Dict) -> str:
@@ -46,7 +53,11 @@ def _entry_type(entry: Dict) -> str:
 
 
 def _normalized_content(entry: Dict) -> str:
-    return normalize_text(entry.get("content", ""))
+    cached = entry.get(_NORMALIZED_CONTENT_KEY)
+    if cached is None:
+        cached = normalize_text(entry.get("content", ""))
+        entry[_NORMALIZED_CONTENT_KEY] = cached
+    return cached
 
 
 def _text_completeness_score(entry: Dict) -> int:

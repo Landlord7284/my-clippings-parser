@@ -141,23 +141,113 @@ function SettingsPanel({
         />
       </section>
 
-      <section className="space-y-3">
-        <div className="flex items-center justify-between gap-3">
-          <Label htmlFor="similarity">Similaridade</Label>
-          <span className="tabular-nums text-sm text-muted-foreground">
-            {config.similarityThreshold.toFixed(1)}
-          </span>
-        </div>
-        <Slider
-          id="similarity"
+      <Separator />
+
+      <section className="space-y-4">
+        <h3 className="text-xs font-semibold uppercase text-muted-foreground">Deduplicação</h3>
+        <SliderRow
+          id="position-overlap"
+          label="Sobreposição de posição"
+          hint="Quanto duas passagens precisam se sobrepor para contarem como a mesma."
+          min={0.3}
+          max={1}
+          step={0.05}
+          disabled={!config.removeDuplicates}
+          value={config.dedupPositionOverlapRatio}
+          format={(value) => value.toFixed(2)}
+          onChange={(value) => setValue("dedupPositionOverlapRatio", value)}
+        />
+        <SliderRow
+          id="token-overlap"
+          label="Palavras em comum"
+          hint="Fração de palavras compartilhadas exigida quando as posições se sobrepõem."
           min={0.5}
           max={1}
-          step={0.1}
-          value={[config.similarityThreshold]}
-          onValueChange={([value]) => setValue("similarityThreshold", value)}
+          step={0.05}
+          disabled={!config.removeDuplicates}
+          value={config.dedupTokenOverlapThreshold}
+          format={(value) => value.toFixed(2)}
+          onChange={(value) => setValue("dedupTokenOverlapThreshold", value)}
         />
+        <SliderRow
+          id="session-window"
+          label="Janela de sessão"
+          hint="Destaques feitos nesse intervalo são tratados como da mesma leitura."
+          min={0}
+          max={60}
+          step={5}
+          disabled={!config.removeDuplicates}
+          value={config.dedupSessionWindowMinutes}
+          format={(value) => `${value} min`}
+          onChange={(value) => setValue("dedupSessionWindowMinutes", value)}
+        />
+
+        <div className="space-y-4 border-t pt-3">
+          <h4 className="text-xs font-medium text-muted-foreground">Avançado</h4>
+          <SliderRow
+            id="similarity"
+            label="Similaridade"
+            hint="Só entra em jogo quando falta posição nas entradas comparadas."
+            min={0.5}
+            max={1}
+            step={0.05}
+            disabled={!config.removeDuplicates}
+            value={config.similarityThreshold}
+            format={(value) => value.toFixed(2)}
+            onChange={(value) => setValue("similarityThreshold", value)}
+          />
+        </div>
       </section>
     </aside>
+  );
+}
+
+function SliderRow({
+  id,
+  label,
+  hint,
+  min,
+  max,
+  step,
+  value,
+  disabled,
+  format,
+  onChange,
+}: {
+  id: string;
+  label: string;
+  hint: string;
+  min: number;
+  max: number;
+  step: number;
+  value: number;
+  disabled?: boolean;
+  format: (value: number) => string;
+  onChange: (value: number) => void;
+}) {
+  return (
+    <div className="space-y-2">
+      <div className="flex items-center justify-between gap-3">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Label htmlFor={id} className="cursor-help text-sm font-normal">
+              {label}
+            </Label>
+          </TooltipTrigger>
+          <TooltipContent className="max-w-56">{hint}</TooltipContent>
+        </Tooltip>
+        <span className="tabular-nums text-sm text-muted-foreground">{format(value)}</span>
+      </div>
+      <Slider
+        id={id}
+        min={min}
+        max={max}
+        step={step}
+        disabled={disabled}
+        value={[value]}
+        onValueChange={([next]) => onChange(next)}
+      />
+    </div>
   );
 }
 

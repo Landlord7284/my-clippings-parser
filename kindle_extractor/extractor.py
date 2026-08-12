@@ -14,6 +14,15 @@ from .parser import (
 )
 
 
+# Fora da classe de proposito: no corpo dela estes nomes resolveriam para os
+# metodos homonimos, nao para as funcoes do modulo exporters.
+_FORMAT_BUILDERS = {
+    "markdown": ("md", generate_markdown),
+    "html": ("html", generate_html),
+    "txt": ("txt", generate_txt),
+}
+
+
 class KindleHighlightsExtractor:
     def __init__(self, config_dict: dict = None):
         self.config = deep_merge(get_default_config(), config_dict or {})
@@ -164,40 +173,40 @@ class KindleHighlightsExtractor:
     def generate_txt(self, title: str, entries: List[dict], format_config: dict) -> str:
         return generate_txt(title, entries, format_config, self.config)
 
-    def generate_files(self, output_dir: Path, selected_keys=None):
+    def build_files(self, selected_keys=None) -> Dict[str, str]:
+        """Gera o conteudo dos arquivos em memoria, indexado por caminho relativo."""
         keys_to_export = selected_keys or list(self.books.keys())
+        files: Dict[str, str] = {}
 
         for format_name, format_config in self.config["export_formats"].items():
             if not format_config.get("enabled", False):
                 continue
 
-            format_dir = output_dir / format_config["folder"]
-            format_dir.mkdir(parents=True, exist_ok=True)
+            builder = _FORMAT_BUILDERS.get(format_name)
+            if builder is None:
+                continue
+            extension, generate = builder
 
             for book_key in keys_to_export:
                 entries = self.books.get(book_key, [])
                 if not entries:
                     continue
+
                 title = entries[0]["title"]
                 author = entries[0]["author"] or "autor-desconhecido"
-                safe_author = self.normalize_title(author)
-                filename = f"{self.normalize_title(title)}-{safe_author}"
+                filename = f"{normalize_title(title)}-{normalize_title(author)}"
 
-                if format_name == "markdown":
-                    content = self.generate_markdown(title, entries, format_config)
-                    filepath = format_dir / f"{filename}.md"
-                elif format_name == "html":
-                    content = self.generate_html(title, entries, format_config)
-                    filepath = format_dir / f"{filename}.html"
-                elif format_name == "txt":
-                    content = self.generate_txt(title, entries, format_config)
-                    filepath = format_dir / f"{filename}.txt"
-                else:
-                    continue
+                relative_path = f"{format_config['folder']}/{filename}.{extension}"
+                files[relative_path] = generate(title, entries, format_config, self.config)
+                self.stats["files_generated"][format_name] += 1
 
-                try:
-                    with open(filepath, "w", encoding="utf-8") as f:
-                        f.write(content)
-                    self.stats["files_generated"][format_name] += 1
-                except Exception:
-                    self.stats["errors"] += 1
+        return files
+
+    def generate_files(self, output_dir: Path, selected_keys=None):
+        for relative_path, content in self.build_files(selected_keys).items():
+            filepath = output_dir / relative_path
+            filepath.parent.mkdir(parents=True, exist_ok=True)
+            try:
+                filepath.write_text(content, encoding="utf-8")
+            except OSError:
+                self.stats["errors"] += 1

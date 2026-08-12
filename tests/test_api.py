@@ -87,6 +87,23 @@ def test_analyze_rejects_non_utf8_file(workspace_tmp_path, monkeypatch):
     assert "UTF-8" in response.json()["detail"]
 
 
+def test_analysis_cache_keeps_only_the_most_recent_analyses(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+
+    ids = [
+        _analyze(client, f"{real_clippings_excerpt}\n{index}".encode("utf-8")).json()["analysisId"]
+        for index in range(api_module.MAX_CACHED_ANALYSES + 2)
+    ]
+
+    assert len(ANALYSIS_CACHE) == api_module.MAX_CACHED_ANALYSES
+    assert ids[0] not in ANALYSIS_CACHE
+    assert ids[-1] in ANALYSIS_CACHE
+
+
 def test_export_returns_zip_for_selected_book_only_and_marks_store(
     workspace_tmp_path, real_clippings_excerpt, monkeypatch
 ):

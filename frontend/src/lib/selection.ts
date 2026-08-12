@@ -6,6 +6,9 @@ export const DEFAULT_CONFIG: AppConfig = {
   exportTxt: false,
   removeDuplicates: true,
   similarityThreshold: 0.8,
+  dedupPositionOverlapRatio: 0.6,
+  dedupTokenOverlapThreshold: 0.75,
+  dedupSessionWindowMinutes: 15,
   includeBookmarks: true,
   includeMetadata: true,
 };
