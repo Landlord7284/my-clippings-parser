@@ -2,6 +2,8 @@ export type AppConfig = {
   exportMarkdown: boolean;
   exportHtml: boolean;
   exportTxt: boolean;
+  /** Markdown com frontmatter YAML compativel com o Web Clipper do Obsidian. */
+  exportObsidian: boolean;
   removeDuplicates: boolean;
   similarityThreshold: number;
   /** Fracao de sobreposicao de posicao a partir da qual duas entradas sao a mesma. */

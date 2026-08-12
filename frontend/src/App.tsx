@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CheckCheck,
   Download,
+  ExternalLink,
   FileArchive,
   Filter,
   Moon,
@@ -121,6 +122,13 @@ function SettingsPanel({
           label="TXT"
           checked={config.exportTxt}
           onCheckedChange={(checked) => setValue("exportTxt", checked)}
+        />
+        <ToggleRow
+          id="obsidian"
+          label="Obsidian"
+          hint="Markdown com as propriedades do Web Clipper no topo, para soltar no cofre."
+          checked={config.exportObsidian}
+          onCheckedChange={(checked) => setValue("exportObsidian", checked)}
         />
       </section>
 
@@ -359,10 +367,14 @@ function entryLocation(entry: BookEntry) {
 
 function BookEntriesPanel({
   book,
+  analysisId,
+  onlyNew,
   isLoading,
   onOpenChange,
 }: {
   book: BookEntriesResponse | null;
+  analysisId: string | null;
+  onlyNew: boolean;
   isLoading: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
@@ -393,6 +405,25 @@ function BookEntriesPanel({
             <p className="text-left text-sm text-muted-foreground">{book.author}</p>
           ) : null}
         </SheetHeader>
+
+        {book && analysisId ? (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <a
+                className="inline-flex w-fit items-center gap-2 rounded-md border px-3 py-1.5 text-sm hover:bg-accent"
+                href={`/clip/${encodeURIComponent(analysisId)}/${encodeURIComponent(book.book_key)}${onlyNew ? "?only_new=true" : ""}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Página de recorte
+              </a>
+            </TooltipTrigger>
+            <TooltipContent className="max-w-64">
+              Abre a página que o Web Clipper do Obsidian recorta para uma nota.
+            </TooltipContent>
+          </Tooltip>
+        ) : null}
 
         <div className="space-y-3">
           <Input
@@ -970,6 +1001,8 @@ export default function App() {
 
         <BookEntriesPanel
           book={openBook}
+          analysisId={analysis?.analysisId ?? null}
+          onlyNew={config.exportOnlyNew}
           isLoading={isLoadingBook}
           onOpenChange={(open) => {
             if (!open) setOpenBook(null);

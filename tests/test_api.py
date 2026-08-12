@@ -223,6 +223,85 @@ def test_incremental_export_refuses_when_nothing_is_new(
     assert "novidade" in repeated.json()["detail"]
 
 
+def test_clip_page_exposes_schema_org_book_and_highlights(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+    analysis = _analyze(client, real_clippings_excerpt.encode("utf-8")).json()
+    row = next(row for row in analysis["rows"] if row["title"] == "Blade Runner")
+
+    response = client.get(f"/clip/{analysis['analysisId']}/{row['book_key']}")
+
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("text/html")
+
+    page = response.text
+    schema = json.loads(page.split('type="application/ld+json">')[1].split("</script>")[0])
+    assert schema["@type"] == "Book"
+    assert schema["name"] == "Blade Runner"
+    assert schema["author"][0]["name"] == "Philip K. Dick"
+
+    assert 'data-testid="highlights"' in page
+    assert "Por um longo tempo ele permaneceu fitando a coruja." in page
+
+
+def test_clip_page_escapes_content_and_honours_only_new(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+    analysis = _analyze(client, real_clippings_excerpt.encode("utf-8")).json()
+    row = next(row for row in analysis["rows"] if row["title"] == "Blade Runner")
+    base_url = f"/clip/{analysis['analysisId']}/{row['book_key']}"
+
+    assert client.get(base_url).status_code == 200
+
+    client.post(
+        "/api/export",
+        json={
+            "analysisId": analysis["analysisId"],
+            "selectedBookKeys": [row["book_key"]],
+            "config": _config(),
+        },
+    )
+
+    after_export = client.get(base_url, params={"only_new": "true"})
+
+    assert after_export.status_code == 200
+    assert "Por um longo tempo ele permaneceu fitando a coruja." not in after_export.text
+
+
+def test_obsidian_format_is_exported_through_the_api(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+    analysis = _analyze(client, real_clippings_excerpt.encode("utf-8")).json()
+    row = next(row for row in analysis["rows"] if row["title"] == "Blade Runner")
+
+    response = client.post(
+        "/api/export",
+        json={
+            "analysisId": analysis["analysisId"],
+            "selectedBookKeys": [row["book_key"]],
+            "config": _config(exportMarkdown=False, exportObsidian=True),
+        },
+    )
+
+    assert response.status_code == 200
+    with zipfile.ZipFile(io.BytesIO(response.content)) as archive:
+        assert archive.namelist() == ["obsidian/blade-runner-philip-k.-dick.md"]
+        note = archive.read(archive.namelist()[0]).decode("utf-8")
+
+    assert note.startswith("---\n")
+    assert 'title: "Blade Runner"' in note
+    assert "# Citações e Destaques" in note
+
+
 def test_export_returns_zip_for_selected_book_only_and_marks_store(
     workspace_tmp_path, real_clippings_excerpt, monkeypatch
 ):

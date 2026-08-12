@@ -1,0 +1,105 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Kindle Highlights",
+	"behavior": "create",
+	"noteContentFormat": "# Sinopse\n\n\n# Resumo\n\n\n# Comentários e Conexões\n\n\n# Citações e Destaques\n{{selectorHtml:[data-testid=\"highlights\"]|markdown|trim}}\n",
+	"properties": [
+		{
+			"name": "type",
+			"value": "livro",
+			"type": "text"
+		},
+		{
+			"name": "title",
+			"value": "{{schema:@Book:name}}",
+			"type": "text"
+		},
+		{
+			"name": "author",
+			"value": "{{schema:@Book:author[0].name}}",
+			"type": "text"
+		},
+		{
+			"name": "contributors",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "pages",
+			"value": "",
+			"type": "number"
+		},
+		{
+			"name": "language",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "isbn",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "created",
+			"value": "{{date}}",
+			"type": "date"
+		},
+		{
+			"name": "source",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "format",
+			"value": "ebook",
+			"type": "multitext"
+		},
+		{
+			"name": "genres",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "series",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "volume",
+			"value": "",
+			"type": "number"
+		},
+		{
+			"name": "started",
+			"value": "",
+			"type": "date"
+		},
+		{
+			"name": "finished",
+			"value": "",
+			"type": "date"
+		},
+		{
+			"name": "status",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "rating",
+			"value": "",
+			"type": "number"
+		},
+		{
+			"name": "documented",
+			"value": "true",
+			"type": "checkbox"
+		}
+	],
+	"triggers": [
+		"http://127.0.0.1:8501/clip/",
+		"http://localhost:8501/clip/",
+		"http://127.0.0.1:8000/clip/"
+	],
+	"noteNameFormat": "{{schema:@Book:name}}",
+	"path": "Clippings"
+}

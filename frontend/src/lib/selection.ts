@@ -4,6 +4,7 @@ export const DEFAULT_CONFIG: AppConfig = {
   exportMarkdown: true,
   exportHtml: false,
   exportTxt: false,
+  exportObsidian: false,
   removeDuplicates: true,
   similarityThreshold: 0.8,
   dedupPositionOverlapRatio: 0.6,
@@ -26,6 +27,7 @@ export function activeFormatLabels(config: AppConfig) {
   if (config.exportMarkdown) labels.push("Markdown");
   if (config.exportHtml) labels.push("HTML");
   if (config.exportTxt) labels.push("TXT");
+  if (config.exportObsidian) labels.push("Obsidian");
   return labels;
 }
 
@@ -34,6 +36,7 @@ export function activeFormatValues(config: AppConfig) {
   if (config.exportMarkdown) values.push("markdown");
   if (config.exportHtml) values.push("html");
   if (config.exportTxt) values.push("txt");
+  if (config.exportObsidian) values.push("obsidian");
   return values;
 }
 

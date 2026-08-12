@@ -1,0 +1,103 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Goodreads",
+	"behavior": "create",
+	"noteContentFormat": "![|250]({{meta:property:og:image}})\n\n# Sinopse\n{{selectorHtml:[data-testid=\"description\"] [data-testid=\"contentContainer\"]|markdown|trim}}\n\n# Resumo\n\n\n# Comentários e Conexões\n\n\n# Citações e Destaques \n\n\n",
+	"properties": [
+		{
+			"name": "type",
+			"value": "livro",
+			"type": "text"
+		},
+		{
+			"name": "title",
+			"value": "{{schema:@Book:name}}",
+			"type": "text"
+		},
+		{
+			"name": "author",
+			"value": "{{schema:@Book:author[0].name}}",
+			"type": "text"
+		},
+		{
+			"name": "contributors",
+			"value": "{{schema:@Book:author[*].name|slice:1}}",
+			"type": "multitext"
+		},
+		{
+			"name": "pages",
+			"value": "{{schema:@Book:numberOfPages}}",
+			"type": "number"
+		},
+		{
+			"name": "language",
+			"value": "{{schema:@Book:inLanguage}}",
+			"type": "text"
+		},
+		{
+			"name": "isbn",
+			"value": "{{schema:@Book:isbn}}",
+			"type": "text"
+		},
+		{
+			"name": "created",
+			"value": "{{date}}",
+			"type": "date"
+		},
+		{
+			"name": "source",
+			"value": "{{url}}",
+			"type": "text"
+		},
+		{
+			"name": "format",
+			"value": "{{schema:@Book:bookFormat}}",
+			"type": "multitext"
+		},
+		{
+			"name": "genres",
+			"value": "{{selector:ul[aria-label=\\\"Top genres for this book\\\"] a[href*=\\\"/genres/\\\"]|join:\\\", \\\"}}",
+			"type": "multitext"
+		},
+		{
+			"name": "series",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "volume",
+			"value": "",
+			"type": "number"
+		},
+		{
+			"name": "started",
+			"value": "",
+			"type": "date"
+		},
+		{
+			"name": "finished",
+			"value": "",
+			"type": "date"
+		},
+		{
+			"name": "status",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "rating",
+			"value": "",
+			"type": "number"
+		},
+		{
+			"name": "documented",
+			"value": "",
+			"type": "checkbox"
+		}
+	],
+	"triggers": [
+		"https://www.goodreads.com/book/show/"
+	],
+	"noteNameFormat": "{{schema:@Book:name}}",
+	"path": "Clippings"
+}

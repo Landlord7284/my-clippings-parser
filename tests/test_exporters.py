@@ -1,8 +1,14 @@
-﻿from datetime import datetime
+﻿import re
+from datetime import datetime
 
 from kindle_extractor.book_selection_service import build_book_key
 from kindle_extractor.extractor import KindleHighlightsExtractor
-from kindle_extractor.exporters import generate_html, generate_markdown, generate_txt
+from kindle_extractor.exporters import (
+    generate_html,
+    generate_markdown,
+    generate_obsidian,
+    generate_txt,
+)
 
 
 def _sample_entries():
@@ -162,6 +168,52 @@ def test_position_zero_is_not_dropped_as_falsy():
 
     assert "Página 0" in markdown
     assert "Posição: 0" in markdown
+
+
+def test_obsidian_export_carries_the_web_clipper_properties():
+    entries = _sample_entries()
+
+    content = generate_obsidian(
+        "Clean Code", entries, {"include_metadata": True}, {"include_bookmarks": True}
+    )
+
+    frontmatter = content.split("---")[1]
+    assert 'title: "Clean Code"' in frontmatter
+    assert 'author: "Robert C. Martin"' in frontmatter
+    assert 'type: "livro"' in frontmatter
+    assert "documented: true" in frontmatter
+    assert 'format:\n  - "ebook"' in frontmatter
+    # Sem aspas: o Obsidian so reconhece a propriedade como data desse jeito.
+    assert re.search(r"\ncreated: \d{4}-\d{2}-\d{2}\n", frontmatter)
+
+    # As demais propriedades do template existem, vazias, para preenchimento manual.
+    for name in ("contributors", "pages", "language", "isbn", "genres", "started", "rating"):
+        assert f"\n{name}:\n" in frontmatter
+
+    assert "# Citações e Destaques" in content
+    assert "> Código limpo importa." in content
+    assert "**Nota** — Página 12 · Posição: 202" in content
+
+
+def test_obsidian_frontmatter_survives_titles_with_colons_and_quotes():
+    entries = [{**_sample_entries()[0], "author": 'Autor "X"'}]
+
+    content = generate_obsidian(
+        'Livro: a "sequência"', entries, {"include_metadata": True}, {"include_bookmarks": True}
+    )
+
+    assert 'title: "Livro: a \\"sequência\\""' in content
+    assert 'author: "Autor \\"X\\""' in content
+
+
+def test_obsidian_export_quotes_multiline_highlights():
+    entries = [{**_sample_entries()[0], "content": "Primeira linha.\n\nSegunda linha."}]
+
+    content = generate_obsidian(
+        "Clean Code", entries, {"include_metadata": False}, {"include_bookmarks": True}
+    )
+
+    assert "> Primeira linha.\n>\n> Segunda linha." in content
 
 
 def test_generate_files_uses_normalized_filenames(workspace_tmp_path):

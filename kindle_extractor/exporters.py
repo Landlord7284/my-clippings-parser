@@ -23,7 +23,7 @@ def _position_label(entry: dict) -> Optional[str]:
     return f"Posição: {start_pos}-{end_pos}"
 
 
-def _location_parts(entry: dict) -> List[str]:
+def location_parts(entry: dict) -> List[str]:
     parts = []
     if entry.get("page") is not None:
         parts.append(f"Página {entry['page']}")
@@ -90,6 +90,93 @@ def _build_book_metadata(entries: List[dict]) -> Dict[str, object]:
     }
 
 
+class _RawYaml(str):
+    """Valor emitido sem aspas: o Obsidian so tipa a propriedade como data assim."""
+
+
+def _yaml_scalar(value: str) -> str:
+    """Aspas duplas cobrem qualquer titulo -- inclusive os que tem ':' ou aspas."""
+    escaped = value.replace("\\", "\\\\").replace('"', '\\"')
+    return f'"{escaped}"'
+
+
+def build_obsidian_properties(title: str, author: str) -> List[tuple]:
+    """Espelha as propriedades do template do Web Clipper.
+
+    Só recebe valor o que os clippings do Kindle realmente dizem. O resto fica
+    em branco, presente na nota, para preenchimento manual no Obsidian.
+    """
+    return [
+        ("type", "livro"),
+        ("title", title),
+        ("author", author),
+        ("contributors", []),
+        ("pages", None),
+        ("language", None),
+        ("isbn", None),
+        ("created", _RawYaml(today_in_app_timezone().strftime("%Y-%m-%d"))),
+        ("source", None),
+        ("format", ["ebook"]),
+        ("genres", []),
+        ("series", None),
+        ("volume", None),
+        ("started", None),
+        ("finished", None),
+        ("status", None),
+        ("rating", None),
+        ("documented", True),
+    ]
+
+
+def _yaml_property(name: str, value) -> str:
+    if value is None or value == []:
+        return f"{name}:"
+    if value is True:
+        return f"{name}: true"
+    if isinstance(value, _RawYaml):
+        return f"{name}: {value}"
+    if isinstance(value, list):
+        items = "\n".join(f"  - {_yaml_scalar(item)}" for item in value)
+        return f"{name}:\n{items}"
+    return f"{name}: {_yaml_scalar(value)}"
+
+
+def _obsidian_frontmatter(title: str, author: str) -> str:
+    properties = build_obsidian_properties(title, author)
+    body = "\n".join(_yaml_property(name, value) for name, value in properties)
+    return f"---\n{body}\n---\n"
+
+
+def _as_blockquote(text: str) -> str:
+    return "\n".join(f"> {line}" if line else ">" for line in text.split("\n"))
+
+
+def generate_obsidian(
+    title: str, entries: List[dict], format_config: dict, app_config: dict
+) -> str:
+    """Nota pronta para o cofre: propriedades no topo, destaques sob a secao usual."""
+    entries = sort_entries(entries)
+    meta = _build_book_metadata(entries)
+
+    content = _obsidian_frontmatter(title, meta["author"])
+    content += "\n# Citações e Destaques\n\n"
+
+    for entry in entries:
+        if not _is_renderable(entry, app_config):
+            continue
+
+        location = " · ".join(location_parts(entry))
+
+        if entry["type"] == "bookmark":
+            content += f"- **Marcador** — {location}\n\n"
+        elif entry["type"] == "note":
+            content += f"**Nota** — {location}\n\n{entry['content']}\n\n"
+        else:
+            content += f"{_as_blockquote(entry['content'])}\n>\n> *{location}*\n\n"
+
+    return content
+
+
 def generate_markdown(
     title: str, entries: List[dict], format_config: dict, app_config: dict
 ) -> str:
@@ -119,7 +206,7 @@ def generate_markdown(
         if not _is_renderable(entry, app_config):
             continue
 
-        location = " | ".join(_location_parts(entry))
+        location = " | ".join(location_parts(entry))
 
         if entry["type"] == "note":
             md_content += f"- **NOTA** {location}\n"
@@ -234,7 +321,7 @@ def generate_html(
             continue
 
         css_class = "note" if entry["type"] == "note" else "highlight"
-        location = html.escape(" | ".join(_location_parts(entry)))
+        location = html.escape(" | ".join(location_parts(entry)))
         prefix = {"note": "NOTA ", "bookmark": "MARCADOR "}.get(entry["type"], "")
         html_content += f"""
     <div class="entry {css_class}">
@@ -280,7 +367,7 @@ def generate_txt(
         if not _is_renderable(entry, app_config):
             continue
 
-        location = " | ".join(_location_parts(entry))
+        location = " | ".join(location_parts(entry))
         prefix = {"note": "NOTA ", "bookmark": "MARCADOR "}.get(entry["type"], "")
         txt_content += f"{prefix}{location}\n"
         if entry["content"]:

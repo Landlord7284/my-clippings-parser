@@ -1,5 +1,6 @@
 import base64
 import hashlib
+import html
 import io
 import json
 import os
@@ -17,7 +18,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
 
 from .book_selection_service import FILTER_ALL, STATUS_FILTER_LABELS, BookSelectionService
-from .exporters import sort_entries
+from .exporters import location_parts, sort_entries
 from .extractor import KindleHighlightsExtractor
 from .processing_store import ProcessingStore
 
@@ -54,6 +55,7 @@ class AppConfig(BaseModel):
     export_markdown: Annotated[bool, Field(alias="exportMarkdown")] = True
     export_html: Annotated[bool, Field(alias="exportHtml")] = False
     export_txt: Annotated[bool, Field(alias="exportTxt")] = False
+    export_obsidian: Annotated[bool, Field(alias="exportObsidian")] = False
     remove_duplicates: Annotated[bool, Field(alias="removeDuplicates")] = True
     similarity_threshold: Annotated[float, Field(alias="similarityThreshold")] = 0.8
     dedup_position_overlap_ratio: Annotated[
@@ -119,6 +121,11 @@ def build_extractor_config(config: AppConfig) -> dict:
                 "plain_text": True,
                 "folder": "txt",
             },
+            "obsidian": {
+                "enabled": config.export_obsidian,
+                "include_metadata": config.include_metadata,
+                "folder": "obsidian",
+            },
         },
         "remove_duplicates": config.remove_duplicates,
         "similarity_threshold": config.similarity_threshold,
@@ -147,6 +154,8 @@ def _selected_format_labels(config: AppConfig) -> List[str]:
         labels.append("html")
     if config.export_txt:
         labels.append("txt")
+    if config.export_obsidian:
+        labels.append("obsidian")
     return labels
 
 
@@ -298,6 +307,84 @@ def get_book_entries(analysis_id: str, book_key: str):
         "author": entries[0]["author"],
         "entries": [_serialize_entry(entry) for entry in sort_entries(entries)],
     }
+
+
+def _render_clip_page(title: str, author: str, entries: List[dict]) -> str:
+    """Pagina servida ao Web Clipper do Obsidian.
+
+    O JSON-LD alimenta {{schema:@Book:name}} e {{schema:@Book:author[0].name}},
+    os mesmos campos que o template do Goodreads ja usa. Os destaques ficam sob
+    um seletor estavel para o {{selectorHtml:...|markdown}}.
+    """
+    book_schema = json.dumps(
+        {
+            "@context": "https://schema.org",
+            "@type": "Book",
+            "name": title,
+            "author": [{"@type": "Person", "name": author}],
+            "bookFormat": "EBook",
+        },
+        ensure_ascii=False,
+    )
+
+    blocks = []
+    for entry in entries:
+        location = html.escape(" · ".join(location_parts(entry)))
+        if entry["type"] == "bookmark":
+            blocks.append(f'<li data-type="bookmark"><em>Marcador — {location}</em></li>')
+        elif entry["type"] == "note":
+            blocks.append(
+                f'<li data-type="note"><strong>Nota</strong> — {location}<br>'
+                f"{html.escape(entry['content'])}</li>"
+            )
+        elif entry["content"]:
+            blocks.append(
+                f'<li data-type="highlight"><blockquote>{html.escape(entry["content"])}'
+                f"</blockquote><em>{location}</em></li>"
+            )
+
+    escaped_title = html.escape(title)
+    return f"""<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{escaped_title}</title>
+<script type="application/ld+json">{book_schema}</script>
+<style>
+  body {{ font-family: system-ui, sans-serif; max-width: 46rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }}
+  ul {{ list-style: none; padding: 0; }}
+  li {{ margin-bottom: 1.5rem; }}
+  blockquote {{ margin: 0 0 .25rem; padding-left: 1rem; border-left: 3px solid #ccc; }}
+  em {{ color: #666; font-size: .875rem; }}
+</style>
+</head>
+<body>
+<h1>{escaped_title}</h1>
+<p>{html.escape(author)}</p>
+<ul data-testid="highlights">
+{chr(10).join(blocks)}
+</ul>
+</body>
+</html>"""
+
+
+@app.get("/clip/{analysis_id}/{book_key}")
+def clip_page(analysis_id: str, book_key: str, only_new: bool = False):
+    cached_analysis = _cached_analysis_or_409(analysis_id)
+    entries = cached_analysis["books"].get(book_key)
+    if not entries:
+        raise HTTPException(status_code=404, detail="Book not found in this analysis.")
+
+    title, author = entries[0]["title"], entries[0]["author"]
+    if only_new:
+        service = BookSelectionService(get_processing_store())
+        entries = service.keep_only_new_entries({book_key: entries}).get(book_key, [])
+
+    return Response(
+        content=_render_clip_page(title, author, sort_entries(entries)),
+        media_type="text/html; charset=utf-8",
+    )
 
 
 @app.post("/api/export")

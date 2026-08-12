@@ -8,7 +8,9 @@ Local FastAPI + Vite React app for parsing Kindle `My Clippings.txt` files, grou
 - Deduplicates repeated or overlapping entries.
 - Tracks analysis and export history per book.
 - Lets you search, filter, and select books before exporting.
-- Exports selected books as Markdown, HTML, and/or TXT.
+- Exports selected books as Markdown, HTML, TXT, and/or Obsidian notes.
+- Exports incrementally: only the entries added since the previous export.
+- Reads highlights in the app, with full-text search per book.
 
 ## App Flow
 
@@ -135,6 +137,25 @@ docs/
 - `api.py`: FastAPI endpoints for analysis and export.
 - `frontend/`: Vite React interface built with shadcn/ui components.
 - `extractor.py`: parser, deduplication, and export orchestration.
+
+## Obsidian
+
+There are two ways to get highlights into a vault, both producing the same
+property set.
+
+**Web Clipper** — import `docs/kindle-highlights-clipper.json` into the Obsidian
+Web Clipper extension. After analyzing, open a book in the app and click
+*Página de recorte*: the page at `/clip/{analysisId}/{bookKey}` carries
+schema.org `@Book` data and the highlights under `[data-testid="highlights"]`,
+which the template turns into a note in `Clippings/`. One book per clip — the
+extension's native flow. Append `?only_new=true` to carry only new highlights.
+
+**Manual export** — enable the `Obsidian` format and export. You get a `.md`
+with the same YAML frontmatter, ready to drop into the vault.
+
+Either way, `type`, `title`, `author`, `format`, `created`, and `documented`
+come pre-filled from the clippings; the remaining properties (`pages`, `isbn`,
+`genres`, `rating`, …) are present but empty, to fill in by hand.
 
 ## Known Limitations
 

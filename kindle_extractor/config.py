@@ -22,6 +22,11 @@ def get_default_config() -> Dict[str, Any]:
                 "plain_text": True,
                 "folder": "txt",
             },
+            "obsidian": {
+                "enabled": False,
+                "include_metadata": True,
+                "folder": "obsidian",
+            },
         },
         "remove_duplicates": True,
         "similarity_threshold": 0.8,

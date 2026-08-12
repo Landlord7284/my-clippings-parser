@@ -4,7 +4,7 @@ from typing import Dict, List, Optional, Tuple
 from .book_selection_service import build_book_key
 from .config import deep_merge, get_default_config
 from .dedup import decide_duplicate
-from .exporters import generate_html, generate_markdown, generate_txt
+from .exporters import generate_html, generate_markdown, generate_obsidian, generate_txt
 from .parser import (
     normalize_title,
     parse_date,
@@ -20,6 +20,7 @@ _FORMAT_BUILDERS = {
     "markdown": ("md", generate_markdown),
     "html": ("html", generate_html),
     "txt": ("txt", generate_txt),
+    "obsidian": ("md", generate_obsidian),
 }
 
 
@@ -32,7 +33,7 @@ class KindleHighlightsExtractor:
             "duplicates_removed": 0,
             "books_processed": 0,
             "errors": 0,
-            "files_generated": {"markdown": 0, "html": 0, "txt": 0},
+            "files_generated": {"markdown": 0, "html": 0, "txt": 0, "obsidian": 0},
             "dedup_metrics": {
                 "exact_duplicates_removed": 0,
                 "same_start_containment_conflicts": 0,
