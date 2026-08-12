@@ -1,12 +1,6 @@
 ﻿from datetime import datetime, timezone
 
 from kindle_extractor.book_selection_service import (
-    BATCH_CLEAR_VISIBLE,
-    BATCH_RECOMMENDED,
-    BATCH_SELECT_VISIBLE,
-    FILTER_NO_NEWS,
-    FILTER_SELECTED,
-    FILTER_WITH_NEWS,
     STATUS_NEVER_EXPORTED,
     STATUS_NEW,
     STATUS_NO_NEWS,
@@ -94,88 +88,3 @@ def test_status_labels_are_compact(workspace_tmp_path, entry_factory):
 
     assert rows[0]["status_label"] == "Novo"
 
-
-def test_filters_by_status_search_and_selected_only(workspace_tmp_path, entry_factory):
-    store = ProcessingStore(workspace_tmp_path / "state.json")
-    service = BookSelectionService(store)
-
-    rows = service.build_books_table(
-        {
-            "Sem Novidades": [entry_factory(title="Sem Novidades", author="Autor A")],
-            "Com Novidades": [entry_factory(title="Com Novidades", author="Autor B")],
-        },
-        persist=True,
-        processed_at=datetime(2024, 1, 1, 8, 0, tzinfo=timezone.utc),
-    )
-    keys = {row["title"]: row["book_key"] for row in rows}
-
-    service.mark_exported(
-        [keys["Sem Novidades"], keys["Com Novidades"]],
-        exported_at=datetime(2024, 1, 1, 9, 0, tzinfo=timezone.utc),
-        export_formats=["markdown"],
-    )
-
-    rows = service.build_books_table(
-        {
-            "Sem Novidades": [entry_factory(title="Sem Novidades", author="Autor A")],
-            "Com Novidades": [
-                entry_factory(title="Com Novidades", author="Autor B"),
-                entry_factory(
-                    title="Com Novidades",
-                    author="Autor B",
-                    start_pos=50,
-                    end_pos=55,
-                    content="novo",
-                ),
-            ],
-        },
-        persist=False,
-    )
-
-    selection_map = service.build_default_selection_map(rows)
-    selection_map[keys["Sem Novidades"]] = True
-
-    with_news = service.filter_rows(rows, selection_map=selection_map, status_filter=FILTER_WITH_NEWS)
-    no_news = service.filter_rows(rows, selection_map=selection_map, status_filter=FILTER_NO_NEWS)
-    searched = service.filter_rows(rows, selection_map=selection_map, search_term="autor b")
-    selected = service.filter_rows(rows, selection_map=selection_map, status_filter=FILTER_SELECTED)
-
-    assert [row["title"] for row in with_news] == ["Com Novidades"]
-    assert [row["title"] for row in no_news] == ["Sem Novidades"]
-    assert [row["title"] for row in searched] == ["Com Novidades"]
-    assert [row["title"] for row in selected] == ["Com Novidades", "Sem Novidades"]
-
-
-def test_batch_actions_apply_only_to_visible_items(workspace_tmp_path):
-    service = BookSelectionService(ProcessingStore(workspace_tmp_path / "state.json"))
-
-    rows = [
-        {"book_key": "a", "default_selected": True, "status": STATUS_NEW, "title": "A", "author": "Autor", "highlights": 1},
-        {"book_key": "b", "default_selected": False, "status": STATUS_NO_NEWS, "title": "B", "author": "Autor", "highlights": 1},
-        {"book_key": "c", "default_selected": True, "status": STATUS_WITH_NEWS, "title": "C", "author": "Autor", "highlights": 1},
-    ]
-    selection_map = {"a": False, "b": False, "c": False}
-
-    selection_map = service.apply_batch_action(
-        rows,
-        selection_map,
-        visible_book_keys=["a", "b"],
-        action=BATCH_SELECT_VISIBLE,
-    )
-    assert selection_map == {"a": True, "b": True, "c": False}
-
-    selection_map = service.apply_batch_action(
-        rows,
-        selection_map,
-        visible_book_keys=["b"],
-        action=BATCH_CLEAR_VISIBLE,
-    )
-    assert selection_map == {"a": True, "b": False, "c": False}
-
-    selection_map = service.apply_batch_action(
-        rows,
-        selection_map,
-        visible_book_keys=["a", "b"],
-        action=BATCH_RECOMMENDED,
-    )
-    assert selection_map == {"a": True, "b": False, "c": False}

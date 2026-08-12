@@ -1,5 +1,3 @@
-import json
-from pathlib import Path
 from typing import Any, Dict
 
 
@@ -49,8 +47,3 @@ def deep_merge(base: Dict[str, Any], override: Dict[str, Any]) -> Dict[str, Any]
         else:
             merged[key] = value
     return merged
-
-
-def load_config_file(path: Path) -> Dict[str, Any]:
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)

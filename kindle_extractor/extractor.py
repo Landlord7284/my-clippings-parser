@@ -3,7 +3,7 @@ from typing import Dict, List, Optional, Tuple
 
 from .book_selection_service import build_book_key
 from .config import deep_merge, get_default_config
-from .dedup import decide_duplicate, is_duplicate
+from .dedup import decide_duplicate
 from .exporters import generate_html, generate_markdown, generate_txt
 from .parser import (
     normalize_title,
@@ -53,9 +53,6 @@ class KindleHighlightsExtractor:
 
     def parse_date(self, date_str: str):
         return parse_date(date_str)
-
-    def is_duplicate(self, new_entry: dict, existing_entries: List[dict]) -> bool:
-        return is_duplicate(new_entry, existing_entries, self.config)
 
     def _register_dedup_result(self, title: str, entry: dict, reason: str):
         dedup_metrics = self.stats["dedup_metrics"]

@@ -34,10 +34,6 @@ STATUS_FILTER_LABELS = {
     FILTER_SELECTED: "Selecionado",
 }
 
-BATCH_RECOMMENDED = "recommended"
-BATCH_SELECT_VISIBLE = "select_visible"
-BATCH_CLEAR_VISIBLE = "clear_visible"
-
 
 def _normalize_text(value: str) -> str:
     text = unicodedata.normalize("NFKC", value or "")
@@ -250,99 +246,6 @@ class BookSelectionService:
 
     def build_default_selection_map(self, rows: List[dict]) -> Dict[str, bool]:
         return {row["book_key"]: row["default_selected"] for row in rows}
-
-    def sync_selection_map(self, rows: List[dict], current: Optional[Dict[str, bool]]) -> Dict[str, bool]:
-        current = dict(current or {})
-        valid_keys = {row["book_key"] for row in rows}
-
-        synced = {
-            key: bool(value)
-            for key, value in current.items()
-            if key in valid_keys
-        }
-        for row in rows:
-            book_key = row["book_key"]
-            if book_key not in synced:
-                synced[book_key] = bool(row["default_selected"])
-        return synced
-
-    def filter_rows(
-        self,
-        rows: List[dict],
-        selection_map: Optional[Dict[str, bool]] = None,
-        search_term: str = "",
-        status_filter: str = FILTER_ALL,
-        author_filter: Optional[str] = None,
-    ) -> List[dict]:
-        selection_map = selection_map or {}
-        normalized_search = _normalize_text(search_term)
-        normalized_author = _normalize_text(author_filter or "")
-
-        filtered = []
-        for row in rows:
-            is_selected = bool(selection_map.get(row["book_key"], False))
-            title_author_text = _normalize_text(f"{row['title']} {row['author']}")
-
-            if normalized_search and normalized_search not in title_author_text:
-                continue
-
-            if normalized_author and normalized_author != "todos":
-                if _normalize_text(row["author"]) != normalized_author:
-                    continue
-
-            if status_filter == FILTER_SELECTED and not is_selected:
-                continue
-            if status_filter == FILTER_NEW and row["status"] != STATUS_NEW:
-                continue
-            if status_filter == FILTER_NEVER_EXPORTED and row["status"] != STATUS_NEVER_EXPORTED:
-                continue
-            if status_filter == FILTER_WITH_NEWS and row["status"] != STATUS_WITH_NEWS:
-                continue
-            if status_filter == FILTER_NO_NEWS and row["status"] != STATUS_NO_NEWS:
-                continue
-
-            filtered.append(row)
-
-        return filtered
-
-    def apply_batch_action(
-        self,
-        rows: List[dict],
-        selection_map: Dict[str, bool],
-        visible_book_keys: List[str],
-        action: str,
-    ) -> Dict[str, bool]:
-        updated = dict(selection_map)
-        visible_set = set(visible_book_keys)
-        row_map = {row["book_key"]: row for row in rows}
-
-        if action == BATCH_RECOMMENDED:
-            for book_key in visible_set:
-                row = row_map.get(book_key)
-                if row is None:
-                    continue
-                updated[book_key] = bool(row["default_selected"])
-            return updated
-
-        if action == BATCH_SELECT_VISIBLE:
-            for book_key in visible_set:
-                updated[book_key] = True
-            return updated
-
-        if action == BATCH_CLEAR_VISIBLE:
-            for book_key in visible_set:
-                updated[book_key] = False
-            return updated
-
-        return updated
-
-    def selected_book_keys(self, selection_map: Dict[str, bool]) -> List[str]:
-        return sorted([book_key for book_key, selected in selection_map.items() if selected])
-
-    def selected_highlights_total(self, rows: List[dict], selection_map: Dict[str, bool]) -> int:
-        return sum(
-            row["highlights"] for row in rows if selection_map.get(row["book_key"], False)
-        )
 
     def mark_exported(
         self,

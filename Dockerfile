@@ -26,7 +26,7 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip && pip install -r /app/requirements.txt
 
 COPY kindle_extractor /app/kindle_extractor
-COPY config.json app.py /app/
+COPY app.py /app/
 COPY --from=frontend-builder /app/frontend/dist /app/frontend/dist
 
 RUN mkdir -p /data

@@ -397,7 +397,3 @@ def decide_duplicate(
         )
 
     return DedupDecision(False)
-
-
-def is_duplicate(new_entry: Dict, existing_entries: List[Dict], config: Dict) -> bool:
-    return decide_duplicate(new_entry, existing_entries, config).is_duplicate
