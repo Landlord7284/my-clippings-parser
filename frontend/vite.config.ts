@@ -15,6 +15,9 @@ export default defineConfig({
     strictPort: true,
     proxy: {
       "/api": "http://127.0.0.1:8000",
+      // Sem isto o dev server responde o index.html do SPA em /clip e a pagina
+      // de recorte abre em branco. Em producao a API serve os dois na mesma porta.
+      "/clip": "http://127.0.0.1:8000",
     },
   },
   test: {

@@ -8,17 +8,18 @@ import zipfile
 from collections import OrderedDict
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
-from typing import Dict, List
+from typing import Dict, List, Optional
 from typing_extensions import Annotated
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
+from .analysis_store import AnalysisStore
 from .book_selection_service import FILTER_ALL, STATUS_FILTER_LABELS, BookSelectionService
-from .exporters import location_parts, sort_entries
+from .exporters import build_note_blocks, render_note_blocks_html, sort_entries
 from .extractor import KindleHighlightsExtractor
 from .processing_store import ProcessingStore
 
@@ -93,11 +94,19 @@ MIME_TYPES = {
 }
 
 
-def get_processing_store() -> ProcessingStore:
+def get_history_dir() -> Path:
     history_dir_value = os.environ.get("HISTORY_DIR")
     history_dir = Path(history_dir_value) if history_dir_value else Path(".")
     history_dir.mkdir(parents=True, exist_ok=True)
-    return ProcessingStore(history_dir / ".kindle_processing_store.json")
+    return history_dir
+
+
+def get_processing_store() -> ProcessingStore:
+    return ProcessingStore(get_history_dir() / ".kindle_processing_store.json")
+
+
+def get_analysis_store() -> AnalysisStore:
+    return AnalysisStore(get_history_dir() / "analyses")
 
 
 def build_extractor_config(config: AppConfig) -> dict:
@@ -188,13 +197,86 @@ def _current_export_datetime() -> datetime:
     return datetime.now(timezone.utc)
 
 
+def _build_analysis_payload(
+    content: str,
+    app_config: AppConfig,
+    filename: Optional[str],
+    *,
+    persist: bool,
+    force_reprocess: bool = False,
+) -> dict:
+    extractor = KindleHighlightsExtractor(build_extractor_config(app_config))
+    extractor.parse_content(content)
+
+    service = BookSelectionService(get_processing_store())
+    rows = service.build_books_table(
+        extractor.books,
+        persist=persist,
+        force_reprocess=force_reprocess,
+    )
+
+    return {
+        "books": extractor.books,
+        "rows": rows,
+        "stats": extractor.stats,
+        "uploaded_name": filename,
+        "selection_map": service.build_default_selection_map(rows),
+    }
+
+
+def _analysis_response(analysis_id: str, payload: dict) -> dict:
+    rows = payload["rows"]
+    return {
+        "analysisId": analysis_id,
+        "uploadedName": payload["uploaded_name"],
+        "stats": payload["stats"],
+        "rows": rows,
+        "selectionMap": payload["selection_map"],
+        "statusOptions": [
+            {"value": key, "label": label}
+            for key, label in STATUS_FILTER_LABELS.items()
+            if key != FILTER_ALL or rows
+        ],
+        "authorOptions": _build_author_options(rows),
+    }
+
+
+def _rehydrate_stored_analysis(stored: dict) -> dict:
+    """Reconstroi a analise a partir do upload guardado e repovoa o cache.
+
+    `persist=False` e o ponto delicado: reidratar nao e uma analise nova. Com
+    `True`, todo restart empurraria `last_analysis_at` para frente e enfileiraria
+    um evento por livro no `processing_history`.
+    """
+    try:
+        app_config = AppConfig.model_validate(stored.get("config") or {})
+    except ValidationError:
+        app_config = AppConfig()
+
+    payload = _build_analysis_payload(
+        stored["content"],
+        app_config,
+        stored.get("filename"),
+        persist=False,
+    )
+    _cache_analysis(stored["id"], payload)
+    return payload
+
+
 def _cached_analysis_or_409(analysis_id: str) -> dict:
     cached_analysis = ANALYSIS_CACHE.get(analysis_id)
+
+    if cached_analysis is None:
+        stored = get_analysis_store().get(analysis_id)
+        if stored is not None:
+            cached_analysis = _rehydrate_stored_analysis(stored)
+
     if cached_analysis is None:
         raise HTTPException(
             status_code=409,
             detail="Analysis not found. Reanalyze the uploaded file before exporting.",
         )
+
     ANALYSIS_CACHE.move_to_end(analysis_id)
     return cached_analysis
 
@@ -257,41 +339,40 @@ async def analyze_file(
             detail="Nao foi possivel ler o arquivo como UTF-8.",
         ) from error
 
-    extractor = KindleHighlightsExtractor(build_extractor_config(app_config))
-    extractor.parse_content(content)
-
-    service = BookSelectionService(get_processing_store())
-    rows = service.build_books_table(
-        extractor.books,
+    payload = _build_analysis_payload(
+        content,
+        app_config,
+        file.filename,
         persist=True,
         force_reprocess=force_reprocess,
     )
-    selection_map = service.build_default_selection_map(rows)
+    _cache_analysis(analysis_id, payload)
 
-    _cache_analysis(
+    # Guarda os bytes crus: e o que faz a analise sobreviver a um restart e
+    # aparecer ao abrir o app de outro dispositivo.
+    get_analysis_store().save(
         analysis_id,
-        {
-            "books": extractor.books,
-            "rows": rows,
-            "stats": extractor.stats,
-            "uploaded_name": file.filename,
-            "selection_map": selection_map,
-        },
+        raw_content,
+        file.filename,
+        app_config.model_dump(by_alias=True),
     )
 
-    return {
-        "analysisId": analysis_id,
-        "uploadedName": file.filename,
-        "stats": extractor.stats,
-        "rows": rows,
-        "selectionMap": selection_map,
-        "statusOptions": [
-            {"value": key, "label": label}
-            for key, label in STATUS_FILTER_LABELS.items()
-            if key != FILTER_ALL or rows
-        ],
-        "authorOptions": _build_author_options(rows),
-    }
+    return _analysis_response(analysis_id, payload)
+
+
+@app.get("/api/analysis/latest")
+def latest_analysis():
+    """Ultima analise guardada, para o app abrir ja preenchido."""
+    stored = get_analysis_store().get_latest()
+    if stored is None:
+        raise HTTPException(status_code=404, detail="No stored analysis yet.")
+
+    payload = ANALYSIS_CACHE.get(stored["id"])
+    if payload is None:
+        payload = _rehydrate_stored_analysis(stored)
+
+    ANALYSIS_CACHE.move_to_end(stored["id"])
+    return _analysis_response(stored["id"], payload)
 
 
 @app.get("/api/analysis/{analysis_id}/books/{book_key}/entries")
@@ -309,12 +390,19 @@ def get_book_entries(analysis_id: str, book_key: str):
     }
 
 
-def _render_clip_page(title: str, author: str, entries: List[dict]) -> str:
+def _render_clip_page(
+    title: str, author: str, entries: List[dict], include_metadata: bool = True
+) -> str:
     """Pagina servida ao Web Clipper do Obsidian.
 
     O JSON-LD alimenta {{schema:@Book:name}} e {{schema:@Book:author[0].name}},
-    os mesmos campos que o template do Goodreads ja usa. Os destaques ficam sob
-    um seletor estavel para o {{selectorHtml:...|markdown}}.
+    os mesmos campos que o template do Goodreads ja usa. O corpo sai de
+    `build_note_blocks`, o mesmo que gera o `.md` do formato Obsidian, sob um
+    seletor estavel para o {{selectorHtml:...|markdown}}.
+
+    O <h1> e o autor ficam fora desse seletor de proposito: servem para
+    identificar a aba aberta e nunca entram na nota, onde seriam redundantes
+    com as propriedades title/author.
     """
     book_schema = json.dumps(
         {

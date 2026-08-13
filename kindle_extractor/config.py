@@ -33,7 +33,6 @@ def get_default_config() -> Dict[str, Any]:
         "dedup_position_overlap_ratio": 0.60,
         "dedup_token_overlap_threshold": 0.75,
         "dedup_session_window_minutes": 15,
-        "dedup_prefix_words": 5,
         "include_bookmarks": True,
         "date_format": "portuguese",
         "encoding": "utf-8",

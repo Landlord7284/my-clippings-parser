@@ -7,16 +7,32 @@ import type {
 
 const API_BASE = "";
 
-async function parseError(response: Response) {
+/** Carrega o status para o App distinguir 409 (analise expirada) do resto. */
+export class ApiError extends Error {
+  readonly status: number;
+
+  constructor(status: number, message: string) {
+    super(message);
+    this.name = "ApiError";
+    this.status = status;
+  }
+}
+
+/** O backend perdeu a analise em memoria -- so um novo upload resolve. */
+export function isAnalysisExpired(error: unknown): boolean {
+  return error instanceof ApiError && error.status === 409;
+}
+
+async function buildError(response: Response) {
   if (response.status === 405) {
-    return "Servidor desatualizado. Reinicie a API e tente novamente.";
+    return new ApiError(405, "Servidor desatualizado. Reinicie a API e tente novamente.");
   }
 
   try {
     const payload = await response.json();
-    return payload.detail || "Falha na requisicao.";
+    return new ApiError(response.status, payload.detail || "Falha na requisicao.");
   } catch {
-    return "Falha na requisicao.";
+    return new ApiError(response.status, "Falha na requisicao.");
   }
 }
 
@@ -35,7 +51,19 @@ export async function analyzeFile(
     body: formData,
   });
   if (!response.ok) {
-    throw new Error(await parseError(response));
+    throw await buildError(response);
+  }
+  return response.json();
+}
+
+/** Ultima analise guardada no servidor. `null` quando ainda nao ha nenhuma. */
+export async function fetchLatestAnalysis(): Promise<AnalysisResponse | null> {
+  const response = await fetch(`${API_BASE}/api/analysis/latest`);
+  if (response.status === 404) {
+    return null;
+  }
+  if (!response.ok) {
+    throw await buildError(response);
   }
   return response.json();
 }
@@ -48,7 +76,7 @@ export async function fetchBookEntries(
     `${API_BASE}/api/analysis/${encodeURIComponent(analysisId)}/books/${encodeURIComponent(bookKey)}/entries`,
   );
   if (!response.ok) {
-    throw new Error(await parseError(response));
+    throw await buildError(response);
   }
   return response.json();
 }
@@ -68,7 +96,7 @@ export async function exportBooks(
     }),
   });
   if (!response.ok) {
-    throw new Error(await parseError(response));
+    throw await buildError(response);
   }
   return response.blob();
 }
@@ -88,7 +116,7 @@ export async function exportBookFiles(
     }),
   });
   if (!response.ok) {
-    throw new Error(await parseError(response));
+    throw await buildError(response);
   }
   return response.json();
 }

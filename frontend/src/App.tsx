@@ -15,7 +15,15 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
-import { analyzeFile, exportBookFiles, exportBooks, fetchBookEntries } from "@/lib/api";
+import {
+  analyzeFile,
+  exportBookFiles,
+  exportBooks,
+  fetchBookEntries,
+  fetchLatestAnalysis,
+  isAnalysisExpired,
+} from "@/lib/api";
+import { clearSession, loadSession, saveSession } from "@/lib/session";
 import {
   DEFAULT_CONFIG,
   DEFAULT_FILTERS,
@@ -112,10 +120,11 @@ function SettingsPanel({
           onCheckedChange={(checked) => setValue("exportMarkdown", checked)}
         />
         <ToggleRow
-          id="html"
-          label="HTML"
-          checked={config.exportHtml}
-          onCheckedChange={(checked) => setValue("exportHtml", checked)}
+          id="obsidian"
+          label="Obsidian"
+          hint="Markdown com as propriedades do Web Clipper no topo, para soltar no cofre."
+          checked={config.exportObsidian}
+          onCheckedChange={(checked) => setValue("exportObsidian", checked)}
         />
         <ToggleRow
           id="txt"
@@ -124,11 +133,10 @@ function SettingsPanel({
           onCheckedChange={(checked) => setValue("exportTxt", checked)}
         />
         <ToggleRow
-          id="obsidian"
-          label="Obsidian"
-          hint="Markdown com as propriedades do Web Clipper no topo, para soltar no cofre."
-          checked={config.exportObsidian}
-          onCheckedChange={(checked) => setValue("exportObsidian", checked)}
+          id="html"
+          label="HTML"
+          checked={config.exportHtml}
+          onCheckedChange={(checked) => setValue("exportHtml", checked)}
         />
       </section>
 
@@ -170,7 +178,7 @@ function SettingsPanel({
         <SliderRow
           id="position-overlap"
           label="Sobreposição de posição"
-          hint="Quanto duas passagens precisam se sobrepor para contarem como a mesma."
+          hint="Só decide sobreposições de 1 a 2 posições: acima disso as passagens já contam como a mesma."
           min={0.3}
           max={1}
           step={0.05}
@@ -194,7 +202,7 @@ function SettingsPanel({
         <SliderRow
           id="session-window"
           label="Janela de sessão"
-          hint="Destaques feitos nesse intervalo são tratados como da mesma leitura."
+          hint="Resgata sobreposições curtas: destaques feitos nesse intervalo contam como a mesma leitura. 0 desliga."
           min={0}
           max={60}
           step={5}
@@ -209,7 +217,7 @@ function SettingsPanel({
           <SliderRow
             id="similarity"
             label="Similaridade"
-            hint="Só entra em jogo quando falta posição nas entradas comparadas."
+            hint="Usada quando falta posição, ou quando duas entradas têm a mesma posição mas textos diferentes."
             min={0.5}
             max={1}
             step={0.05}
@@ -365,16 +373,33 @@ function entryLocation(entry: BookEntry) {
   return parts.join(" · ");
 }
 
+/** A pagina de recorte espelha os mesmos ajustes que valem para o export. */
+function buildClipHref(
+  analysisId: string,
+  bookKey: string,
+  onlyNew: boolean,
+  includeMetadata: boolean,
+) {
+  const params = new URLSearchParams();
+  if (onlyNew) params.set("only_new", "true");
+  if (!includeMetadata) params.set("metadata", "false");
+  const query = params.toString();
+  const path = `/clip/${encodeURIComponent(analysisId)}/${encodeURIComponent(bookKey)}`;
+  return query ? `${path}?${query}` : path;
+}
+
 function BookEntriesPanel({
   book,
   analysisId,
   onlyNew,
+  includeMetadata,
   isLoading,
   onOpenChange,
 }: {
   book: BookEntriesResponse | null;
   analysisId: string | null;
   onlyNew: boolean;
+  includeMetadata: boolean;
   isLoading: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
@@ -411,7 +436,7 @@ function BookEntriesPanel({
             <TooltipTrigger asChild>
               <a
                 className="inline-flex w-fit items-center gap-2 rounded-md border px-3 py-1.5 text-sm hover:bg-accent"
-                href={`/clip/${encodeURIComponent(analysisId)}/${encodeURIComponent(book.book_key)}${onlyNew ? "?only_new=true" : ""}`}
+                href={buildClipHref(analysisId, book.book_key, onlyNew, includeMetadata)}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -658,10 +683,15 @@ function formatLocalDateTime(date: Date) {
 }
 
 export default function App() {
-  const [config, setConfig] = useState<AppConfig>(DEFAULT_CONFIG);
+  const restoredSession = useRef(loadSession()).current;
+  const [config, setConfig] = useState<AppConfig>(restoredSession?.config ?? DEFAULT_CONFIG);
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
-  const [analysis, setAnalysis] = useState<AnalysisResponse | null>(null);
-  const [selectionMap, setSelectionMap] = useState<Record<string, boolean>>({});
+  const [analysis, setAnalysis] = useState<AnalysisResponse | null>(
+    restoredSession?.analysis ?? null,
+  );
+  const [selectionMap, setSelectionMap] = useState<Record<string, boolean>>(
+    restoredSession?.selectionMap ?? {},
+  );
   const [file, setFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
@@ -675,6 +705,52 @@ export default function App() {
     document.documentElement.classList.toggle("dark", theme === "dark");
     window.localStorage.setItem(THEME_STORAGE_KEY, theme);
   }, [theme]);
+
+  useEffect(() => {
+    if (!analysis) {
+      clearSession();
+      return;
+    }
+    saveSession({ analysis, selectionMap, config });
+  }, [analysis, config, selectionMap]);
+
+  // Sem sessao nesta aba o servidor ainda pode ter a ultima analise: abrir o app
+  // de outro dispositivo, ou depois de reiniciar o backend, volta preenchido.
+  useEffect(() => {
+    if (restoredSession) return;
+
+    let active = true;
+    fetchLatestAnalysis()
+      .then((latest) => {
+        if (!active || !latest) return;
+        setAnalysis(latest);
+        setSelectionMap(latest.selectionMap);
+      })
+      .catch(() => {
+        // Nada guardado ou backend fora: o estado de upload ja e o correto.
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [restoredSession]);
+
+  /**
+   * 409 significa que o backend reiniciou e perdeu o ANALYSIS_CACHE: a sessao
+   * restaurada aponta para uma analise que nao existe mais. Descarta tudo para o
+   * usuario voltar ao estado de upload em vez de bater no mesmo erro.
+   */
+  const reportError = (error: unknown, fallbackMessage: string) => {
+    if (isAnalysisExpired(error)) {
+      setAnalysis(null);
+      setSelectionMap({});
+      setOpenBook(null);
+      clearSession();
+      toast.error("A análise expirou no servidor. Envie o arquivo novamente.");
+      return;
+    }
+    toast.error(error instanceof Error ? error.message : fallbackMessage);
+  };
 
   const activeFormats = activeFormatLabels(config);
   const activeFormatKeys = activeFormatValues(config);
@@ -708,7 +784,7 @@ export default function App() {
       setFilters(DEFAULT_FILTERS);
       toast.success("Análise concluída.");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Falha na análise.");
+      reportError(error, "Falha na análise.");
     } finally {
       setIsAnalyzing(false);
     }
@@ -739,7 +815,7 @@ export default function App() {
       applyExportedRows(selectedBookKeys);
       toast.success("ZIP gerado.");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Falha na exportação.");
+      reportError(error, "Falha na exportação.");
     } finally {
       setIsExporting(false);
     }
@@ -758,7 +834,7 @@ export default function App() {
       }
       applyExportedRows([row.book_key]);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Falha no download.");
+      reportError(error, "Falha no download.");
     } finally {
       setDownloadingBookKey(null);
     }
@@ -770,7 +846,7 @@ export default function App() {
     try {
       setOpenBook(await fetchBookEntries(analysis.analysisId, row.book_key));
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Falha ao carregar destaques.");
+      reportError(error, "Falha ao carregar destaques.");
     } finally {
       setIsLoadingBook(false);
     }
@@ -1003,6 +1079,7 @@ export default function App() {
           book={openBook}
           analysisId={analysis?.analysisId ?? null}
           onlyNew={config.exportOnlyNew}
+          includeMetadata={config.includeMetadata}
           isLoading={isLoadingBook}
           onOpenChange={(open) => {
             if (!open) setOpenBook(null);

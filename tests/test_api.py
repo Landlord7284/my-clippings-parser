@@ -9,6 +9,7 @@ from fastapi.testclient import TestClient
 
 from kindle_extractor import api as api_module
 from kindle_extractor.api import ANALYSIS_CACHE, app
+from kindle_extractor.analysis_store import MAX_STORED_ANALYSES
 from kindle_extractor.datetime_utils import format_iso_for_display
 from kindle_extractor.processing_store import ProcessingStore
 
@@ -466,3 +467,96 @@ def test_export_requires_selected_books(
 
     assert response.status_code == 400
     assert "Select at least one book" in response.json()["detail"]
+
+
+def test_export_survives_a_lost_cache_by_rehydrating_from_disk(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    """O caso do restart: sem isto, todo reinicio do backend devolvia 409."""
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+    analysis = _analyze(client, real_clippings_excerpt.encode("utf-8")).json()
+    row = analysis["rows"][0]
+
+    ANALYSIS_CACHE.clear()
+
+    response = client.post(
+        "/api/export",
+        json={
+            "analysisId": analysis["analysisId"],
+            "selectedBookKeys": [row["book_key"]],
+            "config": _config(),
+        },
+    )
+
+    assert response.status_code == 200
+    clip = client.get(f"/clip/{analysis['analysisId']}/{row['book_key']}")
+    assert clip.status_code == 200
+
+
+def test_rehydrating_does_not_count_as_a_new_analysis(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+    analysis = _analyze(client, real_clippings_excerpt.encode("utf-8")).json()
+    store = ProcessingStore(workspace_tmp_path / ".kindle_processing_store.json")
+    before = store.get_books()
+
+    ANALYSIS_CACHE.clear()
+    client.get("/api/analysis/latest")
+
+    after = store.get_books()
+    assert list(after) == list(before)
+    for book_key, book in after.items():
+        assert book["last_analysis_at"] == before[book_key]["last_analysis_at"]
+        assert len(book["processing_history"]) == len(before[book_key]["processing_history"])
+
+
+def test_latest_analysis_returns_the_last_upload_and_404_when_empty(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+
+    assert client.get("/api/analysis/latest").status_code == 404
+
+    analysis = _analyze(client, real_clippings_excerpt.encode("utf-8")).json()
+    ANALYSIS_CACHE.clear()
+
+    latest = client.get("/api/analysis/latest")
+
+    assert latest.status_code == 200
+    payload = latest.json()
+    assert payload["analysisId"] == analysis["analysisId"]
+    assert payload["uploadedName"] == "My Clippings.txt"
+    assert [row["book_key"] for row in payload["rows"]] == [
+        row["book_key"] for row in analysis["rows"]
+    ]
+
+
+def test_stored_uploads_are_capped_and_old_files_are_removed(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+
+    ids = []
+    for index in range(MAX_STORED_ANALYSES + 1):
+        content = f"{real_clippings_excerpt}\n==========\nLivro {index} (Autor)\n"
+        ids.append(_analyze(client, content.encode("utf-8")).json()["analysisId"])
+
+    analyses_dir = workspace_tmp_path / "analyses"
+    stored = {path.stem for path in analyses_dir.glob("*.txt")}
+
+    assert len(stored) == MAX_STORED_ANALYSES
+    assert ids[0] not in stored
+    assert ids[-1] in stored
+
+    ANALYSIS_CACHE.clear()
+    dropped = client.get(f"/clip/{ids[0]}/whatever")
+    assert dropped.status_code == 409

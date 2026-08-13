@@ -25,18 +25,18 @@ export const DEFAULT_FILTERS: FilterState = {
 export function activeFormatLabels(config: AppConfig) {
   const labels = [];
   if (config.exportMarkdown) labels.push("Markdown");
-  if (config.exportHtml) labels.push("HTML");
-  if (config.exportTxt) labels.push("TXT");
   if (config.exportObsidian) labels.push("Obsidian");
+  if (config.exportTxt) labels.push("TXT");
+  if (config.exportHtml) labels.push("HTML");
   return labels;
 }
 
 export function activeFormatValues(config: AppConfig) {
   const values = [];
   if (config.exportMarkdown) values.push("markdown");
-  if (config.exportHtml) values.push("html");
-  if (config.exportTxt) values.push("txt");
   if (config.exportObsidian) values.push("obsidian");
+  if (config.exportTxt) values.push("txt");
+  if (config.exportHtml) values.push("html");
   return values;
 }
 
