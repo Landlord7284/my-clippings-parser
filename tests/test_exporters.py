@@ -4,10 +4,13 @@ from datetime import datetime
 from kindle_extractor.book_selection_service import build_book_key
 from kindle_extractor.extractor import KindleHighlightsExtractor
 from kindle_extractor.exporters import (
+    build_note_blocks,
     generate_html,
     generate_markdown,
     generate_obsidian,
     generate_txt,
+    render_note_blocks_html,
+    render_note_blocks_markdown,
 )
 
 
@@ -191,8 +194,10 @@ def test_obsidian_export_carries_the_web_clipper_properties():
         assert f"\n{name}:\n" in frontmatter
 
     assert "# Citações e Destaques" in content
+    assert "> [!quote] Página 12 · Posição: 200" in content
     assert "> Código limpo importa." in content
-    assert "**Nota** — Página 12 · Posição: 202" in content
+    assert "> [!note] Nota — Página 12 · Posição: 202" in content
+    assert "**Marcador** — Página 12 · Posição: 203" in content
 
 
 def test_obsidian_frontmatter_survives_titles_with_colons_and_quotes():
@@ -214,6 +219,73 @@ def test_obsidian_export_quotes_multiline_highlights():
     )
 
     assert "> Primeira linha.\n>\n> Segunda linha." in content
+
+
+def test_obsidian_metadata_callout_follows_the_include_metadata_flag():
+    entries = _sample_entries()
+
+    with_metadata = generate_obsidian(
+        "Clean Code", entries, {"include_metadata": True}, {"include_bookmarks": True}
+    )
+    without_metadata = generate_obsidian(
+        "Clean Code", entries, {"include_metadata": False}, {"include_bookmarks": True}
+    )
+
+    assert "> [!info]- Metadados do recorte" in with_metadata
+    # Dois espacos no fim: a quebra forte que o Obsidian precisa dentro do callout.
+    assert "> **Total de destaques**: 1  \n" in with_metadata
+    assert "> **Total de notas**: 1  \n" in with_metadata
+    assert "> **Posições marcadas**: 203  \n" in with_metadata
+    assert "> **Período**: 2 de fevereiro de 2024 - 2 de fevereiro de 2024  \n" in with_metadata
+    # Titulo e autor ficam so nas propriedades.
+    assert "**Autor**" not in with_metadata
+
+    assert "Metadados do recorte" not in without_metadata
+    assert "> [!quote] Página 12 · Posição: 200" in without_metadata
+
+
+def test_clip_page_body_and_obsidian_body_come_from_the_same_blocks():
+    """Os dois caminhos ja divergiram em silencio; a paridade agora e estrutural."""
+    entries = _sample_entries()
+    blocks = build_note_blocks(entries, include_metadata=True, include_bookmarks=True)
+
+    markdown = render_note_blocks_markdown(blocks)
+    page = render_note_blocks_html(blocks)
+
+    for block in blocks:
+        if block["kind"] == "marker":
+            assert f"**{block['label']}** — {block['location']}" in markdown
+            assert f"<strong>{block['label']}</strong> — {block['location']}" in page
+            continue
+
+        fold = block.get("fold", "")
+        assert f"> [!{block['type']}]{fold} {block['title']}" in markdown
+        assert f'data-callout="{block["type"]}"' in page
+        assert f'<div class="callout-title-inner">{block["title"]}</div>' in page
+
+        if "fields" in block:
+            for label, value in block["fields"]:
+                assert f"> **{label}**: {value}" in markdown
+                assert f"<strong>{label}</strong>: {value}" in page
+        else:
+            assert f"> {block['text']}" in markdown
+            assert f"<p>{block['text']}</p>" in page
+
+
+def test_clip_page_body_escapes_html_in_highlights():
+    entries = [
+        {
+            **_sample_entries()[0],
+            "content": "<Você alcançou o limite de recortes para este item>",
+        }
+    ]
+
+    page = render_note_blocks_html(
+        build_note_blocks(entries, include_metadata=False, include_bookmarks=True)
+    )
+
+    assert "&lt;Você alcançou o limite de recortes para este item&gt;" in page
+    assert "<Você" not in page
 
 
 def test_generate_files_uses_normalized_filenames(workspace_tmp_path):

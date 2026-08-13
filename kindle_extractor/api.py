@@ -327,21 +327,13 @@ def _render_clip_page(title: str, author: str, entries: List[dict]) -> str:
         ensure_ascii=False,
     )
 
-    blocks = []
-    for entry in entries:
-        location = html.escape(" · ".join(location_parts(entry)))
-        if entry["type"] == "bookmark":
-            blocks.append(f'<li data-type="bookmark"><em>Marcador — {location}</em></li>')
-        elif entry["type"] == "note":
-            blocks.append(
-                f'<li data-type="note"><strong>Nota</strong> — {location}<br>'
-                f"{html.escape(entry['content'])}</li>"
-            )
-        elif entry["content"]:
-            blocks.append(
-                f'<li data-type="highlight"><blockquote>{html.escape(entry["content"])}'
-                f"</blockquote><em>{location}</em></li>"
-            )
+    body = render_note_blocks_html(
+        build_note_blocks(
+            entries,
+            include_metadata=include_metadata,
+            include_bookmarks=AppConfig().include_bookmarks,
+        )
+    )
 
     escaped_title = html.escape(title)
     return f"""<!DOCTYPE html>
@@ -353,24 +345,30 @@ def _render_clip_page(title: str, author: str, entries: List[dict]) -> str:
 <script type="application/ld+json">{book_schema}</script>
 <style>
   body {{ font-family: system-ui, sans-serif; max-width: 46rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }}
-  ul {{ list-style: none; padding: 0; }}
-  li {{ margin-bottom: 1.5rem; }}
-  blockquote {{ margin: 0 0 .25rem; padding-left: 1rem; border-left: 3px solid #ccc; }}
-  em {{ color: #666; font-size: .875rem; }}
+  .callout {{ margin-bottom: 1.5rem; padding: .75rem 1rem; border-left: 3px solid #ccc; background: #f6f6f6; }}
+  .callout[data-callout="info"] {{ border-left-color: #6b8bbd; }}
+  .callout-title {{ font-weight: 600; font-size: .875rem; color: #555; margin-bottom: .5rem; }}
+  .callout-content p {{ margin: 0 0 .5rem; }}
+  .callout-content p:last-child {{ margin-bottom: 0; }}
 </style>
 </head>
 <body>
 <h1>{escaped_title}</h1>
 <p>{html.escape(author)}</p>
-<ul data-testid="highlights">
-{chr(10).join(blocks)}
-</ul>
+<div data-testid="highlights">
+{body}
+</div>
 </body>
 </html>"""
 
 
 @app.get("/clip/{analysis_id}/{book_key}")
-def clip_page(analysis_id: str, book_key: str, only_new: bool = False):
+def clip_page(
+    analysis_id: str,
+    book_key: str,
+    only_new: bool = False,
+    metadata: bool = True,
+):
     cached_analysis = _cached_analysis_or_409(analysis_id)
     entries = cached_analysis["books"].get(book_key)
     if not entries:
@@ -382,7 +380,7 @@ def clip_page(analysis_id: str, book_key: str, only_new: bool = False):
         entries = service.keep_only_new_entries({book_key: entries}).get(book_key, [])
 
     return Response(
-        content=_render_clip_page(title, author, sort_entries(entries)),
+        content=_render_clip_page(title, author, sort_entries(entries), metadata),
         media_type="text/html; charset=utf-8",
     )
 

@@ -1,4 +1,5 @@
 import html
+import re
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
@@ -49,11 +50,15 @@ def _generated_at_label() -> str:
     return format_date_pt(today_in_app_timezone())
 
 
-def _is_renderable(entry: dict, app_config: dict) -> bool:
+def _renders(entry: dict, include_bookmarks: bool) -> bool:
     """Bookmarks nao tem conteudo: valem pela posicao. Os demais precisam de texto."""
     if entry["type"] == "bookmark":
-        return bool(app_config["include_bookmarks"])
+        return bool(include_bookmarks)
     return bool(entry["content"])
+
+
+def _is_renderable(entry: dict, app_config: dict) -> bool:
+    return _renders(entry, app_config["include_bookmarks"])
 
 
 def sort_entries(entries: List[dict]) -> List[dict]:
@@ -151,6 +156,158 @@ def _as_blockquote(text: str) -> str:
     return "\n".join(f"> {line}" if line else ">" for line in text.split("\n"))
 
 
+METADATA_CALLOUT_TITLE = "Metadados do recorte"
+
+
+def _metadata_fields(meta: Dict[str, object], include_bookmarks: bool) -> List[tuple]:
+    """Rastreabilidade do recorte. Titulo e autor ficam de fora: ja sao propriedades."""
+    fields = [
+        ("Total de destaques", str(len(meta["highlights"]))),
+        ("Total de notas", str(len(meta["notes"]))),
+    ]
+    if include_bookmarks and meta["bookmarks"]:
+        positions = ", ".join(_bookmark_positions(meta["bookmarks"]))
+        fields.append(("Posições marcadas", positions))
+    fields.append(("Período", str(meta["period"])))
+    fields.append(("Gerado em", _generated_at_label()))
+    return fields
+
+
+def build_note_blocks(
+    entries: List[dict],
+    *,
+    include_metadata: bool = True,
+    include_bookmarks: bool = True,
+) -> List[dict]:
+    """Corpo da nota do Obsidian descrito em blocos, sem markdown nem HTML.
+
+    Fonte unica das duas renderizacoes -- o `.md` exportado e a pagina de
+    recorte. Enquanto cada caminho montava o proprio corpo eles divergiram em
+    silencio, e so o usuario percebia, ja dentro do cofre.
+    """
+    entries = sort_entries(entries)
+    blocks: List[dict] = []
+
+    if include_metadata:
+        meta = _build_book_metadata(entries)
+        blocks.append(
+            {
+                "kind": "callout",
+                "type": "info",
+                "fold": "-",
+                "title": METADATA_CALLOUT_TITLE,
+                "fields": _metadata_fields(meta, include_bookmarks),
+            }
+        )
+
+    for entry in entries:
+        if not _renders(entry, include_bookmarks):
+            continue
+
+        location = " · ".join(location_parts(entry))
+
+        if entry["type"] == "bookmark":
+            # Sem corpo: um callout vazio renderiza uma linha `>` solta.
+            blocks.append({"kind": "marker", "label": "Marcador", "location": location})
+        elif entry["type"] == "note":
+            blocks.append(
+                {
+                    "kind": "callout",
+                    "type": "note",
+                    "title": f"Nota — {location}",
+                    "text": entry["content"],
+                }
+            )
+        else:
+            blocks.append(
+                {
+                    "kind": "callout",
+                    "type": "quote",
+                    "title": location,
+                    "text": entry["content"],
+                }
+            )
+
+    return blocks
+
+
+def _text_paragraphs(text: str) -> List[List[str]]:
+    """Paragrafos do destaque, cada um como lista de linhas."""
+    paragraphs = re.split(r"\n[ \t]*\n", text)
+    return [
+        [line for line in paragraph.split("\n")]
+        for paragraph in paragraphs
+        if paragraph.strip()
+    ]
+
+
+def render_note_blocks_markdown(blocks: List[dict]) -> str:
+    parts = []
+
+    for block in blocks:
+        if block["kind"] == "marker":
+            parts.append(f"**{block['label']}** — {block['location']}")
+            continue
+
+        header = f"> [!{block['type']}]{block.get('fold', '')} {block['title']}"
+
+        if "fields" in block:
+            # Dois espacos no fim de cada linha menos a ultima: quebra forte, do
+            # mesmo jeito que o generate_markdown ja separa os metadados dele.
+            joined = "  \n".join(
+                f"**{label}**: {value}" for label, value in block["fields"]
+            )
+            body = "\n".join(f"> {line}" for line in joined.split("\n"))
+        else:
+            body = _as_blockquote(block["text"])
+
+        parts.append(f"{header}\n{body}")
+
+    return "\n\n".join(parts) + "\n" if parts else ""
+
+
+def render_note_blocks_html(blocks: List[dict]) -> str:
+    """Marcacao que o conversor do Web Clipper devolve como os mesmos blocos.
+
+    A extensao converte `div.callout[data-callout]` em `> [!tipo] titulo`, lendo
+    o titulo de `.callout-title-inner` e o corpo de `.callout-content`. Escrever
+    `[!tipo]` como texto nao funciona: o conversor escapa os colchetes.
+    """
+    parts = []
+
+    for block in blocks:
+        if block["kind"] == "marker":
+            parts.append(
+                f"<p><strong>{html.escape(block['label'])}</strong> — "
+                f"{html.escape(block['location'])}</p>"
+            )
+            continue
+
+        fold = block.get("fold") or ""
+        fold_attr = f' data-callout-fold="{html.escape(fold)}"' if fold else ""
+
+        if "fields" in block:
+            content = "<p>" + "<br>".join(
+                f"<strong>{html.escape(label)}</strong>: {html.escape(value)}"
+                for label, value in block["fields"]
+            ) + "</p>"
+        else:
+            content = "".join(
+                "<p>" + "<br>".join(html.escape(line) for line in lines) + "</p>"
+                for lines in _text_paragraphs(block["text"])
+            )
+
+        parts.append(
+            f'<div class="callout" data-callout="{html.escape(block["type"])}"{fold_attr}>'
+            f'<div class="callout-title"><div class="callout-title-inner">'
+            f'{html.escape(block["title"])}</div></div>'
+            f'<div class="callout-content">{content}</div>'
+            f"</div>"
+        )
+
+    return "\n".join(parts)
+
+
 def generate_obsidian(
     title: str, entries: List[dict], format_config: dict, app_config: dict
 ) -> str:
@@ -160,19 +317,13 @@ def generate_obsidian(
 
     content = _obsidian_frontmatter(title, meta["author"])
     content += "\n# Citações e Destaques\n\n"
-
-    for entry in entries:
-        if not _is_renderable(entry, app_config):
-            continue
-
-        location = " · ".join(location_parts(entry))
-
-        if entry["type"] == "bookmark":
-            content += f"- **Marcador** — {location}\n\n"
-        elif entry["type"] == "note":
-            content += f"**Nota** — {location}\n\n{entry['content']}\n\n"
-        else:
-            content += f"{_as_blockquote(entry['content'])}\n>\n> *{location}*\n\n"
+    content += render_note_blocks_markdown(
+        build_note_blocks(
+            entries,
+            include_metadata=format_config.get("include_metadata", True),
+            include_bookmarks=app_config["include_bookmarks"],
+        )
+    )
 
     return content
 

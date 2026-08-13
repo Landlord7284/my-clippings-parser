@@ -98,7 +98,10 @@
 	"triggers": [
 		"http://127.0.0.1:8501/clip/",
 		"http://localhost:8501/clip/",
-		"http://127.0.0.1:8000/clip/"
+		"http://127.0.0.1:8000/clip/",
+		"http://localhost:8000/clip/",
+		"http://127.0.0.1:5173/clip/",
+		"http://localhost:5173/clip/"
 	],
 	"noteNameFormat": "{{schema:@Book:name}}",
 	"path": "Clippings"

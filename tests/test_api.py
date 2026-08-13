@@ -246,6 +246,29 @@ def test_clip_page_exposes_schema_org_book_and_highlights(
     assert 'data-testid="highlights"' in page
     assert "Por um longo tempo ele permaneceu fitando a coruja." in page
 
+    # A extensao so converte em `> [!quote] ...` com esta marcacao exata.
+    assert 'data-callout="quote"' in page
+    assert '<div class="callout-title-inner">Página 56 · Posição: 521-525' in page
+
+
+def test_clip_page_metadata_callout_follows_the_query_flag(
+    workspace_tmp_path, real_clippings_excerpt, monkeypatch
+):
+    monkeypatch.setenv("HISTORY_DIR", str(workspace_tmp_path))
+    ANALYSIS_CACHE.clear()
+    client = TestClient(app)
+    analysis = _analyze(client, real_clippings_excerpt.encode("utf-8")).json()
+    row = next(row for row in analysis["rows"] if row["title"] == "Blade Runner")
+    base_url = f"/clip/{analysis['analysisId']}/{row['book_key']}"
+
+    default_page = client.get(base_url).text
+    without_metadata = client.get(base_url, params={"metadata": "false"}).text
+
+    assert 'data-callout="info" data-callout-fold="-"' in default_page
+    assert "Metadados do recorte" in default_page
+    assert "Metadados do recorte" not in without_metadata
+    assert 'data-callout="quote"' in without_metadata
+
 
 def test_clip_page_escapes_content_and_honours_only_new(
     workspace_tmp_path, real_clippings_excerpt, monkeypatch
