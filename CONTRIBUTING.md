@@ -27,6 +27,15 @@ Tipos comuns:
 pytest
 ```
 
+E, em `frontend/`:
+
+```powershell
+npm run test
+npm run build
+```
+
+`npm run build` é o portão de checagem de tipos; sem ele um erro de tipo passa.
+
 Se a mudança afetar fluxo de uso, também validar manualmente:
 - upload do arquivo
 - análise
