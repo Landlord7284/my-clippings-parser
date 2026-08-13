@@ -33,11 +33,23 @@ docker build -t my-clippings-parser:dev .
 docker run --rm -p 8501:8501 -v "$PWD/data:/data" my-clippings-parser:dev
 ```
 
-Published to `ghcr.io/landlord7284/my-clippings-parser` (canonical) and mirrored to
-`legroom2669/my-clippings-parser` on Docker Hub — same digest, `linux/amd64` +
-`linux/arm64`. A release number must match across the git tag (`vX.Y.Z`), both image
-tags, and `version` in `frontend/package.json`. Docker prose lives in `DOCKER.md`,
-not `README.md`.
+Publishing a release (maintainer only — keep this out of `DOCKER.md`, which is for
+people running the image): bump `version` in `frontend/package.json`, commit, tag
+`vX.Y.Z`, then one build carrying all four tags so both registries get the same digest:
+
+```bash
+gh auth refresh -h github.com -s write:packages   # push 403s without this scope
+gh auth token | docker login ghcr.io -u landlord7284 --password-stdin
+docker buildx build --platform linux/amd64,linux/arm64 \
+  -t ghcr.io/landlord7284/my-clippings-parser:X.Y.Z -t ghcr.io/landlord7284/my-clippings-parser:latest \
+  -t legroom2669/my-clippings-parser:X.Y.Z -t legroom2669/my-clippings-parser:latest --push .
+```
+
+`ghcr.io/landlord7284/my-clippings-parser` is canonical, Docker Hub mirrors it. A new
+GHCR package is private until flipped in the web UI — the API returns 404 for that.
+Don't pipe `buildx` through `tail`: it masks the exit code and a failed push looks green.
+
+Docker prose lives in `DOCKER.md`, not `README.md`.
 
 `docker-entrypoint.sh` runs before the app: as root with `PUID`/`PGID` set it chowns `HISTORY_DIR` and drops privileges via `gosu`; started already non-root (`--user`) it execs straight through; with both vars blank it stays root. Changing it means re-testing all three paths.
 
