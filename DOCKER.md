@@ -33,16 +33,11 @@ restart policies can tell a wedged backend from a live one.
 services:
   parser:
     image: ghcr.io/landlord7284/my-clippings-parser:1.0.1
-    environment:
-      - TZ=America/Sao_Paulo
-      - HISTORY_DIR=/data/history
-      - PUID=2001
-      - PGID=2001
     ports:
       - '8501:8501'
     restart: unless-stopped
     volumes:
-      - /mnt/tank/apps/parser/history:/data/history
+      - ./data:/data
 ```
 
 ## Environment variables
@@ -57,16 +52,16 @@ services:
 
 By default the container runs as root. Two ways to change that:
 
-**`PUID` / `PGID`** — the container takes ownership of `HISTORY_DIR` and drops
-to that user before starting the app, so the host directory needs no
-preparation. Setting only one defaults the other to `1000`.
+**`PUID` / `PGID`** — set them to a UID/GID and the container takes ownership of
+`HISTORY_DIR` and drops to that user before starting the app, so the mounted
+directory needs no preparation. Setting only one defaults the other to `1000`.
 
 **Docker's own `user:`** — with `user:` (or `--user`) the container never runs
-as root at all. `PUID`/`PGID` are then ignored, and the host directory has to be
-writable by that UID beforehand:
+as root at all. `PUID`/`PGID` are then ignored, and the mounted directory has to
+be writable by that UID beforehand:
 
 ```sh
-chown -R 2001:2001 /mnt/tank/apps/parser/history
+chown -R "$(id -u):$(id -g)" ./data
 ```
 
 Both work with `security_opt: [no-new-privileges:true]`. On a read-only volume
