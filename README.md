@@ -452,3 +452,7 @@ Notes on the format:
 - History is capped at the last 200 events of each kind.
 - Writes go through a per-path lock covering `load -> merge -> save`, and land
   via a unique temp file plus atomic replace.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
