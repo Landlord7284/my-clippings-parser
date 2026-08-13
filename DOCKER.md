@@ -2,23 +2,33 @@
 
 The image serves the API and the built frontend from a single port, `8501`.
 
-Published on Docker Hub as
-[`legroom2669/my-clippings-parser`](https://hub.docker.com/r/legroom2669/my-clippings-parser),
-built for `linux/amd64` and `linux/arm64`.
+Published to two registries, built for `linux/amd64` and `linux/arm64`. Both
+carry the same image — the manifest is copied, not rebuilt, so the digests match
+exactly.
+
+| Registry | Address | |
+| --- | --- | --- |
+| GitHub Container Registry | `ghcr.io/landlord7284/my-clippings-parser` | **canonical** |
+| Docker Hub | `legroom2669/my-clippings-parser` | mirror |
+
+Prefer GHCR: it sits next to the source, inherits the repository's visibility,
+and has no anonymous pull rate limit — which is what bites on a NAS that
+restarts containers often. The Docker Hub name uses a different account
+(`legroom2669`), so the two addresses do not line up; that is expected.
 
 | Tag | Meaning |
 | --- | --- |
-| `1.0.0` | Pinned release. Use this when you want the deployment to stay put. |
+| `1.0.1` | Pinned release. Use this when you want the deployment to stay put. |
 | `latest` | Whatever the most recent release is. |
 
 ## Running
 
 ```powershell
-docker run --rm -p 8501:8501 -v "${PWD}\data:/data" legroom2669/my-clippings-parser:1.0.0
+docker run --rm -p 8501:8501 -v "${PWD}\data:/data" ghcr.io/landlord7284/my-clippings-parser:1.0.1
 ```
 
 ```bash
-docker run --rm -p 8501:8501 -v "$PWD/data:/data" legroom2669/my-clippings-parser:1.0.0
+docker run --rm -p 8501:8501 -v "$PWD/data:/data" ghcr.io/landlord7284/my-clippings-parser:1.0.1
 ```
 
 Open `http://127.0.0.1:8501`. The `/data` volume holds everything the app keeps
@@ -31,7 +41,7 @@ restart policies can tell a wedged backend from a live one.
 ## Building locally
 
 ```bash
-docker build -t legroom2669/my-clippings-parser:dev .
+docker build -t my-clippings-parser:dev .
 ```
 
 The build is two-stage: `node:22-slim` runs `npm ci && npm run build` in
@@ -39,14 +49,42 @@ The build is two-stage: `node:22-slim` runs `npm ci && npm run build` in
 `frontend/dist` in. That `dist` is why the runtime serves both from one port —
 `api.py` mounts it at `/` when the directory exists.
 
-To reproduce a published multi-arch build:
+## Publishing a release
+
+Build once, tagged for both registries, so a single push produces identical
+digests everywhere:
 
 ```bash
 docker buildx build --platform linux/amd64,linux/arm64 \
-  -t legroom2669/my-clippings-parser:1.0.0 \
+  -t ghcr.io/landlord7284/my-clippings-parser:1.0.1 \
+  -t ghcr.io/landlord7284/my-clippings-parser:latest \
+  -t legroom2669/my-clippings-parser:1.0.1 \
   -t legroom2669/my-clippings-parser:latest \
   --push .
 ```
+
+That needs a login to each registry. GHCR takes the `gh` token, but only if it
+carries the `write:packages` scope — without it the login succeeds and the push
+fails with `403 denied: The token provided does not match expected scopes`:
+
+```bash
+gh auth refresh -h github.com -s write:packages
+gh auth token | docker login ghcr.io -u landlord7284 --password-stdin
+docker login   # Docker Hub, as legroom2669
+```
+
+To mirror an image that is already published instead of rebuilding it,
+`imagetools` copies the multi-arch index straight across:
+
+```bash
+docker buildx imagetools create \
+  --tag ghcr.io/landlord7284/my-clippings-parser:1.0.1 \
+  legroom2669/my-clippings-parser:1.0.1
+```
+
+The release number has to match in three places: the git tag (`v1.0.1`), both
+image tags (`1.0.1`), and `version` in `frontend/package.json`. Bump the
+manifest in the commit the tag will point at.
 
 ## Running as a non-root user
 
@@ -60,7 +98,7 @@ convenient option on a NAS: no need to prepare ownership on the host.
 ```yaml
 services:
   parser:
-    image: legroom2669/my-clippings-parser:1.0.0
+    image: ghcr.io/landlord7284/my-clippings-parser:1.0.1
     environment:
       - TZ=America/Sao_Paulo
       - HISTORY_DIR=/data/history

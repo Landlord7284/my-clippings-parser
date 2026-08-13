@@ -29,12 +29,15 @@ npm run build   # tsc -b && vite build — also the typecheck gate
 Docker (single container serving API + built frontend on port 8501):
 
 ```bash
-docker build -t legroom2669/my-clippings-parser:dev .
-docker run --rm -p 8501:8501 -v "$PWD/data:/data" legroom2669/my-clippings-parser:dev
+docker build -t my-clippings-parser:dev .
+docker run --rm -p 8501:8501 -v "$PWD/data:/data" my-clippings-parser:dev
 ```
 
-Published as `legroom2669/my-clippings-parser` (tags `1.0.0` and `latest`,
-`linux/amd64` + `linux/arm64`). Docker prose lives in `DOCKER.md`, not `README.md`.
+Published to `ghcr.io/landlord7284/my-clippings-parser` (canonical) and mirrored to
+`legroom2669/my-clippings-parser` on Docker Hub — same digest, `linux/amd64` +
+`linux/arm64`. A release number must match across the git tag (`vX.Y.Z`), both image
+tags, and `version` in `frontend/package.json`. Docker prose lives in `DOCKER.md`,
+not `README.md`.
 
 `docker-entrypoint.sh` runs before the app: as root with `PUID`/`PGID` set it chowns `HISTORY_DIR` and drops privileges via `gosu`; started already non-root (`--user`) it execs straight through; with both vars blank it stays root. Changing it means re-testing all three paths.
 

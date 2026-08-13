@@ -113,10 +113,11 @@ The published image runs the whole app — API plus built frontend — on port
 `8501`:
 
 ```bash
-docker run --rm -p 8501:8501 -v "$PWD/data:/data" legroom2669/my-clippings-parser:1.0.0
+docker run --rm -p 8501:8501 -v "$PWD/data:/data" ghcr.io/landlord7284/my-clippings-parser:1.0.1
 ```
 
-Image tags, building, non-root setups, and the entrypoint's three paths are
+Also mirrored on Docker Hub as `legroom2669/my-clippings-parser`. Registries,
+image tags, building, non-root setups, and the entrypoint's three paths are
 documented in [DOCKER.md](DOCKER.md).
 
 ## Project Structure
