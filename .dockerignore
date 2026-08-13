@@ -18,3 +18,5 @@ frontend/vite.config.d.ts
 .DS_Store
 Thumbs.db
 .kindle_processing_store.json
+analyses/
+My Clippings.txt
